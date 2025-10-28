@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 
 
 func _on_flashcards_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://FlashcardsMainPage.tscn")
+	get_tree().change_scene_to_file("res://src/FlashcardsMainPage.tscn")

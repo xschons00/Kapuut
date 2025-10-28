@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dtt0pl0h650y2"]
 
-[ext_resource type="Script" uid="uid://bkqfpr4hvyeb1" path="res://main_page.gd" id="1_avgxh"]
+[ext_resource type="Script" uid="uid://bkqfpr4hvyeb1" path="res://src/main_page.gd" id="1_avgxh"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/MainPage_theme.tres" id="2_w6rye"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/menu_theme.tres" id="3_mg7qt"]
 
@@ -118,8 +118,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_mg7qt")
 theme_override_font_sizes/font_size = 68
-text = "¿ Kapuut ?
-welcome to epic quiz game"
+text = "welcome to
+flashcard quiz"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer/flashcards_button" to="." method="_on_flashcards_button_pressed"]
