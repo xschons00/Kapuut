@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://q4s5so6vuvvt"
-path="res://.godot/imported/Super Dream.ttf-2e6b40fa5ddfcfd6e3d48a0153e8869e.fontdata"
+path="res://.godot/imported/Super Dream.ttf-1a0fc5c563508c94882d9d8a9e805f19.fontdata"
 
 [deps]
 
-source_file="res://assets/Super Dream.ttf"
-dest_files=["res://.godot/imported/Super Dream.ttf-2e6b40fa5ddfcfd6e3d48a0153e8869e.fontdata"]
+source_file="res://assets/fonts/Super Dream.ttf"
+dest_files=["res://.godot/imported/Super Dream.ttf-1a0fc5c563508c94882d9d8a9e805f19.fontdata"]
 
 [params]
 

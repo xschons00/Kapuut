@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://8entfw1pqoh0"]
 
-[ext_resource type="FontFile" uid="uid://q4s5so6vuvvt" path="res://assets/Super Dream.ttf" id="1_tf8oi"]
+[ext_resource type="FontFile" uid="uid://q4s5so6vuvvt" path="res://assets/fonts/Super Dream.ttf" id="1_tf8oi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf8oi"]
 bg_color = Color(0.6, 0.6, 0.6, 0.29411766)

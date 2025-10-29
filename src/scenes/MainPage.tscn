@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cperdl3y4bj4x"]
 
-[ext_resource type="Script" uid="uid://bkqfpr4hvyeb1" path="res://src/main_page.gd" id="1_con45"]
-[ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/MainPage_theme.tres" id="1_lc84y"]
-[ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/menu_theme.tres" id="2_con45"]
+[ext_resource type="Script" uid="uid://bkqfpr4hvyeb1" path="res://src/scripts/main_page.gd" id="1_v1bcy"]
+[ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="2_i8032"]
+[ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_pnau5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t00d2"]
 bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
@@ -10,7 +10,7 @@ bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnibc"]
 bg_color = Color(0.16078432, 0.18431373, 0.21176471, 1)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_wqwo8"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_f24x4"]
 
 [sub_resource type="GDScript" id="GDScript_t00d2"]
 script/source = "extends Button
@@ -36,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_con45")
+script = ExtResource("1_v1bcy")
 
 [node name="background" type="Panel" parent="."]
 layout_mode = 1
@@ -45,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_lc84y")
+theme = ExtResource("2_i8032")
 
 [node name="menu_panel" type="Panel" parent="."]
 layout_mode = 1
@@ -53,7 +53,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 93.0
 grow_horizontal = 2
-theme = ExtResource("2_con45")
+theme = ExtResource("3_pnau5")
 theme_override_styles/panel = SubResource("StyleBoxFlat_t00d2")
 
 [node name="description_panel" type="Panel" parent="."]
@@ -65,7 +65,7 @@ anchor_bottom = 0.5
 offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_con45")
+theme = ExtResource("3_pnau5")
 theme_override_styles/panel = SubResource("StyleBoxFlat_gnibc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -74,33 +74,46 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 92.0
 grow_horizontal = 2
-theme = ExtResource("2_con45")
+theme = ExtResource("3_pnau5")
 alignment = 1
 
 [node name="title_label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("2_con45")
+theme = ExtResource("3_pnau5")
 text = "¿ Kapuut ?"
+
+[node name="home_button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_pnau5")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_f24x4")
+text = "Home"
 
 [node name="flashcards_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_con45")
-button_group = SubResource("ButtonGroup_wqwo8")
+theme = ExtResource("3_pnau5")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_f24x4")
 text = "Flashcards"
 script = SubResource("GDScript_t00d2")
 
 [node name="pvp_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_f24x4")
 text = "PvP Mode"
 
 [node name="lucky_mode_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_f24x4")
 text = "Lucky Mode"
 
 [node name="profiles" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
+toggle_mode = true
 text = "profiles"
 
 [node name="Label" type="Label" parent="."]
@@ -116,7 +129,7 @@ offset_right = 413.5
 offset_bottom = -30.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_con45")
+theme = ExtResource("3_pnau5")
 theme_override_font_sizes/font_size = 68
 text = "¿ Kapuut ?
 welcome to epic quiz game"
