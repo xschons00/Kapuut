@@ -1,0 +1,161 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+\setlist[itemize]{noitemsep, topsep=0pt}
+
+
+
+\begin{document}
+
+%---------------------------------
+% Titulná strana
+%---------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge \textbf{Tvorba užívateľských rozhraní}}\\[1em]
+    {\Large \textbf{Návrh aplikácie}}\\[5em]
+    
+    {\Large \textbf{Tím: Chleba}}\\[2em]
+    {\large
+        \textbf{Šimon Schön (xschons00)}\\
+        \textit{Kamil Jakubčák (xjakubk00)}\\
+        \textit{Adrián Pitka Kester (xpitkaa00)}
+    }\\[6em]
+    
+    {\large \today}\\[20em]
+    
+    {\large Fakulta informačných technológií, VUT v Brne}
+    \vfill
+\end{titlepage}
+
+%---------------------------------
+% Obsah
+%---------------------------------
+\tableofcontents
+\newpage
+
+%---------------------------------
+% Text dokumentu
+%---------------------------------
+\section{Návrh témy}
+\begin{itemize}
+  \item \textbf{Názov aplikácie:} Kapuut \\
+\end{itemize}
+
+Naša aplikácia má slúžiť ako zábavno edukatívna hra, v podobe kvízu s viacerými hernými režimami. Aplikácia je určená pre jedného hráča v režime pre precvičovanie otázok a odpovedí, alebo viacerých hráčov na jednom zariadení, v režime súťažného kvízu.
+
+\section{Používateľský prieskum a špecifikácia}
+
+\subsection{Prieskum [xschons00]}
+Cieľom prieskumu bolo zistiť, ako používatelia pristupujú k vedomostným hrám a čo zvyšuje ich motiváciu k opakovanému hraniu. Zamerali sme sa na študentov, ktorí si chcú zábavnou formou precvičovať vedomosti z rôznych oblastí.
+\\
+
+\textbf{Profil používateľa:}  
+Študent vysokej školy (vek 22 rokov), ktorý rád hrá mobilné hry vo voľnom čase.
+\\
+
+\textbf{Otázky užívateľského prieskumu:\\}
+\begin{itemize}
+  \item Aké typy vedomostných hier hrávaš najčastejšie a pri akej príležitosti?  
+  \item Čo ťa motivuje pokračovať v hraní takýchto hier?  
+  \item Uprednostňuješ kvíz, kde hráš sám, alebo s viacerými hráčmi?  
+  \item Aký typ otázok (textové, obrázkové, časovo obmedzené) považuješ za zábavný?  
+  \item Ako dlho by mala trvať jedna hra, aby udržala tvoju pozornosť?  
+  \item Chcel by si mať možnosť pridať vlastné otázky?  
+  \item Aké grafické prvky by ti spríjemnili hru (napr. animácie, zvukové efekty)?
+  \item Uprednostňuješ hry, ktoré nevyžadujú pripojenie na internet?\\
+\end{itemize}
+
+\textbf{Zistenia:}  
+Používateľ preferuje jednoduché a intuitívne prostredie, ktoré nevyžaduje zložité menu. Dôležitá je pre neho zábavná forma prezentácie otázok (napr. otáčanie kolesa, farebná spätná väzba po odpovedi) a možnosť rýchleho striedania hráčov. Oceňuje, ak hra nevyžaduje sieťové pripojenie a ponúka rýchle kolá v trvaní niekoľkých minút.
+
+\subsection{Prieskum [xjakubk00]}
+TODO
+
+\subsection{Prieskum [xpitka00]}
+TODO
+
+\subsection{Zhrnutie používateľských požiadaviek [tímové]}
+Konsolidovaný prehľad z prieskumov všetkých členov – popis kľúčových požiadaviek na funkčnosť a GUI.
+
+\section{Prieskum existujúcich riešení}
+\subsection{Prieskum [xschons00]}
+\begin{itemize}
+  \item \textbf{Kahoot:} Jedna z najznámejšich vedomostných hrier, používaných na školách. Je určené hlavne pre sútažné kvízy, kde sa hráči pripájajú na jedno zariadenie, ktoré slúži ako server. Používatelia môžu vytvárať a zdielať vlastné kvízy.
+  \item \textbf{Sporcle:} Stránka zastrešuje mnoho rôznuch vedomostných minihier. Dizajn je trochu zastaralý ale ponúka viacero typov kvízov rozdelených do kategórií podĺa témy alebo typu hry.
+\end{itemize}
+
+\subsection{Prieskum [xpitka00]}
+TODO
+\subsection{Prieskum [xjakubk00]}
+TODO
+
+
+
+\begin{itemize}
+  \item \textbf{Názov aplikácie 1:} [popis, účel]
+  \item \textbf{Výhody / inšpirácie:} 
+  \begin{itemize}
+    \item [1)] konkrétna výhoda
+  \end{itemize}
+  \item \textbf{Nevýhody / nedostatky:}
+  \begin{itemize}
+    \item [1)] konkrétny nedostatok
+  \end{itemize}
+\end{itemize}
+
+\subsection{Zhrnutie záverov tímu}
+Tím definuje 3–5 kľúčových poznatkov a inšpirácií pre návrh vlastnej aplikácie.
+
+\section{Rozdelenie práce v tíme}
+Popis, kto rieši ktorú časť GUI alebo funkcie. Vysvetlenie, ako každá časť realizuje interaktívnu manipuláciu s dátami.
+
+\section{Návrh GUI}
+\subsection{Popis návrhu GUI jednotlivých členov}
+Každý člen vloží návrh svojej časti GUI s popismi.
+\begin{itemize}
+  \item \textbf{Obrázok / wireframe:} \includegraphics[width=\textwidth]{gui_navrh1.png}
+  \item \textbf{Popis:} ako GUI rieši používateľské potreby
+  \item \textbf{Interaktívne prvky:} prehľad manipulácií s dátami
+\end{itemize}
+
+\section{Výber technológií}
+Pre vývoj aplikácie sme zvolili \textbf{Godot Engine} – open-source herný engine vhodný na 2D hry s možnosťou multiplatformového exportu. Hlavné dôvody tohto výberu sú:
+
+\begin{itemize}
+  \item \textbf{Jednoduchosť použitia:} Godot poskytuje vizuálne prostredie, v ktorom je možné vytvárať scény a prepojiť ich so skriptami bez potreby rozsiahlej konfigurácie.
+  \item \textbf{Rýchly vývoj prototypov:} Engine umožňuje okamžité testovanie a ladenie hry priamo počas vývoja.
+  \item \textbf{Multiplatformovosť:} Export pre Windows, Linux, Android a web (HTML5) bez dodatočných úprav.
+  \item \textbf{Open-source a komunita:} Veľká podpora zo strany komunity a množstvo dostupných návodov.
+\end{itemize}
+
+\section{Návrh SW architektúry a API (spoločné)}
+\subsection{Architektúra systému}
+Popis logických častí aplikácie, prepojenie FE a BE, prípadne schéma.
+
+\subsection{Návrh API}
+\begin{itemize}
+  \item \textbf{Príklad funkcie:} \texttt{GET /api/users}
+  \item \textbf{Vstupy:} [popis]
+  \item \textbf{Výstupy:} [popis]
+  \item \textbf{Prepojenie s GUI:} ktorá časť GUI túto funkciu volá
+\end{itemize}
+
+\subsection{Dátové štruktúry}
+Stručné popisy modelov (napr. User, Item, Group...) a ich vlastností.
+
+\section{Záver}
+Zhrnutie zistení, prehľad splnených bodov, prípadné otvorené otázky.
+
+\end{document}
