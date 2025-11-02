@@ -35,5 +35,5 @@ func set_profile_rect() -> void:
 	profile_rect.texture = load(user.profile_pic)	
 	
 func set_user_label() -> void:
-	var user_label = $user_label
+	var user_label = $HBoxContainer/user_label
 	user_label.text = user.user_name

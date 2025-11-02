@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwfu1ki42nria"]
+
+[ext_resource type="Theme" uid="uid://ccgk8k88ympsd" path="res://assets/themes/ProfileItem.tres" id="1_mmwy1"]
+[ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_j22vd"]
+
+[sub_resource type="FontVariation" id="FontVariation_tl6hu"]
+variation_embolden = 0.69
+
+[sub_resource type="FontVariation" id="FontVariation_ehu0m"]
+variation_embolden = 0.69
+
+[node name="ProfileItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 220.0
+offset_right = 654.0
+offset_bottom = 355.0
+theme = ExtResource("1_mmwy1")
+
+[node name="profile_rect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = -93.0
+offset_right = -347.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 247.0
+offset_right = 401.0
+offset_bottom = 330.0
+theme = ExtResource("1_mmwy1")
+alignment = 1
+
+[node name="user_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_j22vd")
+theme_override_fonts/font = SubResource("FontVariation_tl6hu")
+text = "user name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_j22vd")
+theme_override_fonts/font = SubResource("FontVariation_ehu0m")
+text = "elo: "
+
+[node name="elo_label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_j22vd")
+text = "1000"
+
+[node name="button_container" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 241.0
+offset_right = 643.0
+offset_bottom = 331.0
+theme = ExtResource("1_mmwy1")
+alignment = 1
+
+[node name="select_button" type="Button" parent="button_container"]
+layout_mode = 2
+theme = ExtResource("1_mmwy1")
+text = "select user"
+
+[node name="edit_button" type="Button" parent="button_container"]
+layout_mode = 2
+theme = ExtResource("1_mmwy1")
+text = "edit profile"

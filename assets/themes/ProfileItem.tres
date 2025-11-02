@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ccgk8k88ympsd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0usds"]
+bg_color = Color(1, 0.36078432, 0.36078432, 1)
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_0usds")
+VBoxContainer/constants/separation = 15
