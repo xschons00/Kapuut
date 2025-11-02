@@ -1,8 +1,9 @@
 extends Control
 
-var data_manager = DataManager.get_instance()
+var data_manager: DataManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	data_manager = DataManager.get_instance()
 	var config: AppConfigObject = data_manager.app_config.get_config()
 	if config == null:
 		print("ERROR: config not found")
