@@ -1,32 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtt0pl0h650y2"]
+[gd_scene load_steps=5 format=3 uid="uid://dtt0pl0h650y2"]
 
-[ext_resource type="Script" uid="uid://bsdhfdfsjws6v" path="res://src/scripts/flashcards_main_page.gd" id="1_sem6h"]
+[ext_resource type="Script" uid="uid://bsdhfdfsjws6v" path="res://src/scripts/FlashcardsMainPage.gd" id="1_sem6h"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="2_aea2l"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_5l2re"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t00d2"]
-bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnibc"]
 bg_color = Color(0.16078432, 0.18431373, 0.21176471, 1)
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_20deb"]
-
-[sub_resource type="GDScript" id="GDScript_t00d2"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-# press
-"
 
 [node name="FlashcardsMainPage" type="Control"]
 layout_mode = 3
@@ -46,15 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_aea2l")
 
-[node name="menu_panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 93.0
-grow_horizontal = 2
-theme = ExtResource("3_5l2re")
-theme_override_styles/panel = SubResource("StyleBoxFlat_t00d2")
-
 [node name="description_panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 14
@@ -66,53 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_5l2re")
 theme_override_styles/panel = SubResource("StyleBoxFlat_gnibc")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 92.0
-grow_horizontal = 2
-theme = ExtResource("3_5l2re")
-alignment = 1
-
-[node name="title_label" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_5l2re")
-text = "¿ Kapuut ?"
-
-[node name="home_button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_5l2re")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_20deb")
-text = "Home"
-
-[node name="flashcards_button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_5l2re")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_20deb")
-text = "Flashcards"
-script = SubResource("GDScript_t00d2")
-
-[node name="pvp_button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_20deb")
-text = "PvP Mode"
-
-[node name="lucky_mode_button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_20deb")
-text = "Lucky Mode"
-
-[node name="profiles" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "profiles"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -132,6 +55,3 @@ theme_override_font_sizes/font_size = 68
 text = "welcome to
 flashcard quiz"
 horizontal_alignment = 1
-
-[connection signal="pressed" from="HBoxContainer/home_button" to="." method="_on_home_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/flashcards_button" to="." method="_on_flashcards_button_pressed"]

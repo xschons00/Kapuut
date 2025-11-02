@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr4mhw04gii4p"]
+
+[ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/profiles.gd" id="1_1rjmx"]
+[ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="2_ymqsf"]
+
+[node name="Profiles" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rjmx")
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ymqsf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 754.0
+offset_top = 149.0
+offset_right = 1013.0
+offset_bottom = 515.0
