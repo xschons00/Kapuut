@@ -28,3 +28,8 @@ func _save_section(key: String, value) -> void:
 	_load_data()  # Refresh before saving
 	data[key] = value
 	_save_data()
+
+func clear_data() -> void:# for testing only, deletes saved data
+	data = {}
+	_save_data()
+	

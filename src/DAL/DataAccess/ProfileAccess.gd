@@ -2,22 +2,35 @@ class_name ProfileAccess
 extends DataAccess
 
 static var _instance: ProfileAccess
+var profile_cnt: int
 var profiles: Dictionary = {}
 
 static func get_instance() -> ProfileAccess:
 	if _instance == null:
 		_instance = ProfileAccess.new()
+		_instance.profile_cnt = 0
 	return _instance
 
-func get_profile(user_name: String) -> ProfileObject:
+func get_profile(id: String) -> ProfileObject:
 	profiles = _get_section("profiles")
-	if not profiles.has(user_name):
+	if not profiles.has(id):
 		return null
-	return ProfileObject.from_dict(user_name, profiles[user_name])
+	return ProfileObject.from_dict(id, profiles[id])
+	
+func get_all_profiles() -> Array[ProfileObject]:
+	var profile_arr: Array[ProfileObject] = []
+	profiles = _get_section("profiles")
+	for id in profiles:
+		profile_arr.append(ProfileObject.from_dict(id, profiles[id]))
+	return profile_arr
 
 func save_profile(profile: ProfileObject) -> void:
 	profiles = _get_section("profiles")
-	profiles[profile.user_name] = profile.to_dict()
+	if profile.id == "NOT_SET": #new profile, set propper ID
+		profile.id = str(profile_cnt)
+		profile_cnt+=1
+		
+	profiles[profile.id] = profile.to_dict()
 	_save_section("profiles", profiles)
 	
 	

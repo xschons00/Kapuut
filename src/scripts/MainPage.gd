@@ -1,10 +1,12 @@
 extends Control
 
+var data_manager = DataManager.get_instance()
 var sample_data_seed = SampleDataSeed.get_instance()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var menu = load("res://src/scenes/Menu.tscn").instantiate()
 	add_child(menu)
+	data_manager.clear_data()
 	sample_data_seed.seed()
 
 

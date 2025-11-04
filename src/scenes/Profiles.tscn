@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cr4mhw04gii4p"]
 
-[ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/profiles.gd" id="1_1rjmx"]
+[ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/Profiles.gd" id="1_1rjmx"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_nqd4w"]
 
 [sub_resource type="FontVariation" id="FontVariation_1rjmx"]
@@ -33,12 +33,13 @@ offset_right = 1033.0
 offset_bottom = 504.0
 mouse_filter = 2
 
-[node name="profile_rect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 772.0
-offset_top = 178.0
-offset_right = 1034.0
-offset_bottom = 504.0
+[node name="profile_rect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_nqd4w")
 
@@ -62,40 +63,54 @@ text = "user"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 773.0
-offset_top = 509.0
-offset_right = 1032.0
-offset_bottom = 540.0
+offset_left = 768.0
+offset_top = 511.0
+offset_right = 1037.0
+offset_bottom = 544.0347
 theme = ExtResource("2_nqd4w")
 placeholder_text = "change name"
 keep_editing_on_text_submit = true
 
 [node name="button_container" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 771.0
-offset_top = 544.0
-offset_right = 1016.0
-offset_bottom = 580.0
+offset_left = 770.0
+offset_top = 550.0
+offset_right = 1037.0
+offset_bottom = 599.0
 theme = ExtResource("2_nqd4w")
 
 [node name="accessory_button" type="Button" parent="button_container"]
 layout_mode = 2
 theme = ExtResource("2_nqd4w")
-text = "add accessory"
+text = " add accessory "
 
 [node name="save_button" type="Button" parent="button_container"]
 layout_mode = 2
 theme = ExtResource("2_nqd4w")
-text = "save changes"
+text = " save changes "
 
 [node name="all_profiles" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 93.0
+offset_left = 69.0
 offset_top = 129.0
-offset_right = 498.0
-offset_bottom = 548.0
+offset_right = 717.0
+offset_bottom = 539.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="all_profiles"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_nqd4w")
+
+[node name="new_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 550.0
+offset_right = 454.0
+offset_bottom = 599.0
+theme = ExtResource("2_nqd4w")
+text = "new profile"
+
+[connection signal="pressed" from="button_container/save_button" to="." method="_on_save_button_pressed"]

@@ -2,9 +2,17 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4iw6n"]
 bg_color = Color(0, 0, 0, 0.6862745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc776"]
 bg_color = Color(0, 0, 0, 0.78431374)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="SystemFont" id="SystemFont_7rgba"]
 
@@ -17,8 +25,9 @@ bg_color = Color(0.84967816, 0.5016967, 0.21379504, 1)
 [resource]
 Button/styles/hover = SubResource("StyleBoxFlat_4iw6n")
 Button/styles/normal = SubResource("StyleBoxFlat_rc776")
-HBoxContainer/constants/separation = 48
+HBoxContainer/constants/separation = 39
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = SubResource("FontVariation_4iw6n")
 Panel/styles/panel = SubResource("StyleBoxFlat_7rgba")
+VBoxContainer/constants/separation = 50

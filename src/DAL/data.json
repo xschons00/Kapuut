@@ -1,11 +1,12 @@
 {
 	"app_config": {
-		"user": "John Doe"
+		"user_id": "0"
 	},
 	"profiles": {
-		"John Doe": {
-			"elo": 1024.0,
-			"profile_pic": "res://assets/icons/icon.svg"
+		"0": {
+			"elo": 1024,
+			"profile_pic": "res://assets/icons/icon.svg",
+			"user_name": "okej"
 		}
 	}
 }

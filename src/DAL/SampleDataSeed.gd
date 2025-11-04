@@ -16,5 +16,5 @@ func seed() -> void:
 	user1.elo = 1024
 	dm.profiles.save_profile(user1)
 	var config = AppConfigObject.new()
-	config.user_name = user1.user_name
+	config.user_id = user1.id
 	dm.app_config.save_config(config)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://co0c6xjluuvp1"]
+[gd_scene load_steps=7 format=3 uid="uid://co0c6xjluuvp1"]
 
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="1_7slxi"]
 [ext_resource type="Script" uid="uid://dl3dkbnggyyee" path="res://src/scripts/Menu.gd" id="1_oyl3k"]
-[ext_resource type="Texture2D" uid="uid://bmk1odihfbwie" path="res://assets/icons/user.png" id="2_nyv1a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyv1a"]
 bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
@@ -26,7 +25,8 @@ func _process(delta: float) -> void:
 
 "
 
-[sub_resource type="SystemFont" id="SystemFont_oyl3k"]
+[sub_resource type="SystemFont" id="SystemFont_nyv1a"]
+subpixel_positioning = 0
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -51,6 +51,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_nyv1a")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = -194.0
 offset_bottom = 92.0
 grow_horizontal = 2
 theme = ExtResource("1_7slxi")
@@ -89,30 +90,32 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_oyl3k")
 text = "Lucky Mode"
 
-[node name="profile_button" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/profile_button"]
+[node name="profiles_button" type="Button" parent="."]
 layout_mode = 0
-offset_left = -15.0
-offset_top = 63.0
-offset_right = 90.0
-offset_bottom = 96.0
-theme_override_fonts/font = SubResource("SystemFont_oyl3k")
-theme_override_font_sizes/font_size = 18
+offset_left = 1051.0
+offset_top = 7.0
+offset_right = 1123.0
+offset_bottom = 73.0
+
+[node name="TextureRect" type="TextureRect" parent="profiles_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="profiles_button"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 61.0
+offset_right = 64.0
+offset_bottom = 84.0
+theme = ExtResource("1_7slxi")
+theme_override_fonts/font = SubResource("SystemFont_nyv1a")
+theme_override_font_sizes/font_size = 16
 text = "profiles"
-
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer/profile_button"]
-layout_mode = 0
-offset_left = -5.0000443
-offset_top = 15.0
-offset_right = 506.99997
-offset_bottom = 527.0
-scale = Vector2(0.5, 0.5)
-size_flags_stretch_ratio = 0.0
-toggle_mode = true
-texture_normal = ExtResource("2_nyv1a")
 
 [connection signal="pressed" from="HBoxContainer/home_button" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/flashcards_button" to="." method="_on_flashcards_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/profile_button/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="profiles_button" to="." method="_on_profiles_button_pressed"]

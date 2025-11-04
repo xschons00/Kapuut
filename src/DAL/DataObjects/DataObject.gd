@@ -3,13 +3,13 @@
 class_name DataObject
 extends RefCounted
 
-var _item: String
+var id: String
 
 func to_dict() -> Dictionary:
-	return {"item" : _item}
+	return {}
 
-static func from_dict(obj_name: String, dict: Dictionary) -> DataObject:
+static func from_dict(obj_id: String, dict: Dictionary) -> DataObject:
 	var obj = DataObject.new()
-	obj.name = obj_name
+	obj.id = obj_id
 	obj.item = dict.get("item", "")
 	return DataObject.new()

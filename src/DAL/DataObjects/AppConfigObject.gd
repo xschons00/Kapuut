@@ -1,14 +1,13 @@
 class_name AppConfigObject
 extends DataObject
 
-var _name: String
-var user_name: String
+var user_id: String
 
 func to_dict() -> Dictionary:
-	return {"user": user_name}
+	return {"user_id": user_id}
 
-static func from_dict(obj_name: String, dict: Dictionary) -> AppConfigObject:
+static func from_dict(obj_id: String, dict: Dictionary) -> AppConfigObject:
 	var obj = AppConfigObject.new()
-	obj._name = obj_name
-	obj.user_name = dict.get("user", "")
+	obj.id = obj_id
+	obj.user_id = dict.get("user_id", "")
 	return obj
