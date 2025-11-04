@@ -20,7 +20,7 @@ corner_radius_bottom_left = 5
 base_font = SubResource("SystemFont_7rgba")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rgba"]
-bg_color = Color(0.84967816, 0.5016967, 0.21379504, 1)
+bg_color = Color(0.92156863, 1, 0.92156863, 1)
 
 [resource]
 Button/styles/hover = SubResource("StyleBoxFlat_4iw6n")

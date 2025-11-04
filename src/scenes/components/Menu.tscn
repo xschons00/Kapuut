@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://co0c6xjluuvp1"]
 
-[ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="1_7slxi"]
-[ext_resource type="Script" uid="uid://dl3dkbnggyyee" path="res://src/scripts/Menu.gd" id="1_oyl3k"]
+[ext_resource type="Script" uid="uid://dl3dkbnggyyee" path="res://src/scripts/components/Menu.gd" id="1_5gk33"]
+[ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="2_qg5fg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyv1a"]
 bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
@@ -36,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_oyl3k")
+script = ExtResource("1_5gk33")
 
 [node name="menu_panel" type="Panel" parent="."]
 layout_mode = 1
@@ -44,7 +44,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 93.0
 grow_horizontal = 2
-theme = ExtResource("1_7slxi")
+theme = ExtResource("2_qg5fg")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nyv1a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -54,25 +54,25 @@ anchor_right = 1.0
 offset_right = -194.0
 offset_bottom = 92.0
 grow_horizontal = 2
-theme = ExtResource("1_7slxi")
+theme = ExtResource("2_qg5fg")
 alignment = 1
 
 [node name="title_label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("1_7slxi")
+theme = ExtResource("2_qg5fg")
 text = "¿ Kapuut ?"
 
 [node name="home_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_7slxi")
+theme = ExtResource("2_qg5fg")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_oyl3k")
 text = "Home"
 
 [node name="flashcards_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_7slxi")
+theme = ExtResource("2_qg5fg")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_oyl3k")
 text = "Flashcards"
@@ -111,7 +111,7 @@ offset_left = 5.0
 offset_top = 61.0
 offset_right = 64.0
 offset_bottom = 84.0
-theme = ExtResource("1_7slxi")
+theme = ExtResource("2_qg5fg")
 theme_override_fonts/font = SubResource("SystemFont_nyv1a")
 theme_override_font_sizes/font_size = 16
 text = "profiles"

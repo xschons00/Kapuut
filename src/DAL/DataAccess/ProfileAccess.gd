@@ -33,4 +33,10 @@ func save_profile(profile: ProfileObject) -> void:
 	profiles[profile.id] = profile.to_dict()
 	_save_section("profiles", profiles)
 	
+func delete_profile(profile: ProfileObject) -> bool:
+	profiles = _get_section("profiles")
+	var ret_code: bool = profiles.erase(profile.id)
+	_save_section("profiles", profiles)
+	return ret_code
+	
 	

@@ -1,12 +1,15 @@
 extends Control
 
-# Signal emitted when user clicks select
-signal profile_selected(user_name: String)
-# Auto-bind to nodes once the scene is ready
+# Signals
+signal profile_selected(user: ProfileObject)
+signal profile_delete(user: ProfileObject)
+
+# nodes
 @onready var profile_rect: TextureRect = $ColorRect/profile_rect
 @onready var user_label: Label = $VBoxContainer/user_label
 @onready var elo_label: Label = $VBoxContainer/HBoxContainer/elo_label
 
+#vars
 var user: ProfileObject
 
 # Called when the node enters the scene tree for the first time.
@@ -29,4 +32,7 @@ func set_profile_data(user_obj: ProfileObject) -> void:
 
 
 func _on_select_button_pressed() -> void:
-	emit_signal("profile_selected", user.id)
+	emit_signal("profile_selected", user)
+	
+func _on_delete_button_pressed() -> void:
+	emit_signal("profile_delete", user)

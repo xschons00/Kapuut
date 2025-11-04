@@ -15,3 +15,4 @@ static func get_instance() -> DataManager:
 # for testing only, deletes saved data
 func clear_data() -> void:
 	_instance.profiles.clear_data() #works with any access object 
+	_instance.profiles.profile_cnt = 0

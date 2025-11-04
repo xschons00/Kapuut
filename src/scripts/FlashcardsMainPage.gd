@@ -1,9 +1,10 @@
 extends Control
 
+@onready var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var menu = load("res://src/scenes/Menu.tscn").instantiate()
+	var menu = menu_scene.instantiate()
 	add_child(menu)
 
 

@@ -1,6 +1,14 @@
 extends Control
 
+#scene paths
+var main_page_path: String = "res://src/scenes/MainPage.tscn"
+var flashcards_main_path: String = "res://src/scenes/FlashcardsMainPage.tscn"
+var profiles_path: String = "res://src/scenes/Profiles.tscn"
+
+#nodes
 @onready var profile_button: TextureRect = $profiles_button/TextureRect
+
+#vars
 var data_manager: DataManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,12 +35,12 @@ func _process(delta: float) -> void:
 	
 
 func _on_home_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://src/scenes/MainPage.tscn")
+	get_tree().change_scene_to_file(main_page_path)
 	
 
 func _on_flashcards_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://src/scenes/FlashcardsMainPage.tscn")
+	get_tree().change_scene_to_file(flashcards_main_path)
 
 
 func _on_profiles_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://src/scenes/Profiles.tscn")
+	get_tree().change_scene_to_file(profiles_path)

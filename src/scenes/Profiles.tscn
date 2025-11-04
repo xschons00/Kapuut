@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr4mhw04gii4p"]
+[gd_scene load_steps=5 format=3 uid="uid://cr4mhw04gii4p"]
 
 [ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/Profiles.gd" id="1_1rjmx"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_nqd4w"]
 
 [sub_resource type="FontVariation" id="FontVariation_1rjmx"]
-variation_embolden = 0.89
+variation_embolden = 0.54
+spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_nqd4w"]
+variation_embolden = 0.54
 spacing_glyph = 1
 
 [node name="Profiles" type="Control"]
@@ -42,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_nqd4w")
+expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -91,9 +96,9 @@ text = " save changes "
 
 [node name="all_profiles" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 69.0
-offset_top = 129.0
-offset_right = 717.0
+offset_left = 13.0
+offset_top = 181.0
+offset_right = 661.0
 offset_bottom = 539.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
@@ -113,4 +118,30 @@ offset_bottom = 599.0
 theme = ExtResource("2_nqd4w")
 text = "new profile"
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 132.0
+offset_right = 184.0
+offset_bottom = 166.0
+theme = ExtResource("2_nqd4w")
+theme_override_fonts/font = SubResource("FontVariation_nqd4w")
+text = "Profiles"
+
+[node name="profile_pic_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 971.0
+offset_top = 449.0
+offset_right = 1010.7091
+offset_bottom = 488.0
+
+[node name="TextureRect" type="TextureRect" parent="profile_pic_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="button_container/save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="new_button" to="." method="_on_new_button_pressed"]
