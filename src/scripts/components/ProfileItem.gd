@@ -1,8 +1,8 @@
 extends Control
 
 # Signals
-signal profile_selected(user: ProfileObject)
-signal profile_delete(user: ProfileObject)
+signal profile_selected_signal(user: ProfileObject)
+signal profile_delete_signal(user: ProfileObject)
 
 # nodes
 @onready var profile_rect: TextureRect = $ColorRect/profile_rect
@@ -32,7 +32,7 @@ func set_profile_data(user_obj: ProfileObject) -> void:
 
 
 func _on_select_button_pressed() -> void:
-	emit_signal("profile_selected", user)
+	emit_signal("profile_selected_signal", user)
 	
 func _on_delete_button_pressed() -> void:
-	emit_signal("profile_delete", user)
+	emit_signal("profile_delete_signal", user)

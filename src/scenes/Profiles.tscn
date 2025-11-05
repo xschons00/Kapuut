@@ -36,6 +36,7 @@ offset_top = 178.0
 offset_right = 1033.0
 offset_bottom = 504.0
 mouse_filter = 2
+color = Color(0.8980392, 0.46666667, 0.16470589, 1)
 
 [node name="profile_rect" type="TextureRect" parent="ColorRect"]
 layout_mode = 1

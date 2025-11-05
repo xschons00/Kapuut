@@ -9,29 +9,40 @@ var profiles_path: String = "res://src/scenes/Profiles.tscn"
 @onready var profile_button: TextureRect = $profiles_button/TextureRect
 
 #vars
-var data_manager: DataManager
+var config: AppConfigObject
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	data_manager = DataManager.get_instance()
-	var config: AppConfigObject = data_manager.app_config.get_config()
-	if config == null:
-		print("ERROR: config not found")
-		return
-	var user: ProfileObject = data_manager.profiles.get_profile(config.user_id)
-	if user == null:
-		print("Error: user not found: ", config.user_id)
-		return
-	if not ResourceLoader.exists(user.profile_pic):
-		print("Error: Invalid path: ", user.profile_pic)
-		return
-	profile_button.texture = load(user.profile_pic)
-	profile_button.stretch_mode = TextureRect.STRETCH_SCALE
-	profile_button.expand = true
+	#Globals.connect("menu_refresh_signal", _on_menu_needs_refresh)
+	_refresh_profile_pic()
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func _refresh_profile_pic() -> void:
+	config = Globals.data_manager.app_config.get_config()
+	if config == null:
+		print("ERROR: config not found")
+		return
+	var user: ProfileObject = Globals.data_manager.profiles.get_profile(config.user_id)
+	if user != null:
+		if not ResourceLoader.exists(user.profile_pic):
+			print("Error: Invalid path: ", user.profile_pic)
+			return
+		profile_button.texture = load(user.profile_pic)
+		profile_button.stretch_mode = TextureRect.STRETCH_SCALE
+		profile_button.expand = true
+		return
+	#fallback value	
+	print("Warning: User not set: ")
+	profile_button.texture = load(Globals.default_profile_pic)
+	profile_button.stretch_mode = TextureRect.STRETCH_SCALE
+	profile_button.expand = true
+	
+func _on_menu_refresh_signal() -> void:
+	_refresh_profile_pic()
 	
 
 func _on_home_button_pressed() -> void:

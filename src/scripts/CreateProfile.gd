@@ -5,23 +5,20 @@ extends Control
 var profiles_path: String = "res://src/scenes/Profiles.tscn"
 
 #components
-@onready var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 
 #nodes
 @onready var profile_rect = $ColorRect/profile_rect
 @onready var line_edit = $VBoxContainer/LineEdit
 
 #vars
-var data_manager: DataManager
 var new_user: ProfileObject
 var default_pic: String = "res://assets/icons/user.png"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# add menu
-	var menu = menu_scene.instantiate()
-	add_child(menu)
-	data_manager = DataManager.get_instance()
+	Globals.add_menu(self)
+	
 	profile_rect.texture = load(default_pic)
 	profile_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	profile_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -37,5 +34,5 @@ func _process(delta: float) -> void:
 
 func _on_save_button_pressed() -> void:
 	new_user.user_name = line_edit.text
-	data_manager.profiles.save_profile(new_user)
+	Globals.data_manager.profiles.save_profile(new_user)
 	get_tree().change_scene_to_file(profiles_path)
