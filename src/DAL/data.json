@@ -11,17 +11,6 @@
 		}
 	},
 	"themes": {
-		"testing": {
-			"Questions": [
-				{
-					"Correct": "my name is daniel",
-					"Question": "Hi",
-					"otherquestion1": "my friend is daniel",
-					"otherquestion2": "what is your favourite colour",
-					"otherquestion3": "will it ever end ?"
-				}
-			],
-			"img": "res://assets/FlashCardBackgrounds/danodrevo.jpg"
-		}
+
 	}
 }
