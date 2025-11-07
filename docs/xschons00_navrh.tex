@@ -1,398 +1,404 @@
-\documentclass[a4paper,12pt]{article}
-\usepackage[slovak]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{geometry}
-\geometry{margin=2.5cm}
-
-\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
-\setlist[itemize]{noitemsep, topsep=0pt}
-
-
-
-\begin{document}
-
-%---------------------------------
-% Titulná strana
-%---------------------------------
-\begin{titlepage}
-	\centering
-	\vspace*{3cm}
-	{\Huge \textbf{Tvorba užívateľských rozhraní}}\\[1em]
-	{\Large \textbf{Návrh aplikácie}}\\[5em]
-	    
-	{\Large \textbf{Tím: Chleba}}\\[2em]
-	{\large
-		\textbf{Šimon Schön (xschons00)}\\
-		\textit{Kamil Jakubčák (xjakubk00)}\\
-		\textit{Adrián Pitka Kester (xpitkaa00)}
-		}\\[6em]
-	    
-	{\large \today}\\[20em]
-	    
-	{\large Fakulta informačných technológií, VUT v Brne}
-	\vfill
-\end{titlepage}
-
-%---------------------------------
-% Obsah
-%---------------------------------
-\tableofcontents
-\newpage
-
-%---------------------------------
-% Text dokumentu
-%---------------------------------
-\section{Návrh témy}
-\begin{itemize}
-	\item \textbf{Názov aplikácie:} Kapuut \\
-\end{itemize}
-
-Naša aplikácia má slúžiť ako zábavno edukatívna hra, v podobe kvízu s viacerými hernými režimami. Aplikácia je určená pre jedného hráča v režime pre precvičovanie otázok a odpovedí, alebo viacerých hráčov na jednom zariadení, v režime súťažného kvízu.
-
-\section{Používateľský prieskum a špecifikácia}
-
-\subsection{Prieskum [xschons00]}
-Cieľom prieskumu bolo zistiť, ako používatelia pristupujú k vedomostným hrám a čo zvyšuje ich motiváciu k opakovanému hraniu. Zamerali sme sa na študentov, ktorí si chcú zábavnou formou precvičovať vedomosti z rôznych oblastí.
-\\
-
-\textbf{Profil používateľa:}  
-Študent vysokej školy (vek 20 rokov), ktorý hrá náučné mobilné hry vo voľnom čase, napríklad Duolingo alebo Wordle.
-\\
-
-\textbf{Otázky užívateľského prieskumu:\\}
-\begin{itemize}
-  \item Aké typy vedomostných hier hrávaš najčastejšie a pri akej príležitosti?  
-  \item Čo ťa motivuje pokračovať v hraní takýchto hier?  
-  \item Uprednostňuješ kvíz, kde hráš sám, alebo s viacerými hráčmi?  
-  \item Aký typ otázok (textové, obrázkové, časovo obmedzené) považuješ za zábavný?  
-  \item Ako dlho by mala trvať jedna hra, aby udržala tvoju pozornosť?  
-  \item Chcel by si mať možnosť pridať vlastné otázky?  
-  \item Aké grafické prvky by ti spríjemnili hru (napr. animácie, zvukové efekty)?
-  \item Uprednostňuješ hry, ktoré nevyžadujú pripojenie na internet?\\
-\end{itemize}
-
-\textbf{Zistenia:}  
-Používateľ preferuje jednoduché a intuitívne prostredie, ktoré nevyžaduje zložitú navigáciu v aplikácií. Dôležitá je pre neho zábavná forma prezentácie otázok (napr. animácie, farebná spätná väzba po odpovedi). Motivuje ho kompetitívnosť pri hraní s ďalšími hráčmi, a uprednostňuje možnosť hrať predpripravené kvízy pred tvorbou vlastných. Oceňuje, ak hra nevyžaduje sieťové pripojenie a ponúka rýchle kolá v trvaní niekoľkých minút.
-
-	\subsection{Prieskum [xjakubk00]}
-    \renewcommand{\labelitemi}{$\bullet$}
-	\renewcommand{\labelitemii}{$\bullet$}
-	\renewcommand{\labelitemiii}{$\bullet$}
-	\renewcommand{\labelitemiv}{$\bullet$}
-	\begin{itemize}
-		\item \textbf{Profil užívateľa}
-		      \begin{itemize}
-		      	\item Vek: 14–15 rokov
-		      	\item Kontext: pripravuje sa na prijímacie skúšky na strednú školu
-		      	\item Cieľ: precvičiť otázky z matematiky, slovenčiny a logiky zábavnou formou
-		      \end{itemize}
-		      
-		\item \textbf{Otázky pre rozhovor}
-		      \begin{itemize}
-		      	\item \textbf{1. Všeobecné zistenia}
-		      	      \begin{itemize}
-		      	      	\item Ako sa zvyčajne pripravuješ na prijímačky alebo testy?
-		      	      	\item Používaš nejaké aplikácie alebo weby na precvičovanie? Ktoré a prečo?
-		      	      	\item Čo ti na týchto aplikáciách chýba alebo ťa naopak baví?
-		      	      \end{itemize}
-		      	      
-		      	\item \textbf{2. Vzťah k herným prvkom}
-		      	      \begin{itemize}
-		      	      	\item Bavilo by ťa, keby učenie obsahovalo súťažný režim (napr. 1v1 proti spolužiakovi)?
-		      	      	\item Aký typ hier ťa motivuje k ďalšiemu hraniu – zbieranie mincí, odomykanie úrovní, rebríčky?
-		      	      	\item Čo by ťa viac motivovalo k precvičovaniu – súťaž, odmeny alebo sledovanie vlastného pokroku?
-		      	      \end{itemize}
-		      	      
-		      	\item \textbf{3. Funkcie aplikácie Kapuut}
-		      	      \begin{itemize}
-		      	      	\item Keby si si mohol vyberať medzi rôznymi témami (napr. matematika, gramatika, logika), ako by si chcel, aby to bolo usporiadané?
-		      	      	\item Ako by si chcel, aby fungovala „ruleta“ s náhodnou otázkou – skôr pre zábavu alebo ako výzva?
-		      	      	\item Mal by PvP režim obsahovať chat alebo iba herné výsledky?
-		      	      	\item Ako by sa podľa teba mali používať mince – len na skóre alebo aj na odomykanie nových kategórií?
-		      	      	\item Chceš vidieť správnu odpoveď po každej otázke alebo až na konci kola?
-		      	      	\item Vadilo by ti, keby otázky obsahovali obrázky, grafy alebo krátke videá?
-		      	      \end{itemize}
-		      	      
-		      	\item \textbf{4. Užívateľské rozhranie a prehľad}
-		      	      \begin{itemize}
-		      	      	\item Ako by mal vyzerať hlavný panel – chceš vidieť svoj celkový progres, posledné hry alebo tipy na témy?
-		      	      	\item Chcel by si, aby aplikácia pôsobila skôr ako hra (farebná, animovaná) alebo ako seriózny vzdelávací nástroj?
-		      	      	\item Používaš častejšie mobil alebo počítač na učenie?
-		      	      \end{itemize}
-		      \end{itemize}
-		      
-		\item \textbf{Zhrnutie požiadaviek užívateľa}
-		      \begin{itemize}
-		      	\item Používateľ chce mať možnosť učiť sa zábavnou formou a zároveň súťažiť s ostatnými.
-		      	\item Užívatelia požadujú \textbf{okamžitú spätnú väzbu} – zobrazenie správnej odpovede po každej otázke.
-		      	\item Je potrebné zobraziť \textbf{štatistiky pokroku} a \textbf{celkové skóre}.
-		      	\item Odmeňovací systém s \textbf{mincami} musí motivovať k ďalšiemu učeniu (napr. odomykanie nových tém).
-		      	\item Rozhranie má byť jednoduché, farebné a prispôsobené pre mobilné zariadenia.
-		      \end{itemize}
-	\end{itemize}
-	
-	
-	\subsection{Prieskum [xpitka00]}
-	TODO
-	
-\subsection{Zhrnutie používateľských požiadaviek}
-
-\textbf{Motivácia a cieľ používania:}
-\begin{itemize}
-    \item Používatelia chcú získať nové poznatky formou hry, ktorá spája učenie a zábavu.
-    \item Preferujú krátke a dynamické herné kolá, ktoré nevyžadujú dlhé sústredenie, ale umožňujú rýchlu spätnú väzbu.
-    \item Hlavnou motiváciou je súťaživosť – snaha dosiahnuť vyššie skóre než súperi, získať odmeny a sledovať svoj pokrok.
-\end{itemize}
-\textbf{Funkčné požiadavky:}
-\begin{itemize}
-    \item Aplikácia musí obsahovať \textbf{dva základné herné režimy}:
+    \documentclass[a4paper,12pt]{article}
+    \usepackage[slovak]{babel}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{graphicx}
+    \usepackage{hyperref}
+    \usepackage{enumitem}
+    \usepackage{titlesec}
+    \usepackage{geometry}
+    \geometry{margin=2.5cm}
+    
+    \titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+    \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+    \setlist[itemize]{noitemsep, topsep=0pt}
+    
+    
+    
+    \begin{document}
+    
+    %---------------------------------
+    % Titulná strana
+    %---------------------------------
+    \begin{titlepage}
+    	\centering
+    	\vspace*{3cm}
+    	{\Huge \textbf{Tvorba užívateľských rozhraní}}\\[1em]
+    	{\Large \textbf{Návrh aplikácie}}\\[5em]
+    	    
+    	{\Large \textbf{Tím: Chleba}}\\[2em]
+    	{\large
+    		\textbf{Šimon Schön (xschons00)}\\
+    		\textit{Kamil Jakubčák (xjakubk00)}\\
+    		\textit{Adrián Pitka Kester (xpitkaa00)}
+    		}\\[6em]
+    	    
+    	{\large \today}\\[20em]
+    	    
+    	{\large Fakulta informačných technológií, VUT v Brne}
+    	\vfill
+    \end{titlepage}
+    
+    %---------------------------------
+    % Obsah
+    %---------------------------------
+    \tableofcontents
+    \newpage
+    
+    %---------------------------------
+    % Text dokumentu
+    %---------------------------------
+    \section{Návrh témy}
     \begin{itemize}
-        \item \textit{Tréningový režim} – pre jedného hráča, kde si môže precvičovať otázky podľa kategórií.
-        \item \textit{Súťažný režim} – pre viacerých hráčov na jednom zariadení, v ktorom sa striedajú pri otáčaní kolesa a odpovedaní na otázky.
+    	\item \textbf{Názov aplikácie:} Kapuut \\
     \end{itemize}
-    \item Po každej otázke sa má zobraziť \textbf{správna odpoveď}, aby používateľ získal okamžitú spätnú väzbu.
-    \item Otázky musia byť rozdelené do tematických kategórií (napr. história, veda, kultúra, šport).
-\end{itemize}
-\textbf{Požiadavky na používateľské rozhranie (GUI):}
-\begin{itemize}
-    \item Rozhranie má byť \textbf{prehľadné, farebné a intuitívne}, s dôrazom na jednoduchosť navigácie.
-    \item Herné prvky (tlačidlá, otázky, výsledky) musia byť dobre čitateľné aj na mobilných zariadeniach.
-    \item Používatelia preferujú hravý dizajn s animáciami a zvukovými efektmi
-\end{itemize}
-	
-	\section{Prieskum existujúcich riešení}
-\subsection{Prieskum [xschons00]}
-\begin{itemize}
-  \item \textbf{Kahoot:} Jedna z najznámejších vedomostných hier, používaných na školách. Je určená hlavne pre súťažné kvízy, kde sa hráči pripájajú na jedno zariadenie, ktoré slúži ako server. Používatelia môžu vytvárať a zdieľať vlastné kvízy.\\
-  \newline\textbf{Výhody a inšpirácia:}\\
-  Aplikácia ponúka rýchly priebeh hier, jednoduché používateľské rozhranie a okamžitú spätnú väzbu. Zaujímavým prvkom sú animácie a zvukové efekty, ktoré podporujú súťažnú atmosféru. Každé kolo je krátke, čím si udržuje pozornosť hráčov. Ďalším pozitívom je možnosť vytvárať vlastný obsah a kategórie otázok.
-  \newline\textbf{Nevýhody:}\\
-  Aplikácia vyžaduje pripojenie na internet a registráciu používateľov, čo je menej vhodné pre offline hranie. Väčšina obsahu je prístupná iba v online režime. Samotný herný priebeh je viazaný na prítomnosť hostiteľa (organizátora), čo obmedzuje využitie pre samostatné hranie. Prostredie je tiež výrazne prispôsobené pre školské prostredie.
-
-  \vspace{1em}
-  \item \textbf{Sporcle:} Webová stránka, ktorá zastrešuje veľké množstvo vedomostných minihier. Hráč si môže vybrať kvízy podľa témy alebo typu hry. Platforma je populárna medzi používateľmi, ktorí si chcú precvičiť pamäť a vedomosti v rôznych oblastiach.\\
-  \newline\textbf{Výhody a inšpirácia:}\\
-  Sporcle ponúka rozsiahlu databázu otázok a široké tematické spektrum, čo pomáha udržať používateľov dlhodobo zapojených. Umožňuje hranie bez registrácie a ponúka viaceré typy interakcie (písanie odpovede, výber z možností, označovanie na mape).
-  \newline\textbf{Nevýhody:}\\
-  Používateľské rozhranie pôsobí zastaralo a nie je optimalizované pre mobilné zariadenia. Hra neobsahuje žiadne vizuálne alebo zvukové efekty, ktoré by podporovali zábavný aspekt. Chýba aj systém bodovania medzi viacerými hráčmi – väčšina hier je zameraná len na jednotlivca.
-\end{itemize}
-
-	
-	\subsection{Prieskum [xpitka00]}
-	TODO
-	
-	
-	\subsection{Prieskum [xjakubk00]}
-	\renewcommand{\labelitemi}{$\bullet$}
-	\renewcommand{\labelitemii}{$\bullet$}
-	\renewcommand{\labelitemiii}{$\bullet$}
-	\renewcommand{\labelitemiv}{$\bullet$}
-	\begin{itemize}
-		\item \textbf{Aplikácia 1: Quizizz}
-		      \begin{itemize}
-		      	\item \textbf{Popis:}  
-		      	      Quizizz je vzdelávacia platforma zameraná na interaktívne kvízy pre študentov základných a stredných škôl. Ponúka režimy ako živé súťaže, domáce úlohy a adaptívne opakovanie.
-		      	\item \textbf{Výhody / inšpirácie:}
-		      	      \begin{itemize}
-		      	      	\item Okamžitá spätná väzba – po každej otázke sa zobrazí správna odpoveď a krátke vysvetlenie, čo zvyšuje efektivitu učenia.
-		      	      	\item Gamifikácia – body, rebríček a motivačné vizuály udržiavajú pozornosť žiakov.
-		      	      	\item Široké možnosti správy otázok – učitelia aj študenti môžu vytvárať vlastné sady s obrázkami a časovým limitom.
-		      	      \end{itemize}
-		      	\item \textbf{Nevýhody / slabiny:}
-		      	      \begin{itemize}
-		      	      	\item Žiadny PvP režim 1v1 – súťaž prebieha proti celej triede, nie proti konkrétnemu súperovi.
-		      	      	\item Chýba prvok náhody – neexistuje „ruleta“ ani iný herný mechanizmus na náhodný výber otázok.
-		      	      	\item Obmedzená personalizácia – neumožňuje prispôsobenie obtiažnosti alebo témy podľa hráča.
-		      	      \end{itemize}
-		      \end{itemize}
-		      
-		\item \textbf{Aplikácia 2: Blooket}
-		      \begin{itemize}
-		      	\item \textbf{Popis:}  
-		      	      Blooket kombinuje kvízy s hernými módmi (napr. vedomostné bitky, hazardné hry alebo tímové hry). Je obľúbený medzi žiakmi ZŠ a SŠ pre svoju zábavnosť.
-		      	\item \textbf{Výhody / inšpirácie:}
-		      	      \begin{itemize}
-		      	      	\item Viac herných módov – ponúka súťažné aj kooperatívne režimy, ktoré podporujú opakované hranie.
-		      	      	\item Motivačný systém odmien – hráči zbierajú virtuálne predmety („blooks“) za správne odpovede.
-		      	      	\item Jednoduché vytváranie a zdieľanie sád – komunita zdieľa tisíce hotových kvízov.
-		      	      \end{itemize}
-		      	\item \textbf{Nevýhody / slabiny:}
-		      	      \begin{itemize}
-		      	      	\item Nepodporuje flashcards ani individuálne precvičovanie mimo herný režim.
-		      	      	\item Chýba priama stratégia hráča – neumožňuje vybrať otázku pre súpera ani skryť typ otázky.
-		      	      	\item Príliš detský dizajn – menej vhodný pre starších študentov SŠ, ktorí preferujú serióznejší vizuálny štýl.
-		      	      \end{itemize}
-		      \end{itemize}
-		      
-		\item \textbf{Závery a ponaučenia pre návrh aplikácie Kapuut}
-		      \begin{itemize}
-		      	\item Kombinácia PvP súťaže s učením – na rozdiel od oboch konkurentov bude Kapuut ponúkať skutočný duel 1v1, kde hráči volia otázky pre súpera.
-		      	\item Integrácia flashcards a štatistík – používateľ môže precvičovať témy samostatne, sledovať svoj pokrok a pripraviť sa na PvP zápasy.
-		      	\item Systém mincí ako odmeny - hráči získavajú mince za správne odpovede, ktoré môžu využiť na odomykanie nových tém alebo vizuálnych prvkov, čo podporuje dlhodobú motiváciu.
-		      \end{itemize}
-	\end{itemize}
-	
-	
-	
-	\begin{itemize}
-		\item \textbf{Názov aplikácie 1:} [popis, účel]
-		\item \textbf{Výhody / inšpirácie:} 
-		      \begin{itemize}
-		      	\item [1)] konkrétna výhoda
-		      \end{itemize}
-		\item \textbf{Nevýhody / nedostatky:}
-		      \begin{itemize}
-		      	\item [1)] konkrétny nedostatok
-		      \end{itemize}
-	\end{itemize}
-	
-\subsection{Zhrnutie záverov tímu}
-\textbf{Zistenia a ponaučenia pre návrh:}
-\begin{itemize}
-    \item \textbf{Jednoduchosť a rýchlosť hrateľnosti} – väčšina úspešných aplikácií stavia na krátkych kolách s okamžitou spätnou väzbou. Kapuut preto zachová rýchlu dynamiku hry a zobrazí správnu odpoveď bezprostredne po odohraní otázky.
-    \item \textbf{Offline režim} – konkurenčné riešenia (napr. Kahoot, Quizizz) vyžadujú pripojenie na internet. Kapuut bude fungovať aj bez siete, čo umožní hranie kdekoľvek.
-    \item \textbf{Motivácia cez odmeňovací systém} – úspešné aplikácie používajú body a rebríčky; Kapuut rozšíri tento princíp o mince a vizuálne odmeny, ktoré zvyšujú dlhodobú motiváciu.
-    \item \textbf{Herný prvok náhody} – žiadna z analyzovaných aplikácií nevyužíva náhodný výber kategórií. Kapuut tento prvok integruje pre zvýšenie napätia a zábavnosti.
-    \item \textbf{Prehľadné a moderné GUI} – viaceré staršie platformy (Sporcle, Blooket) trpia zastaraným dizajnom.
-\end{itemize}
-
-\section{Rozdelenie práce v tíme}
-\begin{itemize}
-    \item \textbf{xschons00} – Domovská obrazovka, úvodné obrazovky jednotlivých herných režimov a správa profilov.
-    \item \textbf{xjakubk00} – Správa herných okruhov, tréningový režim a súťažný kvíz.
-    \item \textbf{xpitkaa00} – Herný režim koleso štastia, Okno "Daily Tasks" pre odmeňovanie pravideľného hrania.
-\end{itemize}
-
-\section{Návrh GUI s ohľadom na užívateľské potreby}
-\subsection{návrh časti UI [xschons00]}
-\includegraphics[width=0.75\textwidth]{design/main.png}
-\begin{itemize}
-    \item\textbf{Popis:}
-    Úvodná obrazovka umožňuje používateľovi výber medzi hernými režimami a správou profilov, taktiež bude obsahovať okno "Daily Tasks"
-    \item\textbf{Interaktívne prvky:}
-    Tlačidlá s animáciou po prechode myšou, rozbalovacie okno
-\end{itemize}
-\includegraphics[width=0.75\textwidth]{design/flashcards_main.png}
-\begin{itemize}
-    \item\textbf{Popis:}
-    Úvodná obrazovka jednotlivých herných režimov zobrazuje popis hry, umožňuje používateľovi výber konkrétnych hrier pomocou náhľadu alebo vyhľadávacieho políčka.
-    \item\textbf{Interaktívne prvky:}
-    Tlačidlá s animáciou po prechode myšou, vyhľadávacie políčko, objekty konkrétnych hrier.
-\end{itemize}
-
-
-\includegraphics[width=0.75\textwidth]{design/profiles.png}
-\begin{itemize}
-    \item\textbf{Popis:}
-    Editor profilov slúži na upravovanie alebo zmenu aktuálneho profilu a správu všetkých uložených profilov.
-    \item\textbf{Interaktívne prvky:}
-    Tlačidlá s animáciou po prechode myšou, dynamické skrolovacie okno s uloženými profilmi, náhľad profilového obrázku aktuálneho užívateľa, vstupné textové okno pre zmenu mena užívateľa.
-\end{itemize}
-
-\includegraphics[width=0.75\textwidth]{design/create_profile.png}
-\begin{itemize}
-    \item\textbf{Popis:}
-    Okno pre vytvorenie nového profilu pridá nový profil do zoznamu a presmeruje naspäť na editor profilov
-    \item\textbf{Interaktívne prvky:}
-    Tlačidlá s animáciou po prechode myšou, náhľad profilového obrázku nového užívateľa, vstupné textové okno pre nastavenie mena užívateľa.
-\end{itemize}
-	Každý člen vloží návrh svojej časti GUI s popismi.
-	\paragraph{navrh [xjakubk00]}
-	
-	\begin{itemize}
-		
-		
-		\item \textbf{Obrázok:} \newline 
-		      \includegraphics[width=\textwidth]{pvpgame.png}\newline
-		      
-		\item \textbf{Popis:} 
-		      Návrh obrazovky hry typu \textit{PvP Quiz}. Otázky sú usporiadané do tvaru pyramídy, pričom pozadie ostáva jednotné počas celej hry, aby sa zachovala vizuálna konzistentnosť a sústredenie hráča na interaktívne prvky.\newline
-		      
-		\item \textbf{Interaktívne prvky:} 
-		      Používateľ si môže vybrať ktorúkoľvek sivú guľôčku predstavujúcu otázku. Po výbere sa zobrazí otázka so štyrmi možnosťami odpovede. 
-		      Po správnej odpovedi sa guľôčka zafarbí farbou hráča, čím sa vizuálne označí jeho pokrok. 
-		      Ak hráč odpovie nesprávne, na kolo príde protihráč. 
-		      V prípade, že protihrač otázku zodpovie správne, guľôčka sa zmení na jeho farbu. 
-		      Tento systém poskytuje okamžitú vizuálnu spätnú väzbu a zároveň podporuje súťaživosť medzi hráčmi.\newline
-		      
-		\item \textbf{Obrázok:} \newline 
-		      \includegraphics[width=\textwidth]{Flashcardgame.png}\newline
-		      
-		\item \textbf{Popis:} 
-		      Návrh obrazovky režimu \textit{FlashCards}, ktorý slúži na precvičovanie otázok. Používateľ vidí vždy jednu kartičku s otázkou a možnosťou posunu na ďalšiu. V hornej časti obrazovky sa nachádza \textit{progress bar}, ktorý vizuálne indikuje postup medzi otázkami.\newline
-		      
-		\item \textbf{Interaktívne prvky:} 
-		      Po kliknutí na kartičku s otázkou sa táto otočí a zobrazí správnu odpoveď. Používateľ následne môže kliknúť na tlačidlo \textit{Next}, čím sa presunie na ďalšiu kartičku. 
-		      Tento mechanizmus podporuje efektívne samoštúdium, pretože kombinuje okamžitú spätnú väzbu s plynulým prechodom medzi otázkami.
-		      
-		      
-		        
-	\end{itemize}
-	\begin{itemize}
-		    
-		
-		\item \textbf{Obrázok / wireframe:} % \includegraphics[width=\textwidth]{gui_navrh1.png}
-		\item \textbf{Popis:} ako GUI rieši používateľské potreby
-		\item \textbf{Interaktívne prvky:} prehľad manipulácií s dátami
-	\end{itemize}
-	
-	\section{Výber technológií}
-	Pre vývoj aplikácie sme zvolili \textbf{Godot Engine} – open-source herný engine vhodný na 2D hry s možnosťou multiplatformového exportu. Hlavné dôvody tohto výberu sú:
-	
-	\begin{itemize}
-		\item \textbf{Jednoduchosť použitia:} Godot poskytuje vizuálne prostredie, v ktorom je možné vytvárať scény a prepojiť ich so skriptami bez potreby rozsiahlej konfigurácie.
-		\item \textbf{Rýchly vývoj prototypov:} Engine umožňuje okamžité testovanie a ladenie hry priamo počas vývoja.
-		\item \textbf{Multiplatformovosť:} Export pre Windows, Linux, Android a web (HTML5) bez dodatočných úprav.
-		\item \textbf{Open-source a komunita:} Veľká podpora zo strany komunity a množstvo dostupných návodov.
-	\end{itemize}
-	
-	\section{Návrh SW architektúry a API (spoločné)}
-	\subsection{Architektúra systému}
-	Softvérová architektúra je založená na aktuálnej štruktúre Godot projektu (súbory a priečinky v repozitári: \texttt{Globals.gd}, \texttt{DAL/} s \texttt{data.json}, \texttt{DataManager.gd}, \texttt{DataAccess/}, \texttt{DataObjects/}, scény v \texttt{scenes/} a príslušné UI skripty v \texttt{scripts/}).
-	
-	\paragraph{Vrstvy systému}
-	\begin{itemize}
-		\item \textbf{Prezentácia (UI / Scenes):} scény ako \texttt{MainPage.tscn}, \texttt{FlashcardsMainPage.tscn}, \texttt{Profiles.tscn} a viacnásobne používané komponenty ako menu, skripty v \texttt{scripts/} ovládajú zobrazenie jednotlivých scén, užívateľské vstupy.
-		\item \textbf{Aplikačná logika:} \texttt{DataManager.gd} ako centrálny manažér načítavania/ukladania dát. herné skripty v \texttt{scenes/FlashCardGame/} riadia priebeh jednotlivých herných režimov.
-		\item \textbf{Persistencia / DAL:} \texttt{DAL/data.json} pre lokálne uloženie (profily, otázky, konfigurácia). moduly v \texttt{DAL/DataAccess/} enkapsulujú čítanie/zápis a poskytujú CRUD operácie nad jrdnotlivými časťami dátového modelu.
-		\item \textbf{Globálne / konfigurácia:} \texttt{Globals.gd} ako autoload singleton pre konštanty a signály; \texttt{DataSeed.gd} na inicializáciu dát pri prvom spustení.
-	\end{itemize}
-	
-	\subsection{Komponenty a ich zodpovednosti}
-	
-	\paragraph{DataManager.gd}
-	DataManager je jednoduchý koordinátor datovej vrstvy. Spracúva požiadavky z UI (napr. získať profily, uložiť výsledky) a poskytuje vysokú úroveň metód. Všetky prístupy na disk deleguje na moduly DAL.
-	
-	\paragraph{DataAccess (DAL)}
-	Parent class pre prístupy k častiam dátového modelu. Jeho podtriedy v \texttt{DAL/} (napr. \texttt{ProfileAccess.gd}) vykonávajú priamy prístup k \texttt{DAL/data.json}. Robia nízkoúrovňové I/O, serializáciu a jednoduchú validáciu.
-	
-	\paragraph{DataObjects}
-	Jednoduché objekty a validátory (profil, otázka, konfigurácia). Používajú sa na prenos dát medzi DataAccess a DataManager, pracuje s nimi FE.
-	
-	\paragraph{Globals.gd}
-	Autoload singleton, ktorý obsahuje konštanty a signály (napr. zmena profilu), taktiež obsahuje inštanciu DataManager 
-	
-	\paragraph{UI skripty}
-	Scény a komponenty riadia zobrazenie a vstupy používateľa. Volajú metódy DataManageru a reagujú na signály pre aktualizáciu UI.
-	
-	
-	\subsection{Dátové štruktúry (zjednodušené)}
-	Krátky prehľad hlavných objektov, ktoré sa ukladajú do \texttt{DAL/data.json} alebo sa používajú počas hry.
-	
-	\paragraph{Profile}
-	Profil užívateľa, obsahuje jeho údaje a herné štatistiky
-	
-	\paragraph{AppConfig}
-	Nastavenia aplikácie, napr. aktuálny hráč.
-	
-	\paragraph{Questions}
-	Reprezentácia herných otázok
-	
-
-\end{document}
+    
+    Naša aplikácia má slúžiť ako zábavno edukatívna hra, v podobe kvízu s viacerými hernými režimami. Aplikácia je určená pre jedného hráča v režime pre precvičovanie otázok a odpovedí, alebo viacerých hráčov na jednom zariadení, v režime súťažného kvízu.
+    
+    \section{Používateľský prieskum a špecifikácia}
+    
+    \subsection{Prieskum [xschons00]}
+    Cieľom prieskumu bolo zistiť, ako používatelia pristupujú k vedomostným hrám a čo zvyšuje ich motiváciu k opakovanému hraniu. Zamerali sme sa na študentov, ktorí si chcú zábavnou formou precvičovať vedomosti z rôznych oblastí.
+    \\
+    
+    \textbf{Profil používateľa:}  
+    Študent vysokej školy (vek 20 rokov), ktorý hrá náučné mobilné hry vo voľnom čase, napríklad Duolingo alebo Wordle.
+    \\
+    
+    \textbf{Otázky užívateľského prieskumu:\\}
+    \begin{itemize}
+      \item Aké typy vedomostných hier hrávaš najčastejšie a pri akej príležitosti?  
+      \item Čo ťa motivuje pokračovať v hraní takýchto hier?  
+      \item Uprednostňuješ kvíz, kde hráš sám, alebo s viacerými hráčmi?  
+      \item Aký typ otázok (textové, obrázkové, časovo obmedzené) považuješ za zábavný?  
+      \item Ako dlho by mala trvať jedna hra, aby udržala tvoju pozornosť?  
+      \item Chcel by si mať možnosť pridať vlastné otázky?  
+      \item Aké grafické prvky by ti spríjemnili hru (napr. animácie, zvukové efekty)?
+      \item Uprednostňuješ hry, ktoré nevyžadujú pripojenie na internet?\\
+    \end{itemize}
+    
+    \textbf{Zistenia:}  
+    Používateľ preferuje jednoduché a intuitívne prostredie, ktoré nevyžaduje zložitú navigáciu v aplikácií. Dôležitá je pre neho zábavná forma prezentácie otázok (napr. animácie, farebná spätná väzba po odpovedi). Motivuje ho kompetitívnosť pri hraní s ďalšími hráčmi, a uprednostňuje možnosť hrať predpripravené kvízy pred tvorbou vlastných. Oceňuje, ak hra nevyžaduje sieťové pripojenie a ponúka rýchle kolá v trvaní niekoľkých minút.
+    
+    	\subsection{Prieskum [xjakubk00]}
+        \renewcommand{\labelitemi}{$\bullet$}
+    	\renewcommand{\labelitemii}{$\bullet$}
+    	\renewcommand{\labelitemiii}{$\bullet$}
+    	\renewcommand{\labelitemiv}{$\bullet$}
+    	\begin{itemize}
+    		\item \textbf{Profil užívateľa}
+    		      \begin{itemize}
+    		      	\item Vek: 14–15 rokov
+    		      	\item Kontext: pripravuje sa na prijímacie skúšky na strednú školu
+    		      	\item Cieľ: precvičiť otázky z matematiky, slovenčiny a logiky zábavnou formou
+    		      \end{itemize}
+    		      
+    		\item \textbf{Otázky pre rozhovor}
+    		      \begin{itemize}
+    		      	\item \textbf{1. Všeobecné zistenia}
+    		      	      \begin{itemize}
+    		      	      	\item Ako sa zvyčajne pripravuješ na prijímačky alebo testy?
+    		      	      	\item Používaš nejaké aplikácie alebo weby na precvičovanie? Ktoré a prečo?
+    		      	      	\item Čo ti na týchto aplikáciách chýba alebo ťa naopak baví?
+    		      	      \end{itemize}
+    		      	      
+    		      	\item \textbf{2. Vzťah k herným prvkom}
+    		      	      \begin{itemize}
+    		      	      	\item Bavilo by ťa, keby učenie obsahovalo súťažný režim (napr. 1v1 proti spolužiakovi)?
+    		      	      	\item Aký typ hier ťa motivuje k ďalšiemu hraniu – zbieranie mincí, odomykanie úrovní, rebríčky?
+    		      	      	\item Čo by ťa viac motivovalo k precvičovaniu – súťaž, odmeny alebo sledovanie vlastného pokroku?
+    		      	      \end{itemize}
+    		      	      
+    		      	\item \textbf{3. Funkcie aplikácie Kapuut}
+    		      	      \begin{itemize}
+    		      	      	\item Keby si si mohol vyberať medzi rôznymi témami (napr. matematika, gramatika, logika), ako by si chcel, aby to bolo usporiadané?
+    		      	      	\item Ako by si chcel, aby fungovala „ruleta“ s náhodnou otázkou – skôr pre zábavu alebo ako výzva?
+    		      	      	\item Mal by PvP režim obsahovať chat alebo iba herné výsledky?
+    		      	      	\item Ako by sa podľa teba mali používať mince – len na skóre alebo aj na odomykanie nových kategórií?
+    		      	      	\item Chceš vidieť správnu odpoveď po každej otázke alebo až na konci kola?
+    		      	      	\item Vadilo by ti, keby otázky obsahovali obrázky, grafy alebo krátke videá?
+    		      	      \end{itemize}
+    		      	      
+    		      	\item \textbf{4. Užívateľské rozhranie a prehľad}
+    		      	      \begin{itemize}
+    		      	      	\item Ako by mal vyzerať hlavný panel – chceš vidieť svoj celkový progres, posledné hry alebo tipy na témy?
+    		      	      	\item Chcel by si, aby aplikácia pôsobila skôr ako hra (farebná, animovaná) alebo ako seriózny vzdelávací nástroj?
+    		      	      	\item Používaš častejšie mobil alebo počítač na učenie?
+    		      	      \end{itemize}
+    		      \end{itemize}
+    		      
+    		\item \textbf{Zhrnutie požiadaviek užívateľa}
+    		      \begin{itemize}
+    		      	\item Používateľ chce mať možnosť učiť sa zábavnou formou a zároveň súťažiť s ostatnými.
+    		      	\item Užívatelia požadujú \textbf{okamžitú spätnú väzbu} – zobrazenie správnej odpovede po každej otázke.
+    		      	\item Je potrebné zobraziť \textbf{štatistiky pokroku} a \textbf{celkové skóre}.
+    		      	\item Odmeňovací systém s \textbf{mincami} musí motivovať k ďalšiemu učeniu (napr. odomykanie nových tém).
+    		      	\item Rozhranie má byť jednoduché, farebné a prispôsobené pre mobilné zariadenia.
+    		      \end{itemize}
+    	\end{itemize}
+    	
+    	
+    	\subsection{Prieskum [xpitka00]}
+    	TODO
+    	
+    \subsection{Zhrnutie používateľských požiadaviek}
+    
+    \textbf{Motivácia a cieľ používania:}
+    \begin{itemize}
+        \item Používatelia chcú získať nové poznatky formou hry, ktorá spája učenie a zábavu.
+        \item Preferujú krátke a dynamické herné kolá, ktoré nevyžadujú dlhé sústredenie, ale umožňujú rýchlu spätnú väzbu.
+        \item Hlavnou motiváciou je súťaživosť – snaha dosiahnuť vyššie skóre než súperi, získať odmeny a sledovať svoj pokrok.
+    \end{itemize}
+    \textbf{Funkčné požiadavky:}
+    \begin{itemize}
+        \item Aplikácia musí obsahovať \textbf{dva základné herné režimy}:
+        \begin{itemize}
+            \item \textit{Tréningový režim} – pre jedného hráča, kde si môže precvičovať otázky podľa kategórií.
+            \item \textit{Súťažný režim} – pre viacerých hráčov na jednom zariadení, v ktorom sa striedajú pri otáčaní kolesa a odpovedaní na otázky.
+        \end{itemize}
+        \item Po každej otázke sa má zobraziť \textbf{správna odpoveď}, aby používateľ získal okamžitú spätnú väzbu.
+        \item Otázky musia byť rozdelené do tematických kategórií (napr. história, veda, kultúra, šport).
+    \end{itemize}
+    \textbf{Požiadavky na používateľské rozhranie (GUI):}
+    \begin{itemize}
+        \item Rozhranie má byť \textbf{prehľadné, farebné a intuitívne}, s dôrazom na jednoduchosť navigácie.
+        \item Herné prvky (tlačidlá, otázky, výsledky) musia byť dobre čitateľné aj na mobilných zariadeniach.
+        \item Používatelia preferujú hravý dizajn s animáciami a zvukovými efektmi
+    \end{itemize}
+    	
+    	\section{Prieskum existujúcich riešení}
+    \subsection{Prieskum [xschons00]}
+    \begin{itemize}
+      \item \textbf{Kahoot:} Jedna z najznámejších vedomostných hier, používaných na školách. Je určená hlavne pre súťažné kvízy, kde sa hráči pripájajú na jedno zariadenie, ktoré slúži ako server. Používatelia môžu vytvárať a zdieľať vlastné kvízy.\\
+      \newline\textbf{Výhody a inšpirácia:}\\
+      Aplikácia ponúka rýchly priebeh hier, jednoduché používateľské rozhranie a okamžitú spätnú väzbu. Zaujímavým prvkom sú animácie a zvukové efekty, ktoré podporujú súťažnú atmosféru. Každé kolo je krátke, čím si udržuje pozornosť hráčov. Ďalším pozitívom je možnosť vytvárať vlastný obsah a kategórie otázok.
+      \newline\textbf{Nevýhody:}\\
+      Aplikácia vyžaduje pripojenie na internet a registráciu používateľov, čo je menej vhodné pre offline hranie. Väčšina obsahu je prístupná iba v online režime. Samotný herný priebeh je viazaný na prítomnosť hostiteľa (organizátora), čo obmedzuje využitie pre samostatné hranie. Prostredie je tiež výrazne prispôsobené pre školské prostredie.
+    
+      \vspace{1em}
+      \item \textbf{Sporcle:} Webová stránka, ktorá zastrešuje veľké množstvo vedomostných minihier. Hráč si môže vybrať kvízy podľa témy alebo typu hry. Platforma je populárna medzi používateľmi, ktorí si chcú precvičiť pamäť a vedomosti v rôznych oblastiach.\\
+      \newline\textbf{Výhody a inšpirácia:}\\
+      Sporcle ponúka rozsiahlu databázu otázok a široké tematické spektrum, čo pomáha udržať používateľov dlhodobo zapojených. Umožňuje hranie bez registrácie a ponúka viaceré typy interakcie (písanie odpovede, výber z možností, označovanie na mape).
+      \newline\textbf{Nevýhody:}\\
+      Používateľské rozhranie pôsobí zastaralo a nie je optimalizované pre mobilné zariadenia. Hra neobsahuje žiadne vizuálne alebo zvukové efekty, ktoré by podporovali zábavný aspekt. Chýba aj systém bodovania medzi viacerými hráčmi – väčšina hier je zameraná len na jednotlivca.
+    \end{itemize}
+    
+    	
+    	\subsection{Prieskum [xpitka00]}
+    	TODO
+    	
+    	
+    	\subsection{Prieskum [xjakubk00]}
+    	\renewcommand{\labelitemi}{$\bullet$}
+    	\renewcommand{\labelitemii}{$\bullet$}
+    	\renewcommand{\labelitemiii}{$\bullet$}
+    	\renewcommand{\labelitemiv}{$\bullet$}
+    	\begin{itemize}
+    		\item \textbf{Aplikácia 1: Quizizz}
+    		      \begin{itemize}
+    		      	\item \textbf{Popis:}  
+    		      	      Quizizz je vzdelávacia platforma zameraná na interaktívne kvízy pre študentov základných a stredných škôl. Ponúka režimy ako živé súťaže, domáce úlohy a adaptívne opakovanie.
+    		      	\item \textbf{Výhody / inšpirácie:}
+    		      	      \begin{itemize}
+    		      	      	\item Okamžitá spätná väzba – po každej otázke sa zobrazí správna odpoveď a krátke vysvetlenie, čo zvyšuje efektivitu učenia.
+    		      	      	\item Gamifikácia – body, rebríček a motivačné vizuály udržiavajú pozornosť žiakov.
+    		      	      	\item Široké možnosti správy otázok – učitelia aj študenti môžu vytvárať vlastné sady s obrázkami a časovým limitom.
+    		      	      \end{itemize}
+    		      	\item \textbf{Nevýhody / slabiny:}
+    		      	      \begin{itemize}
+    		      	      	\item Žiadny PvP režim 1v1 – súťaž prebieha proti celej triede, nie proti konkrétnemu súperovi.
+    		      	      	\item Chýba prvok náhody – neexistuje „ruleta“ ani iný herný mechanizmus na náhodný výber otázok.
+    		      	      	\item Obmedzená personalizácia – neumožňuje prispôsobenie obtiažnosti alebo témy podľa hráča.
+    		      	      \end{itemize}
+    		      \end{itemize}
+    		      
+    		\item \textbf{Aplikácia 2: Blooket}
+    		      \begin{itemize}
+    		      	\item \textbf{Popis:}  
+    		      	      Blooket kombinuje kvízy s hernými módmi (napr. vedomostné bitky, hazardné hry alebo tímové hry). Je obľúbený medzi žiakmi ZŠ a SŠ pre svoju zábavnosť.
+    		      	\item \textbf{Výhody / inšpirácie:}
+    		      	      \begin{itemize}
+    		      	      	\item Viac herných módov – ponúka súťažné aj kooperatívne režimy, ktoré podporujú opakované hranie.
+    		      	      	\item Motivačný systém odmien – hráči zbierajú virtuálne predmety („blooks“) za správne odpovede.
+    		      	      	\item Jednoduché vytváranie a zdieľanie sád – komunita zdieľa tisíce hotových kvízov.
+    		      	      \end{itemize}
+    		      	\item \textbf{Nevýhody / slabiny:}
+    		      	      \begin{itemize}
+    		      	      	\item Nepodporuje flashcards ani individuálne precvičovanie mimo herný režim.
+    		      	      	\item Chýba priama stratégia hráča – neumožňuje vybrať otázku pre súpera ani skryť typ otázky.
+    		      	      	\item Príliš detský dizajn – menej vhodný pre starších študentov SŠ, ktorí preferujú serióznejší vizuálny štýl.
+    		      	      \end{itemize}
+    		      \end{itemize}
+    		      
+    		\item \textbf{Závery a ponaučenia pre návrh aplikácie Kapuut}
+    		      \begin{itemize}
+    		      	\item Kombinácia PvP súťaže s učením – na rozdiel od oboch konkurentov bude Kapuut ponúkať skutočný duel 1v1, kde hráči volia otázky pre súpera.
+    		      	\item Integrácia flashcards a štatistík – používateľ môže precvičovať témy samostatne, sledovať svoj pokrok a pripraviť sa na PvP zápasy.
+    		      	\item Systém mincí ako odmeny - hráči získavajú mince za správne odpovede, ktoré môžu využiť na odomykanie nových tém alebo vizuálnych prvkov, čo podporuje dlhodobú motiváciu.
+    		      \end{itemize}
+    	\end{itemize}
+    	
+    	
+    	
+    	\begin{itemize}
+    		\item \textbf{Názov aplikácie 1:} [popis, účel]
+    		\item \textbf{Výhody / inšpirácie:} 
+    		      \begin{itemize}
+    		      	\item [1)] konkrétna výhoda
+    		      \end{itemize}
+    		\item \textbf{Nevýhody / nedostatky:}
+    		      \begin{itemize}
+    		      	\item [1)] konkrétny nedostatok
+    		      \end{itemize}
+    	\end{itemize}
+    	
+    \subsection{Zhrnutie záverov tímu}
+    \textbf{Zistenia a ponaučenia pre návrh:}
+    \begin{itemize}
+        \item \textbf{Jednoduchosť a rýchlosť hrateľnosti} – väčšina úspešných aplikácií stavia na krátkych kolách s okamžitou spätnou väzbou. Kapuut preto zachová rýchlu dynamiku hry a zobrazí správnu odpoveď bezprostredne po odohraní otázky.
+        \item \textbf{Offline režim} – konkurenčné riešenia (napr. Kahoot, Quizizz) vyžadujú pripojenie na internet. Kapuut bude fungovať aj bez siete, čo umožní hranie kdekoľvek.
+        \item \textbf{Motivácia cez odmeňovací systém} – úspešné aplikácie používajú body a rebríčky; Kapuut rozšíri tento princíp o mince a vizuálne odmeny, ktoré zvyšujú dlhodobú motiváciu.
+        \item \textbf{Herný prvok náhody} – žiadna z analyzovaných aplikácií nevyužíva náhodný výber kategórií. Kapuut tento prvok integruje pre zvýšenie napätia a zábavnosti.
+        \item \textbf{Prehľadné a moderné GUI} – viaceré staršie platformy (Sporcle, Blooket) trpia zastaraným dizajnom.
+    \end{itemize}
+    
+    \section{Rozdelenie práce v tíme}
+    \begin{itemize}
+        \item \textbf{xschons00} – Domovská obrazovka, úvodné obrazovky jednotlivých herných režimov a správa profilov.
+        \item \textbf{xjakubk00} – Správa herných okruhov, tréningový režim a súťažný kvíz.
+        \item \textbf{xpitkaa00} – Herný režim koleso štastia, Okno "Daily Tasks" pre odmeňovanie pravideľného hrania.
+    \end{itemize}
+    
+    \section{Návrh GUI s ohľadom na užívateľské potreby}
+    \subsection{návrh časti UI [xschons00]}
+    \includegraphics[width=0.75\textwidth]{design/main.png}
+    \begin{itemize}
+        \item\textbf{Popis:}
+        Úvodná obrazovka umožňuje používateľovi výber medzi hernými režimami a správou profilov, taktiež bude obsahovať okno "Daily Tasks"
+        \item\textbf{Interaktívne prvky:}
+        Tlačidlá s animáciou po prechode myšou, rozbalovacie okno
+    \end{itemize}
+    \includegraphics[width=0.75\textwidth]{design/flashcards_main.png}
+    \begin{itemize}
+        \item\textbf{Popis:}
+        Úvodná obrazovka jednotlivých herných režimov zobrazuje popis hry, umožňuje používateľovi výber konkrétnych hrier pomocou náhľadu alebo vyhľadávacieho políčka.
+        \item\textbf{Interaktívne prvky:}
+        Tlačidlá s animáciou po prechode myšou, vyhľadávacie políčko, objekty konkrétnych hrier.
+    \end{itemize}
+    
+    
+    \includegraphics[width=0.75\textwidth]{design/profiles.png}
+    \begin{itemize}
+        \item\textbf{Popis:}
+        Editor profilov slúži na upravovanie alebo zmenu aktuálneho profilu a správu všetkých uložených profilov.
+        \item\textbf{Interaktívne prvky:}
+        Tlačidlá s animáciou po prechode myšou, dynamické skrolovacie okno s uloženými profilmi, náhľad profilového obrázku aktuálneho užívateľa, vstupné textové okno pre zmenu mena užívateľa.
+    \end{itemize}
+    
+    \includegraphics[width=0.75\textwidth]{design/create_profile.png}
+    \begin{itemize}
+        \item\textbf{Popis:}
+        Okno pre vytvorenie nového profilu pridá nový profil do zoznamu a presmeruje naspäť na editor profilov
+        \item\textbf{Interaktívne prvky:}
+        Tlačidlá s animáciou po prechode myšou, náhľad profilového obrázku nového užívateľa, vstupné textové okno pre nastavenie mena užívateľa.
+    \end{itemize}
+    	Každý člen vloží návrh svojej časti GUI s popismi.
+    	\paragraph{navrh [xjakubk00]}
+    	
+    	\begin{itemize}
+    		
+    		
+    		\item \textbf{Obrázok:} \newline 
+    		      \includegraphics[width=\textwidth]{design/pvpgame.png}\newline
+    		      
+    		\item \textbf{Popis:} 
+    		      Návrh obrazovky hry typu \textit{PvP Quiz}. Otázky sú usporiadané do tvaru pyramídy, pričom pozadie ostáva jednotné počas celej hry, aby sa zachovala vizuálna konzistentnosť a sústredenie hráča na interaktívne prvky.\newline
+    		      
+    		\item \textbf{Interaktívne prvky:} 
+    		      Používateľ si môže vybrať ktorúkoľvek sivú guľôčku predstavujúcu otázku. Po výbere sa zobrazí otázka so štyrmi možnosťami odpovede. 
+    		      Po správnej odpovedi sa guľôčka zafarbí farbou hráča, čím sa vizuálne označí jeho pokrok. 
+    		      Ak hráč odpovie nesprávne, na kolo príde protihráč. 
+    		      V prípade, že protihrač otázku zodpovie správne, guľôčka sa zmení na jeho farbu. 
+    		      Tento systém poskytuje okamžitú vizuálnu spätnú väzbu a zároveň podporuje súťaživosť medzi hráčmi.\newline
+    		      
+    		\item \textbf{Obrázok:} \newline 
+    		      \includegraphics[width=\textwidth]{design/Flashcardgame.png}\newline
+    		      
+    		\item \textbf{Popis:} 
+    		      Návrh obrazovky režimu \textit{FlashCards}, ktorý slúži na precvičovanie otázok. Používateľ vidí vždy jednu kartičku s otázkou a možnosťou posunu na ďalšiu. V hornej časti obrazovky sa nachádza \textit{progress bar}, ktorý vizuálne indikuje postup medzi otázkami.\newline
+    		      
+    		\item \textbf{Interaktívne prvky:} 
+    		      Po kliknutí na kartičku s otázkou sa táto otočí a zobrazí správnu odpoveď. Používateľ následne môže kliknúť na tlačidlo \textit{Next}, čím sa presunie na ďalšiu kartičku. 
+    		      Tento mechanizmus podporuje efektívne samoštúdium, pretože kombinuje okamžitú spätnú väzbu s plynulým prechodom medzi otázkami.
+    		      
+    		      
+    		        
+    	\end{itemize}
+    	\begin{itemize}
+    		    
+    		
+    		\item \textbf{Obrázok / wireframe:} % \includegraphics[width=\textwidth]{gui_navrh1.png}
+    		\item \textbf{Popis:} ako GUI rieši používateľské potreby
+    		\item \textbf{Interaktívne prvky:} prehľad manipulácií s dátami
+    	\end{itemize}
+    	
+    	\section{Výber technológií}
+    	Pre vývoj aplikácie sme zvolili \textbf{Godot Engine} – open-source herný engine vhodný na 2D hry s možnosťou multiplatformového exportu. Hlavné dôvody tohto výberu sú:
+    	
+    	\begin{itemize}
+    		\item \textbf{Jednoduchosť použitia:} Godot poskytuje vizuálne prostredie, v ktorom je možné vytvárať scény a prepojiť ich so skriptami bez potreby rozsiahlej konfigurácie.
+    		\item \textbf{Rýchly vývoj prototypov:} Engine umožňuje okamžité testovanie a ladenie hry priamo počas vývoja.
+    		\item \textbf{Multiplatformovosť:} Export pre Windows, Linux, Android a web (HTML5) bez dodatočných úprav.
+    		\item \textbf{Open-source a komunita:} Veľká podpora zo strany komunity a množstvo dostupných návodov.
+    	\end{itemize}
+    	
+    	\section{Návrh SW architektúry a API (spoločné)}
+    	\subsection{Architektúra systému}
+    	Softvérová architektúra je založená na aktuálnej štruktúre Godot projektu (súbory a priečinky v repozitári: \texttt{Globals.gd}, \texttt{DAL/} s \texttt{data.json}, \texttt{DataManager.gd}, \texttt{DataAccess/}, \texttt{DataObjects/}, scény v \texttt{scenes/} a príslušné UI skripty v \texttt{scripts/}).
+    	
+    	\paragraph{Vrstvy systému}
+    	\begin{itemize}
+    		\item \textbf{Prezentácia (UI / Scenes):} scény ako \texttt{MainPage.tscn}, \texttt{FlashcardsMainPage.tscn}, \texttt{Profiles.tscn} a viacnásobne používané komponenty ako menu, skripty v \texttt{scripts/} ovládajú zobrazenie jednotlivých scén, užívateľské vstupy.
+    		\item \textbf{Aplikačná logika:} \texttt{DataManager.gd} ako centrálny manažér načítavania/ukladania dát. herné skripty v \texttt{scenes/FlashCardGame/} riadia priebeh jednotlivých herných režimov.
+    		\item \textbf{Persistencia / DAL:} \texttt{DAL/data.json} pre lokálne uloženie (profily, otázky, konfigurácia). moduly v \texttt{DAL/DataAccess/} enkapsulujú čítanie/zápis a poskytujú CRUD operácie nad jrdnotlivými časťami dátového modelu.
+    		\item \textbf{Globálne / konfigurácia:} \texttt{Globals.gd} ako autoload singleton pre konštanty a signály; \texttt{DataSeed.gd} na inicializáciu dát pri prvom spustení.
+    	\end{itemize}
+    	
+    	\subsection{Komponenty a ich zodpovednosti}
+    	
+    	\paragraph{DataManager.gd}
+    	DataManager je jednoduchý koordinátor datovej vrstvy. Spracúva požiadavky z UI (napr. získať profily, uložiť výsledky) a poskytuje vysokú úroveň metód. Všetky prístupy na disk deleguje na moduly DAL.
+    	
+    	\paragraph{DataAccess (DAL)}
+    	Parent class pre prístupy k častiam dátového modelu. Jeho podtriedy v \texttt{DAL/} (napr. \texttt{ProfileAccess.gd}) vykonávajú priamy prístup k \texttt{DAL/data.json}. Robia nízkoúrovňové I/O, serializáciu a jednoduchú validáciu.
+    	
+    	\paragraph{DataObjects}
+    	Jednoduché objekty a validátory (profil, otázka, konfigurácia). Používajú sa na prenos dát medzi DataAccess a DataManager, pracuje s nimi FE.
+    	
+    	\paragraph{Globals.gd}
+    	Autoload singleton, ktorý obsahuje konštanty a signály (napr. zmena profilu), taktiež obsahuje inštanciu DataManager 
+    	
+    	\paragraph{UI skripty}
+    	Scény a komponenty riadia zobrazenie a vstupy používateľa. Volajú metódy DataManageru a reagujú na signály pre aktualizáciu UI.
+    	
+    	
+    	\subsection{Dátové štruktúry (zjednodušené)}
+    	Krátky prehľad hlavných objektov, ktoré sa ukladajú do \texttt{DAL/data.json} alebo sa používajú počas hry.
+    	
+    	\paragraph{Profile}
+    	Profil užívateľa, obsahuje jeho údaje a herné štatistiky
+    	
+    	\paragraph{AppConfig}
+    	Nastavenia aplikácie, napr. aktuálny hráč.
+    	
+    	\paragraph{Questions}
+    	Reprezentácia herných otázok
+    
+            \subsection{API backendu (kľúčové funkcie)}
+        Lokálna dátová vrstva (DAL) predstavuje jednoduchý „backend” nad JSON súborom \texttt{src/DAL/data.json}. Všetky operácie sú synchronné a majú spoločný Parent \texttt{DataAccess}, ktorý zabezpečuje načítanie a uloženie sekcií dát.
+    
+        Vstupným bodom je singleton \texttt{DataManager}, ktorý poskytuje prístupy \texttt{profiles} a \texttt{app\_config}. Profily spravuje \texttt{ProfileAccess}, aplikáčnu konfiguráciu \texttt{AppConfigAccess}  a témy s otázkami \texttt{GameThemeAccess}.
+    
+        Dátové objekty mapujú údaje medzi GDScript a JSON pomocou \texttt{to\_dict()} a \texttt{from\_dict()}. Dátový model je rozdelený do sekcií \texttt{profiles}, \texttt{app\_config} a \texttt{themes}; pole \texttt{app\_config.user\_id} ukazuje na aktívny profil. 
+    
+    \end{document}
