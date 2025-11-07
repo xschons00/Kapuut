@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq1qumcdflabu"]
+
+[ext_resource type="Theme" uid="uid://qsdkg86v2jld" path="res://assets/themes/SlideGame.tres" id="1_prkj1"]
+[ext_resource type="Script" uid="uid://d0fgx0ian67vf" path="res://src/scenes/FlashCardGame/Startbutton.gd" id="2_nqhfu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccw1j"]
+bg_color = Color(0.30880764, 0.59813684, 1, 1)
+
+[sub_resource type="Theme" id="Theme_ccw1j"]
+/styles/background = SubResource("StyleBoxFlat_ccw1j")
+Label/font_sizes/font_size = 72
+Panel/colors/background = Color(0.2532489, 0.28697997, 1, 1)
+
+[node name="FlashGameStart" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 118.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 649.0
+theme = ExtResource("1_prkj1")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme = SubResource("Theme_ccw1j")
+text = "¿ Kapuut ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 354.0
+offset_right = 767.0
+offset_bottom = 581.0
+theme = ExtResource("1_prkj1")
+text = " START"
+script = ExtResource("2_nqhfu")
+
+[connection signal="button_down" from="Panel/Button" to="Panel/Button" method="_on_button_down"]

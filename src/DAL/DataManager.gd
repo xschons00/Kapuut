@@ -3,16 +3,19 @@ extends Node
 
 static var _instance: DataManager
 var profiles: ProfileAccess
+var themes: GameThemeAccess
 var app_config: AppConfigAccess
 
 static func get_instance() -> DataManager:
 	if _instance == null:
 		_instance = DataManager.new()
 		_instance.profiles = ProfileAccess.get_instance()
+		_instance.themes = GameThemeAccess.get_instance()
 		_instance.app_config = AppConfigAccess.get_instance()
 	return _instance
 
 # for testing only, deletes saved data
 func clear_data() -> void:
 	_instance.profiles.clear_data() #works with any access object 
+	_instance.themes.clear_data()
 	_instance.profiles.profile_cnt = 0

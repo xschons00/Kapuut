@@ -1,13 +1,27 @@
 {
 	"app_config": {
-		"user_id": "1"
+		"user_id": "0"
 	},
 	"profiles": {
-		"1": {
+		"0": {
 			"credits": 0.0,
 			"elo": 0.0,
-			"profile_pic": "res://assets/icons/user.png",
-			"user_name": ""
+			"profile_pic": "res://assets/icons/icon.svg",
+			"user_name": "player 1"
+		}
+	},
+	"themes": {
+		"testing": {
+			"Questions": [
+				{
+					"Correct": "my name is daniel",
+					"Question": "Hi",
+					"otherquestion1": "my friend is daniel",
+					"otherquestion2": "what is your favourite colour",
+					"otherquestion3": "will it ever end ?"
+				}
+			],
+			"img": "res://assets/FlashCardBackgrounds/danodrevo.jpg"
 		}
 	}
 }
