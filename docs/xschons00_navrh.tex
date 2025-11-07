@@ -248,18 +248,48 @@ Pre vývoj aplikácie sme zvolili \textbf{Godot Engine} – open-source herný e
 
 \section{Návrh SW architektúry a API (spoločné)}
 \subsection{Architektúra systému}
-Popis logických častí aplikácie, prepojenie FE a BE, prípadne schéma.
+Softvérová architektúra je založená na aktuálnej štruktúre Godot projektu (súbory a priečinky v repozitári: \texttt{Globals.gd}, \texttt{DAL/} s \texttt{data.json}, \texttt{DataManager.gd}, \texttt{DataAccess/}, \texttt{DataObjects/}, scény v \texttt{scenes/} a príslušné UI skripty v \texttt{scripts/}).
 
-\subsection{Návrh API}
+\paragraph{Vrstvy systému}
 \begin{itemize}
-  \item \textbf{Príklad funkcie:} \texttt{GET /api/users}
-  \item \textbf{Vstupy:} [popis]
-  \item \textbf{Výstupy:} [popis]
-  \item \textbf{Prepojenie s GUI:} ktorá časť GUI túto funkciu volá
+    \item \textbf{Prezentácia (UI / Scenes):} scény ako \texttt{MainPage.tscn}, \texttt{FlashcardsMainPage.tscn}, \texttt{Profiles.tscn} a viacnásobne používané komponenty ako menu, skripty v \texttt{scripts/} ovládajú zobrazenie jednotlivých scén, užívateľské vstupy.
+    \item \textbf{Aplikačná logika:} \texttt{DataManager.gd} ako centrálny manažér načítavania/ukladania dát. herné skripty v \texttt{scenes/FlashCardGame/} riadia priebeh jednotlivých herných režimov.
+    \item \textbf{Persistencia / DAL:} \texttt{DAL/data.json} pre lokálne uloženie (profily, otázky, konfigurácia). moduly v \texttt{DAL/DataAccess/} enkapsulujú čítanie/zápis a poskytujú CRUD operácie nad jrdnotlivými časťami dátového modelu.
+    \item \textbf{Globálne / konfigurácia:} \texttt{Globals.gd} ako autoload singleton pre konštanty a signály; \texttt{DataSeed.gd} na inicializáciu dát pri prvom spustení.
 \end{itemize}
 
-\subsection{Dátové štruktúry}
-Stručné popisy modelov (napr. User, Item, Group...) a ich vlastností.
+\subsection{Komponenty a ich zodpovednosti}
+
+\paragraph{DataManager.gd}
+DataManager je jednoduchý koordinátor datovej vrstvy. Spracúva požiadavky z UI (napr. získať profily, uložiť výsledky) a poskytuje vysokú úroveň metód. Všetky prístupy na disk deleguje na moduly DAL.
+
+\paragraph{DataAccess (DAL)}
+Parent class pre prístupy k častiam dátového modelu. Jeho podtriedy v \texttt{DAL/} (napr. \texttt{ProfileAccess.gd}) vykonávajú priamy prístup k \texttt{DAL/data.json}. Robia nízkoúrovňové I/O, serializáciu a jednoduchú validáciu.
+
+\paragraph{DataObjects}
+Jednoduché objekty a validátory (profil, otázka, konfigurácia). Používajú sa na prenos dát medzi DataAccess a DataManager, pracuje s nimi FE.
+
+\paragraph{Globals.gd}
+Autoload singleton, ktorý obsahuje konštanty a signály (napr. zmena profilu), taktiež obsahuje inštanciu DataManager 
+
+\paragraph{UI skripty}
+Scény a komponenty riadia zobrazenie a vstupy používateľa. Volajú metódy DataManageru a reagujú na signály pre aktualizáciu UI.
+
+
+\subsection{Dátové štruktúry (zjednodušené)}
+Krátky prehľad hlavných objektov, ktoré sa ukladajú do \texttt{DAL/data.json} alebo sa používajú počas hry.
+
+\paragraph{Profile}
+Profil užívateľa, obsahuje jeho údaje a herné štatistiky
+
+\paragraph{AppConfig}
+Nastavenia aplikácie, napr. aktuálny hráč.
+
+\paragraph{Question}
+Reprezentácia hernej otázky
+
+
+
 
 \section{Záver}
 Zhrnutie zistení, prehľad splnených bodov, prípadné otvorené otázky.
