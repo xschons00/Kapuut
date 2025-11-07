@@ -62,24 +62,24 @@ Cieľom prieskumu bolo zistiť, ako používatelia pristupujú k vedomostným hr
 \\
 
 \textbf{Profil používateľa:}  
-Študent vysokej školy (vek 22 rokov), ktorý rád hrá mobilné hry vo voľnom čase.
+Študent vysokej školy (vek 20 rokov), ktorý hrá náučné mobilné hry vo voľnom čase, napríklad Duolingo alebo Wordle.
 \\
 
 \textbf{Otázky užívateľského prieskumu:\\}
-	\begin{itemize}
-		\item Aké typy vedomostných hier hrávaš najčastejšie a pri akej príležitosti?  
-		\item Čo ťa motivuje pokračovať v hraní takýchto hier?  
-		\item Uprednostňuješ kvíz, kde hráš sám, alebo s viacerými hráčmi?  
-		\item Aký typ otázok (textové, obrázkové, časovo obmedzené) považuješ za zábavný?  
-		\item Ako dlho by mala trvať jedna hra, aby udržala tvoju pozornosť?  
-		\item Chcel by si mať možnosť pridať vlastné otázky?  
-		\item Aké grafické prvky by ti spríjemnili hru (napr. animácie, zvukové efekty)?
-		\item Uprednostňuješ hry, ktoré nevyžadujú pripojenie na internet?\\
-	\end{itemize}
-	
-	\textbf{Zistenia:}  
-	Používateľ preferuje jednoduché a intuitívne prostredie, ktoré nevyžaduje zložité menu. Dôležitá je pre neho zábavná forma prezentácie otázok (napr. otáčanie kolesa, farebná spätná väzba po odpovedi) a možnosť rýchleho striedania hráčov. Oceňuje, ak hra nevyžaduje sieťové pripojenie a ponúka rýchle kolá v trvaní niekoľkých minút.
-	
+\begin{itemize}
+  \item Aké typy vedomostných hier hrávaš najčastejšie a pri akej príležitosti?  
+  \item Čo ťa motivuje pokračovať v hraní takýchto hier?  
+  \item Uprednostňuješ kvíz, kde hráš sám, alebo s viacerými hráčmi?  
+  \item Aký typ otázok (textové, obrázkové, časovo obmedzené) považuješ za zábavný?  
+  \item Ako dlho by mala trvať jedna hra, aby udržala tvoju pozornosť?  
+  \item Chcel by si mať možnosť pridať vlastné otázky?  
+  \item Aké grafické prvky by ti spríjemnili hru (napr. animácie, zvukové efekty)?
+  \item Uprednostňuješ hry, ktoré nevyžadujú pripojenie na internet?\\
+\end{itemize}
+
+\textbf{Zistenia:}  
+Používateľ preferuje jednoduché a intuitívne prostredie, ktoré nevyžaduje zložitú navigáciu v aplikácií. Dôležitá je pre neho zábavná forma prezentácie otázok (napr. animácie, farebná spätná väzba po odpovedi). Motivuje ho kompetitívnosť pri hraní s ďalšími hráčmi, a uprednostňuje možnosť hrať predpripravené kvízy pred tvorbou vlastných. Oceňuje, ak hra nevyžaduje sieťové pripojenie a ponúka rýchle kolá v trvaní niekoľkých minút.
+
 	\subsection{Prieskum [xjakubk00]}
     \renewcommand{\labelitemi}{$\bullet$}
 	\renewcommand{\labelitemii}{$\bullet$}
@@ -141,15 +141,48 @@ Cieľom prieskumu bolo zistiť, ako používatelia pristupujú k vedomostným hr
 	\subsection{Prieskum [xpitka00]}
 	TODO
 	
-	\subsection{Zhrnutie používateľských požiadaviek [tímové]}
-	Konsolidovaný prehľad z prieskumov všetkých členov – popis kľúčových požiadaviek na funkčnosť a GUI.
+\subsection{Zhrnutie používateľských požiadaviek}
+
+\textbf{Motivácia a cieľ používania:}
+\begin{itemize}
+    \item Používatelia chcú získať nové poznatky formou hry, ktorá spája učenie a zábavu.
+    \item Preferujú krátke a dynamické herné kolá, ktoré nevyžadujú dlhé sústredenie, ale umožňujú rýchlu spätnú väzbu.
+    \item Hlavnou motiváciou je súťaživosť – snaha dosiahnuť vyššie skóre než súperi, získať odmeny a sledovať svoj pokrok.
+\end{itemize}
+\textbf{Funkčné požiadavky:}
+\begin{itemize}
+    \item Aplikácia musí obsahovať \textbf{dva základné herné režimy}:
+    \begin{itemize}
+        \item \textit{Tréningový režim} – pre jedného hráča, kde si môže precvičovať otázky podľa kategórií.
+        \item \textit{Súťažný režim} – pre viacerých hráčov na jednom zariadení, v ktorom sa striedajú pri otáčaní kolesa a odpovedaní na otázky.
+    \end{itemize}
+    \item Po každej otázke sa má zobraziť \textbf{správna odpoveď}, aby používateľ získal okamžitú spätnú väzbu.
+    \item Otázky musia byť rozdelené do tematických kategórií (napr. história, veda, kultúra, šport).
+\end{itemize}
+\textbf{Požiadavky na používateľské rozhranie (GUI):}
+\begin{itemize}
+    \item Rozhranie má byť \textbf{prehľadné, farebné a intuitívne}, s dôrazom na jednoduchosť navigácie.
+    \item Herné prvky (tlačidlá, otázky, výsledky) musia byť dobre čitateľné aj na mobilných zariadeniach.
+    \item Používatelia preferujú hravý dizajn s animáciami a zvukovými efektmi
+\end{itemize}
 	
 	\section{Prieskum existujúcich riešení}
-	\subsection{Prieskum [xschons00]}
-	\begin{itemize}
-		\item \textbf{Kahoot:} Jedna z najznámejšich vedomostných hrier, používaných na školách. Je určené hlavne pre sútažné kvízy, kde sa hráči pripájajú na jedno zariadenie, ktoré slúži ako server. Používatelia môžu vytvárať a zdielať vlastné kvízy.
-		\item \textbf{Sporcle:} Stránka zastrešuje mnoho rôznuch vedomostných minihier. Dizajn je trochu zastaralý ale ponúka viacero typov kvízov rozdelených do kategórií podĺa témy alebo typu hry.
-	\end{itemize}
+\subsection{Prieskum [xschons00]}
+\begin{itemize}
+  \item \textbf{Kahoot:} Jedna z najznámejších vedomostných hier, používaných na školách. Je určená hlavne pre súťažné kvízy, kde sa hráči pripájajú na jedno zariadenie, ktoré slúži ako server. Používatelia môžu vytvárať a zdieľať vlastné kvízy.\\
+  \newline\textbf{Výhody a inšpirácia:}\\
+  Aplikácia ponúka rýchly priebeh hier, jednoduché používateľské rozhranie a okamžitú spätnú väzbu. Zaujímavým prvkom sú animácie a zvukové efekty, ktoré podporujú súťažnú atmosféru. Každé kolo je krátke, čím si udržuje pozornosť hráčov. Ďalším pozitívom je možnosť vytvárať vlastný obsah a kategórie otázok.
+  \newline\textbf{Nevýhody:}\\
+  Aplikácia vyžaduje pripojenie na internet a registráciu používateľov, čo je menej vhodné pre offline hranie. Väčšina obsahu je prístupná iba v online režime. Samotný herný priebeh je viazaný na prítomnosť hostiteľa (organizátora), čo obmedzuje využitie pre samostatné hranie. Prostredie je tiež výrazne prispôsobené pre školské prostredie.
+
+  \vspace{1em}
+  \item \textbf{Sporcle:} Webová stránka, ktorá zastrešuje veľké množstvo vedomostných minihier. Hráč si môže vybrať kvízy podľa témy alebo typu hry. Platforma je populárna medzi používateľmi, ktorí si chcú precvičiť pamäť a vedomosti v rôznych oblastiach.\\
+  \newline\textbf{Výhody a inšpirácia:}\\
+  Sporcle ponúka rozsiahlu databázu otázok a široké tematické spektrum, čo pomáha udržať používateľov dlhodobo zapojených. Umožňuje hranie bez registrácie a ponúka viaceré typy interakcie (písanie odpovede, výber z možností, označovanie na mape).
+  \newline\textbf{Nevýhody:}\\
+  Používateľské rozhranie pôsobí zastaralo a nie je optimalizované pre mobilné zariadenia. Hra neobsahuje žiadne vizuálne alebo zvukové efekty, ktoré by podporovali zábavný aspekt. Chýba aj systém bodovania medzi viacerými hráčmi – väčšina hier je zameraná len na jednotlivca.
+\end{itemize}
+
 	
 	\subsection{Prieskum [xpitka00]}
 	TODO
@@ -219,14 +252,56 @@ Cieľom prieskumu bolo zistiť, ako používatelia pristupujú k vedomostným hr
 		      \end{itemize}
 	\end{itemize}
 	
-	\subsection{Zhrnutie záverov tímu}
-	Tím definuje 3–5 kľúčových poznatkov a inšpirácií pre návrh vlastnej aplikácie.
-	
-	\section{Rozdelenie práce v tíme}
-	Popis, kto rieši ktorú časť GUI alebo funkcie. Vysvetlenie, ako každá časť realizuje interaktívnu manipuláciu s dátami.
-	
-	\section{Návrh GUI}
-	\subsection{Popis návrhu GUI jednotlivých členov}
+\subsection{Zhrnutie záverov tímu}
+\textbf{Zistenia a ponaučenia pre návrh:}
+\begin{itemize}
+    \item \textbf{Jednoduchosť a rýchlosť hrateľnosti} – väčšina úspešných aplikácií stavia na krátkych kolách s okamžitou spätnou väzbou. Kapuut preto zachová rýchlu dynamiku hry a zobrazí správnu odpoveď bezprostredne po odohraní otázky.
+    \item \textbf{Offline režim} – konkurenčné riešenia (napr. Kahoot, Quizizz) vyžadujú pripojenie na internet. Kapuut bude fungovať aj bez siete, čo umožní hranie kdekoľvek.
+    \item \textbf{Motivácia cez odmeňovací systém} – úspešné aplikácie používajú body a rebríčky; Kapuut rozšíri tento princíp o mince a vizuálne odmeny, ktoré zvyšujú dlhodobú motiváciu.
+    \item \textbf{Herný prvok náhody} – žiadna z analyzovaných aplikácií nevyužíva náhodný výber kategórií. Kapuut tento prvok integruje pre zvýšenie napätia a zábavnosti.
+    \item \textbf{Prehľadné a moderné GUI} – viaceré staršie platformy (Sporcle, Blooket) trpia zastaraným dizajnom.
+\end{itemize}
+
+\section{Rozdelenie práce v tíme}
+\begin{itemize}
+    \item \textbf{xschons00} – Domovská obrazovka, úvodné obrazovky jednotlivých herných režimov a správa profilov.
+    \item \textbf{xjakubk00} – Správa herných okruhov, tréningový režim a súťažný kvíz.
+    \item \textbf{xpitkaa00} – Herný režim koleso štastia, Okno "Daily Tasks" pre odmeňovanie pravideľného hrania.
+\end{itemize}
+
+\section{Návrh GUI s ohľadom na užívateľské potreby}
+\subsection{návrh časti UI [xschons00]}
+\includegraphics[width=0.75\textwidth]{design/main.png}
+\begin{itemize}
+    \item\textbf{Popis:}
+    Úvodná obrazovka umožňuje používateľovi výber medzi hernými režimami a správou profilov, taktiež bude obsahovať okno "Daily Tasks"
+    \item\textbf{Interaktívne prvky:}
+    Tlačidlá s animáciou po prechode myšou, rozbalovacie okno
+\end{itemize}
+\includegraphics[width=0.75\textwidth]{design/flashcards_main.png}
+\begin{itemize}
+    \item\textbf{Popis:}
+    Úvodná obrazovka jednotlivých herných režimov zobrazuje popis hry, umožňuje používateľovi výber konkrétnych hrier pomocou náhľadu alebo vyhľadávacieho políčka.
+    \item\textbf{Interaktívne prvky:}
+    Tlačidlá s animáciou po prechode myšou, vyhľadávacie políčko, objekty konkrétnych hrier.
+\end{itemize}
+
+
+\includegraphics[width=0.75\textwidth]{design/profiles.png}
+\begin{itemize}
+    \item\textbf{Popis:}
+    Editor profilov slúži na upravovanie alebo zmenu aktuálneho profilu a správu všetkých uložených profilov.
+    \item\textbf{Interaktívne prvky:}
+    Tlačidlá s animáciou po prechode myšou, dynamické skrolovacie okno s uloženými profilmi, náhľad profilového obrázku aktuálneho užívateľa, vstupné textové okno pre zmenu mena užívateľa.
+\end{itemize}
+
+\includegraphics[width=0.75\textwidth]{design/create_profile.png}
+\begin{itemize}
+    \item\textbf{Popis:}
+    Okno pre vytvorenie nového profilu pridá nový profil do zoznamu a presmeruje naspäť na editor profilov
+    \item\textbf{Interaktívne prvky:}
+    Tlačidlá s animáciou po prechode myšou, náhľad profilového obrázku nového užívateľa, vstupné textové okno pre nastavenie mena užívateľa.
+\end{itemize}
 	Každý člen vloží návrh svojej časti GUI s popismi.
 	\paragraph{navrh [xjakubk00]}
 	
