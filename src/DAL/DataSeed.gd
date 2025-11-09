@@ -28,8 +28,7 @@ func seed() -> void:
 	def_game_data.img = "res://assets/FlashCardBackgrounds/danodrevo.jpg"
 	def_game_data.Questions.append(def_question)
 	
-	Globals.data_manager.themes.save_Theme("testing", def_game_data)
-	Globals.data_manager.themes.delete_Theme(def_game_data)
+	Globals.data_manager.themes.save_Theme("DANODREVO", def_game_data)
 	var config = AppConfigObject.new()
 	config.user_id = default_user.id
 	Globals.data_manager.app_config.save_config(config)

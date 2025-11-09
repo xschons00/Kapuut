@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtt0pl0h650y2"]
 
-[ext_resource type="Script" uid="uid://bsdhfdfsjws6v" path="res://src/scripts/FlashcardsMainPage.gd" id="1_sem6h"]
+[ext_resource type="Script" uid="uid://bbpci1rgw5qa0" path="res://src/scripts/FlashcardsMainPage.gd" id="1_sem6h"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="2_aea2l"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_5l2re"]
 
@@ -55,3 +55,13 @@ theme_override_font_sizes/font_size = 68
 text = "welcome to
 flashcard quiz"
 horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = 307.5
+offset_top = 225.5
+offset_right = 513.5
+offset_bottom = 407.5
+text = "START GAME"
+
+[connection signal="button_down" from="Label/Button" to="." method="_on_button_button_down"]

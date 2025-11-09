@@ -5,7 +5,8 @@ var data_manager: DataManager
 var data_seed: DataSeed
 var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 var menu: Control
-
+var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
+var GameInstance : GameController
 
 signal menu_refresh_signal
 

@@ -21,10 +21,10 @@ func to_dict() -> Dictionary:
 			}
 
 static func from_dict(obj_id: String, dict: Dictionary) -> QuestionObject:
-	var obj = GameThemeObject.new()
+	var obj = QuestionObject.new()
 	obj.id = obj_id
-	obj.Question = dict.get("Question", "")
-	obj.Correct = dict.get("Correct", "")
+	obj.Question = dict["Question"]
+	obj.Correct = dict["Correct"]
 	obj.otherquestion1 = dict.get("otherquestion1", "")
 	obj.otherquestion2 = dict.get("otherquestion2", "")
 	obj.otherquestion3 = dict.get("otherquestion3", "")

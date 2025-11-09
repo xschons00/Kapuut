@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq1qumcdflabu"]
+[gd_scene load_steps=6 format=3 uid="uid://dq1qumcdflabu"]
 
-[ext_resource type="Theme" uid="uid://qsdkg86v2jld" path="res://assets/themes/SlideGame.tres" id="1_prkj1"]
-[ext_resource type="Script" uid="uid://d0fgx0ian67vf" path="res://src/scenes/FlashCardGame/Startbutton.gd" id="2_nqhfu"]
+[ext_resource type="Script" uid="uid://plmvvfj5sv6l" path="res://src/scripts/GameControl.gd" id="1_ccw1j"]
+[ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="1_prkj1"]
+[ext_resource type="Script" uid="uid://d0fgx0ian67vf" path="res://src/scripts/FlashCardGame/Startbutton.gd" id="2_nqhfu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccw1j"]
 bg_color = Color(0.30880764, 0.59813684, 1, 1)
@@ -20,6 +21,7 @@ offset_right = 118.0
 offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ccw1j")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
