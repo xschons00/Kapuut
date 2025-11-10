@@ -1,0 +1,182 @@
+[gd_scene load_steps=12 format=3 uid="uid://brlke5ifrh8l7"]
+
+[ext_resource type="Script" uid="uid://c5tnnjb6ahbhq" path="res://src/scripts/components/AvatarSelection.gd" id="1_457w2"]
+[ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_n6ny1"]
+[ext_resource type="Texture2D" uid="uid://b8id4sx2kriua" path="res://assets/avatars/Pria Rambut Lepek Kupluk.png" id="3_lb1mf"]
+[ext_resource type="Texture2D" uid="uid://bg3umuq2pifrr" path="res://assets/avatars/Pria VR white.png" id="4_da30h"]
+[ext_resource type="Texture2D" uid="uid://dxa41ly143f5x" path="res://assets/avatars/Pria Brewok Kupluk.png" id="5_xjb0x"]
+[ext_resource type="Texture2D" uid="uid://cj3p34mtuujv" path="res://assets/avatars/Pria Rambut berponi lurus.png" id="6_45amd"]
+[ext_resource type="Texture2D" uid="uid://lr403g6mltug" path="res://assets/avatars/Wanita Rambut Urai Kupluk.png" id="7_7elxg"]
+[ext_resource type="Texture2D" uid="uid://dhfx2b2r51rk5" path="res://assets/avatars/Wanita Rambut Pendek Black.png" id="8_xcwnk"]
+[ext_resource type="Texture2D" uid="uid://bydvtbn45kpyb" path="res://assets/avatars/Pria Brewok Rambut Maskulin.png" id="9_eo4eh"]
+[ext_resource type="Texture2D" uid="uid://cjiaa5uo3lhjv" path="res://assets/avatars/Pria Rambut Mohawk topi Black.png" id="10_vwv8t"]
+[ext_resource type="Texture2D" uid="uid://ch3ty2155ouby" path="res://assets/avatars/Pria Gimbal Kacamata Gaul Black.png" id="11_80sao"]
+
+[node name="AvatarSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_457w2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 114.0
+offset_right = 911.0
+offset_bottom = 449.0
+color = Color(0.2520276, 0.25202766, 0.25202757, 1)
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_n6ny1")
+columns = 4
+
+[node name="avatar1_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar1_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lb1mf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar2_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar2_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_da30h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar3_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar3_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xjb0x")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar4_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar4_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_45amd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar5_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar5_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7elxg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar6_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar6_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_xcwnk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar7_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar7_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_eo4eh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar8_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar8_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_vwv8t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="avatar9_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar9_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_80sao")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="ColorRect/GridContainer/avatar1_button" to="." method="_on_avatar_1_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/avatar2_button" to="." method="_on_avatar_2_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/avatar3_button" to="." method="_on_avatar_3_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/avatar4_button" to="." method="_on_avatar_4_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/avatar5_button" to="." method="_on_avatar_5_button_pressed"]

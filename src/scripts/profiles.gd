@@ -9,6 +9,7 @@ var create_profile_path: String = "res://src/scenes/CreateProfile.tscn"
 
 #components
 @onready var profile_item_scene = preload("res://src/scenes/components/ProfileItem.tscn")
+@onready var avatar_selection_scene = preload("res://src/scenes/components/AvatarSelection.tscn")
 
 #nodes
 @onready var profile_rect: TextureRect = $ColorRect/profile_rect
@@ -16,12 +17,17 @@ var create_profile_path: String = "res://src/scenes/CreateProfile.tscn"
 @onready var profile_container: VBoxContainer = $all_profiles/VBoxContainer
 @onready var line_edit: LineEdit = $LineEdit
 @onready var profile_pic_button: TextureRect = $profile_pic_button/TextureRect
+@onready var avatar_selection: Control
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# add menu
 	Globals.add_menu(self)
+	# add avatar selection (hidden)
+	avatar_selection = avatar_selection_scene.instantiate()
+	add_child(avatar_selection)
+	avatar_selection.avatar_selected_signal.connect(_on_avatar_selected_signal)
 	#load profiles
 	_refresh_page_content()
 	profile_pic_button.texture = load("res://assets/icons/plus.png")
@@ -99,3 +105,14 @@ func _on_save_button_pressed() -> void: #save profile changes
 	
 func _on_new_button_pressed() -> void:
 	get_tree().change_scene_to_file(create_profile_path)
+
+func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection
+	avatar_selection.switch_visibility()
+	
+func _on_avatar_selected_signal(picture_path: String) -> void:
+	print("Avatar change, path: ", picture_path)
+	if active_user.profile_pic != picture_path:
+		active_user.profile_pic = picture_path
+		Globals.data_manager.profiles.save_profile(active_user)
+		avatar_selection.switch_visibility()
+		_refresh_page_content()

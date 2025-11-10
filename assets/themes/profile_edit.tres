@@ -25,6 +25,8 @@ bg_color = Color(0.92156863, 1, 0.92156863, 1)
 [resource]
 Button/styles/hover = SubResource("StyleBoxFlat_4iw6n")
 Button/styles/normal = SubResource("StyleBoxFlat_rc776")
+GridContainer/constants/h_separation = 24
+GridContainer/constants/v_separation = 15
 HBoxContainer/constants/separation = 39
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 24
