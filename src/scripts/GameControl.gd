@@ -9,8 +9,6 @@ var Gtheme:GameThemeObject = Globals.data_manager.themes.get_Theme(ThemeName)
 var data:Dictionary
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if not Globals.GameInstance:
-		Globals.GameInstance = self
 	if not Gtheme:
 		push_error("Critical failure: missing game data")
 		get_tree().quit(1)

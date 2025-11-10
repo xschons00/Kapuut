@@ -1,9 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2kbc2ys7y4pe"]
+[gd_scene load_steps=7 format=3 uid="uid://b2kbc2ys7y4pe"]
 
 [ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="1_8wpbs"]
 [ext_resource type="Script" uid="uid://u50hdgt343c7" path="res://src/scripts/FlashCardGame/FlashCardGame.gd" id="1_dgs6y"]
-[ext_resource type="Script" uid="uid://chbnenoxte4t4" path="res://src/scripts/FlashCardGame/button.gd" id="2_onksy"]
-[ext_resource type="Script" uid="uid://clptaevnsuxhk" path="res://src/scripts/FlashCardGame/next.gd" id="4_6m6iq"]
+
+[sub_resource type="GDScript" id="GDScript_onksy"]
+script/source = "extends Button
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51w63"]
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m6iq"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[sub_resource type="GDScript" id="GDScript_51w63"]
+script/source = "extends Panel
+
+
+
+
+"
 
 [node name="FlashGame" type="Control"]
 layout_mode = 3
@@ -36,15 +59,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -323.75
-offset_top = -247.0
-offset_right = 323.75
-offset_bottom = 247.0
+offset_left = -300.0
+offset_top = -209.6
+offset_right = 300.0
+offset_bottom = 284.399
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8wpbs")
 text = " QUESTION ????"
-script = ExtResource("2_onksy")
+script = SubResource("GDScript_onksy")
 
 [node name="next" type="Button" parent="Panel"]
 layout_mode = 1
@@ -53,12 +76,56 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -187.0
-offset_top = -109.88098
+offset_left = -208.01501
+offset_top = -134.07599
+offset_right = -21.015015
+offset_bottom = -24.194519
 grow_horizontal = 0
 grow_vertical = 0
 text = "NEXT"
-script = ExtResource("4_6m6iq")
 
+[node name="ProgressBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -271.0
+offset_top = 50.0
+offset_right = 271.0
+offset_bottom = 84.168
+grow_horizontal = 2
+theme = ExtResource("1_8wpbs")
+theme_override_styles/panel = SubResource("StyleBoxFlat_51w63")
+
+[node name="ProgressBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -271.0
+offset_top = 50.0
+offset_right = -271.0
+offset_bottom = 84.168
+grow_horizontal = 2
+theme = ExtResource("1_8wpbs")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6m6iq")
+script = SubResource("GDScript_51w63")
+
+[node name="Progress" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_right = 91.0
+offset_bottom = 108.0
+grow_horizontal = 2
+text = "
+0/0"
+horizontal_alignment = 1
+clip_text = true
+
+[connection signal="button_down" from="Panel/FlashCard" to="." method="_on_FlashCard_button_down"]
 [connection signal="button_down" from="Panel/FlashCard" to="Panel/FlashCard" method="_on_button_down"]
+[connection signal="button_down" from="Panel/next" to="." method="_on_next_button_down"]
 [connection signal="button_down" from="Panel/next" to="Panel/next" method="_on_button_down"]

@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq1qumcdflabu"]
+[gd_scene load_steps=5 format=3 uid="uid://m6r3rotp0psb"]
 
-[ext_resource type="Script" uid="uid://u50hdgt343c7" path="res://src/scripts/FlashCardGame/FlashCardGame.gd" id="1_nqhfu"]
-[ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="1_prkj1"]
+[ext_resource type="Script" uid="uid://cplphsgtargvc" path="res://src/scripts/PvPGame/PvPGameController.gd" id="1_ff6ix"]
+[ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="2_ylgrt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccw1j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff6ix"]
 bg_color = Color(0.30880764, 0.59813684, 1, 1)
 
 [sub_resource type="Theme" id="Theme_ccw1j"]
-/styles/background = SubResource("StyleBoxFlat_ccw1j")
+/styles/background = SubResource("StyleBoxFlat_ff6ix")
 Label/font_sizes/font_size = 72
 Panel/colors/background = Color(0.2532489, 0.28697997, 1, 1)
 
-[node name="FlashGameStart" type="Control"]
+[node name="PvPGameStart" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,13 +20,13 @@ offset_right = 118.0
 offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nqhfu")
+script = ExtResource("1_ff6ix")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 649.0
-theme = ExtResource("1_prkj1")
+theme = ExtResource("2_ylgrt")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -45,7 +45,7 @@ offset_left = 444.0
 offset_top = 354.0
 offset_right = 767.0
 offset_bottom = 581.0
-theme = ExtResource("1_prkj1")
+theme = ExtResource("2_ylgrt")
 text = " START"
 
-[connection signal="button_down" from="Panel/Start" to="." method="_on_Start_button_down"]
+[connection signal="button_down" from="Panel/Start" to="." method="_on_start_button_down"]

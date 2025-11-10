@@ -1,13 +1,76 @@
 {
 	"Themes": {
-		"DANODREVO": {
+		"HARRYPOTTER": {
 			"Questions": [
 				{
-					"Correct": "my name is daniel",
-					"Question": "Hi",
-					"otherquestion1": "my friend is daniel",
-					"otherquestion2": "what is your favourite colour",
-					"otherquestion3": "will it ever end ?"
+					"Correct": "Severus Snape",
+					"Question": "Who is the Half-Blood Prince?",
+					"otherquestion1": "Harry Potter",
+					"otherquestion2": "Tom Riddle",
+					"otherquestion3": "Draco Malfoy"
+				},
+				{
+					"Correct": "Gryffindor",
+					"Question": "Which house is known for bravery?",
+					"otherquestion1": "Ravenclaw",
+					"otherquestion2": "Hufflepuff",
+					"otherquestion3": "Slytherin"
+				},
+				{
+					"Correct": "Expelliarmus",
+					"Question": "What spell disarms an opponent?",
+					"otherquestion1": "Stupefy",
+					"otherquestion2": "Alohomora",
+					"otherquestion3": "Lumos"
+				},
+				{
+					"Correct": "Albus Dumbledore",
+					"Question": "Who is Hogwarts headmaster for most of the series?",
+					"otherquestion1": "Minerva McGonagall",
+					"otherquestion2": "Dolores Umbridge",
+					"otherquestion3": "Severus Snape"
+				},
+				{
+					"Correct": "Dragon",
+					"Question": "What creature guards the deepest Gringotts vaults?",
+					"otherquestion1": "Basilisk",
+					"otherquestion2": "Hippogriff",
+					"otherquestion3": "Thestral"
+				},
+				{
+					"Correct": "Dentists",
+					"Question": "What are Hermione Granger’s parents’ profession?",
+					"otherquestion1": "Healers",
+					"otherquestion2": "Teachers",
+					"otherquestion3": "Aurors"
+				},
+				{
+					"Correct": "Sorting Hat",
+					"Question": "What object chooses students’ Hogwarts houses?",
+					"otherquestion1": "Goblet of Fire",
+					"otherquestion2": "Elder Wand",
+					"otherquestion3": "Pensieve"
+				},
+				{
+					"Correct": "Dog",
+					"Question": "What is Sirius Black’s Animagus form?",
+					"otherquestion1": "Stag",
+					"otherquestion2": "Rat",
+					"otherquestion3": "Cat"
+				},
+				{
+					"Correct": "Three",
+					"Question": "How many Deathly Hallows are there?",
+					"otherquestion1": "Two",
+					"otherquestion2": "Four",
+					"otherquestion3": "Seven"
+				},
+				{
+					"Correct": "The Burrow",
+					"Question": "What is the name of the Weasley family home?",
+					"otherquestion1": "Grimmauld Place",
+					"otherquestion2": "Shell Cottage",
+					"otherquestion3": "Hogsmeade House"
 				}
 			],
 			"img": "res://assets/FlashCardBackgrounds/danodrevo.jpg"
@@ -20,14 +83,8 @@
 		"0": {
 			"credits": 0.0,
 			"elo": 0.0,
-			"profile_pic": "res://assets/avatars/Pria Rambut Lepek Kupluk.png",
+			"profile_pic": "res://assets/icons/icon.svg",
 			"user_name": "player 1"
-		},
-		"1": {
-			"credits": 0,
-			"elo": 0,
-			"profile_pic": "res://assets/avatars/Wanita Rambut Urai Kupluk.png",
-			"user_name": "asdas"
 		}
 	}
 }

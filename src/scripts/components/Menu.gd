@@ -4,6 +4,7 @@ extends Control
 var main_page_path: String = "res://src/scenes/MainPage.tscn"
 var flashcards_main_path: String = "res://src/scenes/FlashcardsMainPage.tscn"
 var profiles_path: String = "res://src/scenes/Profiles.tscn"
+var pvp_path:String = "res://src/scenes/PvPMainPageTmp.tscn"
 
 #nodes
 @onready var profile_button: TextureRect = $profiles_button/TextureRect
@@ -56,3 +57,7 @@ func _on_flashcards_button_pressed() -> void:
 
 func _on_profiles_button_pressed() -> void:
 	get_tree().change_scene_to_file(profiles_path)
+
+
+func _on_pvp_button_button_up() -> void:
+	get_tree().change_scene_to_file(pvp_path)
