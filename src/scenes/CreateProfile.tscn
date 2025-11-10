@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://p7p4ljkco0br"]
+[gd_scene load_steps=6 format=3 uid="uid://p7p4ljkco0br"]
 
 [ext_resource type="Script" uid="uid://1dia43jdvn4b" path="res://src/scripts/CreateProfile.gd" id="1_wd1t4"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_3oqdu"]
+[ext_resource type="Texture2D" uid="uid://qthnwgd2estu" path="res://assets/icons/plus.png" id="3_3oqdu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd1t4"]
 bg_color = Color(0.89767253, 0.4652784, 0.16300237, 1)
@@ -67,7 +68,7 @@ theme = ExtResource("2_3oqdu")
 placeholder_text = "choose name"
 keep_editing_on_text_submit = true
 
-[node name="profile_pic_button" type="Button" parent="VBoxContainer"]
+[node name="avatar_select_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_3oqdu")
 text = " change profile picture "
@@ -87,4 +88,25 @@ layout_mode = 2
 theme = ExtResource("2_3oqdu")
 text = "   cancel   "
 
+[node name="profile_pic_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 499.0
+offset_right = 557.7091
+offset_bottom = 538.0
+
+[node name="TextureRect" type="TextureRect" parent="profile_pic_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3oqdu")
+expand_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/avatar_select_button" to="." method="_on_avatar_select_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/avatar_select_button" to="." method="_on_profile_pic_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/button_container/save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/button_container/cancel_button" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="profile_pic_button" to="." method="_on_profile_pic_button_pressed"]

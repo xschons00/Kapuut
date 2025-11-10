@@ -8,7 +8,7 @@ var menu: Control
 var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
 var GameInstance : GameController
 
-signal menu_refresh_signal
+signal menu_refresh_signal()
 
 const default_profile_pic = "res://assets/icons/icon.svg"
 
@@ -36,7 +36,7 @@ func _init_menu():
 		menu.show()
 
 
-func add_menu(target: Node):
+func add_menu(target: Node) -> Node:
 	if menu == null:
 		_init_menu()
 	var current_parent = menu.get_parent()
@@ -44,6 +44,7 @@ func add_menu(target: Node):
 		current_parent.remove_child(menu)
 	if menu.get_parent() != target:
 		target.add_child(menu)
+	return menu
 		
 func show_warning(text: String):
 	var popup = PopupPanel.new()
@@ -60,5 +61,5 @@ func show_warning(text: String):
 	popup.add_child(label)
 	get_tree().root.add_child(popup)
 	popup.popup_centered(Vector2(500, 100))
-	await get_tree().create_timer(0.75).timeout
+	await get_tree().create_timer(1.0).timeout
 	popup.queue_free()

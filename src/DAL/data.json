@@ -18,10 +18,16 @@
 	},
 	"profiles": {
 		"0": {
+			"credits": 0.0,
+			"elo": 0.0,
+			"profile_pic": "res://assets/avatars/Pria Rambut Lepek Kupluk.png",
+			"user_name": "player 1"
+		},
+		"1": {
 			"credits": 0,
 			"elo": 0,
 			"profile_pic": "res://assets/avatars/Wanita Rambut Urai Kupluk.png",
-			"user_name": "player 1"
+			"user_name": "asdas"
 		}
 	}
 }

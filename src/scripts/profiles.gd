@@ -3,6 +3,8 @@ extends Control
 var config: AppConfigObject
 var active_user: ProfileObject
 
+#signals
+signal refresh_menu_signal()
 
 #scene paths
 var create_profile_path: String = "res://src/scenes/CreateProfile.tscn"
@@ -18,6 +20,7 @@ var create_profile_path: String = "res://src/scenes/CreateProfile.tscn"
 @onready var line_edit: LineEdit = $LineEdit
 @onready var profile_pic_button: TextureRect = $profile_pic_button/TextureRect
 @onready var avatar_selection: Control
+#@onready var menu: Control
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,9 +33,6 @@ func _ready() -> void:
 	avatar_selection.avatar_selected_signal.connect(_on_avatar_selected_signal)
 	#load profiles
 	_refresh_page_content()
-	profile_pic_button.texture = load("res://assets/icons/plus.png")
-	profile_pic_button.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	profile_pic_button.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,7 +82,7 @@ func _on_profile_selected_signal(user_select: ProfileObject) -> void:
 	print("Selected profile:", user_select.user_name)
 	config.user_id = user_select.id
 	Globals.data_manager.app_config.save_config(config)
-	
+	Globals.emit_signal("menu_refresh_signal")
 	_refresh_page_content()
 	
 func _on_profile_delete_signal(user_select: ProfileObject) -> void:
@@ -115,4 +115,5 @@ func _on_avatar_selected_signal(picture_path: String) -> void:
 		active_user.profile_pic = picture_path
 		Globals.data_manager.profiles.save_profile(active_user)
 		avatar_selection.switch_visibility()
+		Globals.emit_signal("menu_refresh_signal")
 		_refresh_page_content()

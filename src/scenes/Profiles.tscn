@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr4mhw04gii4p"]
+[gd_scene load_steps=6 format=3 uid="uid://cr4mhw04gii4p"]
 
 [ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/Profiles.gd" id="1_1rjmx"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_nqd4w"]
+[ext_resource type="Texture2D" uid="uid://qthnwgd2estu" path="res://assets/icons/plus.png" id="3_1rjmx"]
 
 [sub_resource type="FontVariation" id="FontVariation_1rjmx"]
 variation_embolden = 0.54
@@ -143,6 +144,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_1rjmx")
+expand_mode = 1
 
 [connection signal="pressed" from="button_container/save_button" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="new_button" to="." method="_on_new_button_pressed"]

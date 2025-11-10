@@ -13,13 +13,17 @@ var config: AppConfigObject
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#Globals.connect("menu_refresh_signal", _on_menu_needs_refresh)
+	Globals.connect("menu_refresh_signal", _on_menu_refresh_signal)
 	_refresh_profile_pic()
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func _on_menu_refresh_signal() -> void:
+	print("menu refresh signal")
+	_refresh_profile_pic()
 	
 func _refresh_profile_pic() -> void:
 	config = Globals.data_manager.app_config.get_config()
@@ -40,9 +44,6 @@ func _refresh_profile_pic() -> void:
 	profile_button.texture = load(Globals.default_profile_pic)
 	profile_button.stretch_mode = TextureRect.STRETCH_SCALE
 	profile_button.expand = true
-	
-func _on_menu_refresh_signal() -> void:
-	_refresh_profile_pic()
 	
 
 func _on_home_button_pressed() -> void:
