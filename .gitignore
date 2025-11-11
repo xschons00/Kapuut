@@ -2,3 +2,4 @@
 .godot/
 /android/
 *.uid
+src/DAL/data.json
