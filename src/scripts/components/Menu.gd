@@ -59,10 +59,9 @@ func _on_flashcards_button_pressed() -> void:
 func _on_profiles_button_pressed() -> void:
 	get_tree().change_scene_to_file(profiles_path)
 
-
-func _on_lucky_mode_button_pressed() -> void:
-	get_tree().change_scene_to_file(wheel_of_fortune_path)
-
-
 func _on_pvp_button_button_up() -> void:
 	get_tree().change_scene_to_file(pvp_path)
+
+
+func _on_lucky_mode_button_button_down() -> void:
+	get_tree().change_scene_to_file(wheel_of_fortune_path)

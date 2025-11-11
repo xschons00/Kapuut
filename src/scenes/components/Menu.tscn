@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://co0c6xjluuvp1"]
 
-[ext_resource type="Script" uid="uid://bq4sog801esru" path="res://src/scripts/components/Menu.gd" id="1_5gk33"]
+[ext_resource type="Script" uid="uid://cn7g6kwjfg6ny" path="res://src/scripts/components/Menu.gd" id="1_5gk33"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="2_qg5fg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyv1a"]
@@ -118,4 +118,5 @@ text = "profiles"
 [connection signal="pressed" from="HBoxContainer/home_button" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/flashcards_button" to="." method="_on_flashcards_button_pressed"]
 [connection signal="button_up" from="HBoxContainer/pvp_button" to="." method="_on_pvp_button_button_up"]
+[connection signal="button_down" from="HBoxContainer/lucky_mode_button" to="." method="_on_lucky_mode_button_button_down"]
 [connection signal="pressed" from="profiles_button" to="." method="_on_profiles_button_pressed"]
