@@ -1,0 +1,366 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5wqp7hk8n3jm"]
+
+[ext_resource type="Script" uid="uid://bw5qp7hk8n3jl" path="res://src/scripts/WheelOfFortuneMainPage.gd" id="1_wheel"]
+[ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_wheel"]
+[ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="4_wheel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wheel1"]
+bg_color = Color(0.17254902, 0.24313726, 0.3137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wheel2"]
+bg_color = Color(0.10196078, 0.10196078, 0.10196078, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wheel3"]
+bg_color = Color(0.10196078, 0.10196078, 0.10196078, 1)
+border_width_top = 3
+border_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+
+[node name="WheelOfFortuneMainPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wheel")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel1")
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="InfoBox" type="Panel" parent="MainContainer/LeftPanel"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/LeftPanel/InfoBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MainContainer/LeftPanel/InfoBox/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_wheel")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "¿ Wheel Of Kapuut ?"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="MainContainer/LeftPanel/InfoBox/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "Vyber si cenu točenia a riskuj čím viac zaplatíš, tým väčšie výhry ťa čakajú. Dokážeš zostať v profite?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PriceSelector" type="Panel" parent="MainContainer/LeftPanel"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/LeftPanel/PriceSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Vyber cenu točenia"
+horizontal_alignment = 1
+
+[node name="Option25" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 16
+text = "25 kreditov"
+
+[node name="Option100" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 16
+text = "100 kreditov"
+
+[node name="Option250" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 16
+text = "250 kreditov"
+
+[node name="Option1000" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 16
+text = "1000 kreditov"
+
+[node name="CenterPanel" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 1
+
+[node name="HistoryPanel" type="Panel" parent="MainContainer/RightPanel"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/RightPanel/HistoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainContainer/RightPanel/HistoryPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "História točení"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer/RightPanel/HistoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 60.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="HistoryItem1" type="Panel" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer"]
+self_modulate = Color(0.1764706, 0.2901961, 0.2901961, 1)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 12.0
+offset_right = -15.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cost" type="Label" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 12
+text = "(100 kreditov)"
+
+[node name="Result" type="HBoxContainer" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox"]
+layout_mode = 2
+
+[node name="ResultText" type="Label" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox/Result"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+theme_override_font_sizes/font_size = 13
+text = "4x → 400 kreditov"
+
+[node name="Profit" type="Label" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox/Result"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.8, 0.44313726, 1)
+theme_override_font_sizes/font_size = 13
+text = "+300"
+
+[node name="CenterPanel#WheelContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 0
+offset_left = 358.0
+offset_top = 50.0
+offset_right = 808.0
+offset_bottom = 500.0
+
+[node name="CenterPanel_WheelContainer#WheelBackground" type="Panel" parent="."]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 0
+offset_left = 357.0
+offset_top = 50.0
+offset_right = 807.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
+
+[node name="CenterPanel_WheelContainer_WheelBackground#WheelPlaceholder" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -158.0
+offset_right = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+theme_override_font_sizes/font_size = 48
+text = "WHEEL
+[1x] [?] [2x] [?]
+[3x] [?] [4x] [?]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterPanel_WheelContainer#Pointer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_top = 111.999985
+offset_right = 48.0
+offset_bottom = 161.99998
+grow_horizontal = 2
+rotation = 0.785398
+color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+
+[node name="CenterPanel#SpinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 507.0
+offset_right = 632.0
+offset_bottom = 538.0
+size_flags_horizontal = 4
+theme = ExtResource("4_wheel")
+theme_override_colors/font_color = Color(0.10196078, 0.10196078, 0.10196078, 1)
+theme_override_font_sizes/font_size = 22
+text = "   ¿ Spin ?   "
+
+[node name="BottomBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel3")
+
+[node name="BackButton" type="Button" parent="BottomBar"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 35.0
+offset_right = 140.0
+offset_bottom = 65.0
+theme = ExtResource("4_wheel")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "← Back"
+flat = true
+
+[node name="StatsContainer" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -20.0
+offset_right = -40.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 2
+
+[node name="WinContainer" type="HBoxContainer" parent="BottomBar/StatsContainer"]
+layout_mode = 2
+
+[node name="WinLabel" type="Label" parent="BottomBar/StatsContainer/WinContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 18
+text = "Win:"
+
+[node name="WinValue" type="Label" parent="BottomBar/StatsContainer/WinContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+theme_override_font_sizes/font_size = 18
+text = "100 credits"
+
+[node name="BalanceContainer" type="HBoxContainer" parent="BottomBar/StatsContainer"]
+layout_mode = 2
+
+[node name="BalanceLabel" type="Label" parent="BottomBar/StatsContainer/BalanceContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 18
+text = "Balance:"
+
+[node name="BalanceValue" type="Label" parent="BottomBar/StatsContainer/BalanceContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+theme_override_font_sizes/font_size = 18
+text = "12500 credits"
+
+[connection signal="pressed" from="BottomBar/BackButton" to="." method="_on_back_button_pressed"]
