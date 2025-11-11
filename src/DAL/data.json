@@ -77,7 +77,7 @@
 		}
 	},
 	"app_config": {
-		"user_id": "1"
+		"user_id": "0"
 	},
 	"profiles": {
 		"0": {
@@ -85,12 +85,6 @@
 			"elo": 0.0,
 			"profile_pic": "res://assets/icons/icon.svg",
 			"user_name": "player 1"
-		},
-		"1": {
-			"credits": 0.0,
-			"elo": 0.0,
-			"profile_pic": "res://assets/avatars/Wanita Rambut Urai Kupluk.png",
-			"user_name": "jjiji"
 		}
 	}
 }

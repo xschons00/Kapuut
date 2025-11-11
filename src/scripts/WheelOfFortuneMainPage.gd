@@ -50,14 +50,15 @@ func _on_price_option_pressed(button: Button) -> void:
 	button.modulate = Color(0.31, 0.8, 0.77)
 	
 	# Extract price from button text
-	var text = button.text.strip_edges()
-	if "25" in text:
+	var text = button.text.split(" ")[0]
+
+	if "25" == text:
 		selected_price = 25
-	elif "100" in text:
+	elif "100" == text:
 		selected_price = 100
-	elif "250" in text:
+	elif "250" == text:
 		selected_price = 250
-	elif "1000" in text:
+	elif "1000" == text:
 		selected_price = 1000
 	
 	print("Selected price: ", selected_price)
