@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 	pass
 	
 # press
-
 "
 
 [sub_resource type="SystemFont" id="SystemFont_nyv1a"]
@@ -118,4 +117,5 @@ text = "profiles"
 
 [connection signal="pressed" from="HBoxContainer/home_button" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/flashcards_button" to="." method="_on_flashcards_button_pressed"]
+[connection signal="button_up" from="HBoxContainer/pvp_button" to="." method="_on_pvp_button_button_up"]
 [connection signal="pressed" from="profiles_button" to="." method="_on_profiles_button_pressed"]

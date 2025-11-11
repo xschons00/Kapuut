@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxne151cqn7ep"]
+[gd_scene load_steps=6 format=3 uid="uid://csebu4vgraoga"]
 
-[ext_resource type="Script" uid="uid://u50hdgt343c7" path="res://src/scripts/FlashCardGame/FlashCardGame.gd" id="1_4ujli"]
-[ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="2_1uk2n"]
+[ext_resource type="Script" uid="uid://cplphsgtargvc" path="res://src/scripts/PvPGame/PvPGameController.gd" id="1_0m6a3"]
+[ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="2_1q35e"]
+[ext_resource type="Script" uid="uid://byofbei15qtx" path="res://src/scenes/PvPGame/SCORE.gd" id="3_xa5me"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccw1j"]
 bg_color = Color(0.30880764, 0.59813684, 1, 1)
@@ -11,22 +12,40 @@ bg_color = Color(0.30880764, 0.59813684, 1, 1)
 Label/font_sizes/font_size = 72
 Panel/colors/background = Color(0.2532489, 0.28697997, 1, 1)
 
-[node name="FlashGameEnd" type="Control"]
+[node name="PvPGameEnd" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4ujli")
+script = ExtResource("1_0m6a3")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-theme = ExtResource("2_1uk2n")
+theme = ExtResource("2_1q35e")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -123.28
+offset_right = 68.5
+offset_bottom = -86.28
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE 0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_xa5me")
+
+[node name="Logo" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -50,7 +69,7 @@ offset_right = 138.0
 offset_bottom = -64.00171
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("2_1uk2n")
+theme = ExtResource("2_1q35e")
 text = "LEAVE"
 
 [connection signal="button_down" from="Panel/Leave" to="." method="_on_leave_button_down"]

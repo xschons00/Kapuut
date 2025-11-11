@@ -6,7 +6,7 @@ var data_seed: DataSeed
 var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 var menu: Control
 var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
-var GameInstance : GameController
+var score : String 
 
 signal menu_refresh_signal()
 
@@ -22,10 +22,6 @@ func _ready() -> void:
 	#menu setup
 	_init_menu()
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func _init_menu():
 	if menu == null:
