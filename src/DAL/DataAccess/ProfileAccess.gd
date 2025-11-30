@@ -17,6 +17,12 @@ func get_profile(id: String) -> ProfileObject:
 		return null
 	return ProfileObject.from_dict(id, profiles[id])
 	
+func get_profile_items(id: String) -> Array[AvatarItem]:
+	var profile: ProfileObject = self.get_profile(id)
+	if profile == null:
+		return []
+	return profile.unlocked_items
+	
 func get_all_profiles() -> Array[ProfileObject]:
 	var profile_arr: Array[ProfileObject] = []
 	profiles = _get_section("profiles")

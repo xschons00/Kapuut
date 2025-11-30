@@ -1,8 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://p7p4ljkco0br"]
+[gd_scene load_steps=6 format=3 uid="uid://0tqcigulcvki"]
 
-[ext_resource type="Script" uid="uid://1dia43jdvn4b" path="res://src/scripts/CreateProfile.gd" id="1_wd1t4"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_3oqdu"]
 [ext_resource type="Texture2D" uid="uid://qthnwgd2estu" path="res://assets/icons/plus.png" id="3_3oqdu"]
+
+[sub_resource type="GDScript" id="GDScript_wd1t4"]
+script/source = "extends Control
+
+
+#scene paths
+var profiles_path: String = \"res://src/scenes/Profiles.tscn\"
+
+#components
+@onready var avatar_selection_scene = preload(\"res://src/scenes/components/AvatarSelection.tscn\")
+
+#nodes
+@onready var profile_rect = $ColorRect/profile_rect
+@onready var line_edit = $VBoxContainer/LineEdit
+@onready var avatar_selection: Control
+#vars
+var new_user: ProfileObject
+var default_pic: String = \"res://assets/icons/user.png\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	# add menu
+	Globals.add_menu(self)
+	
+	# add avatar selection (hidden)
+	avatar_selection = avatar_selection_scene.instantiate()
+	add_child(avatar_selection)
+	avatar_selection.avatar_selected_signal.connect(_on_avatar_selected_signal)
+	
+	profile_rect.texture = load(default_pic)
+	profile_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	profile_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	
+	#prepare new object
+	new_user = ProfileObject.new()
+	new_user.profile_pic = default_pic
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+	
+
+func _on_save_button_pressed() -> void:
+	new_user.user_name = line_edit.text
+	if new_user.user_name == \"\":
+		Globals.show_warning(\"Warning: User name not selected\")
+		return
+	Globals.data_manager.profiles.save_profile(new_user)
+	get_tree().change_scene_to_file(profiles_path)
+	
+func _on_avatar_selected_signal(picture_path: String) -> void:
+	print(\"Avatar change, path: \", picture_path)
+	new_user.profile_pic = picture_path
+	profile_rect.texture = load(picture_path)
+	avatar_selection.switch_visibility()
+	
+func _on_profile_pic_button_pressed() -> void:
+	avatar_selection.switch_visibility()
+
+func _on_avatar_select_button_pressed() -> void:
+	avatar_selection.switch_visibility()
+
+func _on_cancel_button_pressed() -> void:
+	get_tree().change_scene_to_file(profiles_path)
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd1t4"]
 bg_color = Color(0.89767253, 0.4652784, 0.16300237, 1)
@@ -18,7 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wd1t4")
+script = SubResource("GDScript_wd1t4")
 
 [node name="background" type="Panel" parent="."]
 layout_mode = 1

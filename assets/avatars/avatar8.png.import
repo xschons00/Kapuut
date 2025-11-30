@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxa41ly143f5x"
-path="res://.godot/imported/Pria Brewok Kupluk.png-45f7faa72b59cecbdc84e339efd34ef5.ctex"
+uid="uid://cj3p34mtuujv"
+path="res://.godot/imported/avatar8.png-cef7f6203d3da436183087a434b66895.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/avatars/Pria Brewok Kupluk.png"
-dest_files=["res://.godot/imported/Pria Brewok Kupluk.png-45f7faa72b59cecbdc84e339efd34ef5.ctex"]
+source_file="res://assets/avatars/avatar8.png"
+dest_files=["res://.godot/imported/avatar8.png-cef7f6203d3da436183087a434b66895.ctex"]
 
 [params]
 

@@ -94,17 +94,13 @@ func _on_profile_delete_signal(user_select: ProfileObject) -> void:
 	Globals.data_manager.profiles.delete_profile(user_select)
 	_refresh_page_content()
 	
-
-func _on_save_button_pressed() -> void: #save profile changes
-	var new_name: String = line_edit.text
-	if new_name != "":
-		active_user.user_name = new_name
-	#TODO all other changes
-	Globals.data_manager.profiles.save_profile(active_user)
-	_refresh_page_content()
 	
 func _on_new_button_pressed() -> void:
-	get_tree().change_scene_to_file(create_profile_path)
+	var new_profile = ProfileObject.new()
+	new_profile.user_name = "new player"
+	new_profile.profile_pic = Globals.default_profile_pic
+	Globals.data_manager.profiles.save_profile(new_profile)
+	_refresh_page_content()
 
 func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection
 	avatar_selection.switch_visibility()
@@ -117,3 +113,26 @@ func _on_avatar_selected_signal(picture_path: String) -> void:
 		avatar_selection.switch_visibility()
 		Globals.emit_signal("menu_refresh_signal")
 		_refresh_page_content()
+	
+func _change_profile_name(new_text: String = "") -> void:
+	var new_name: String
+	if new_text == "":
+		new_name = line_edit.text
+		if new_name == "":
+			return
+	else:
+		new_name = new_text
+	if new_name.length() > 15:
+		Globals.show_warning("Warning: Player name too long")
+		return
+	active_user.user_name = new_name
+	line_edit.text = ""
+	Globals.data_manager.profiles.save_profile(active_user)
+	_refresh_page_content()
+
+func _on_save_button_pressed() -> void: #save profile changes
+	_change_profile_name()
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	_change_profile_name(new_text)
+		

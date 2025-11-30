@@ -147,6 +147,10 @@ grow_vertical = 2
 texture = ExtResource("3_1rjmx")
 expand_mode = 1
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_entered" from="background" to="." method="_on_background_focus_entered"]
+[connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="button_container/save_button" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="new_button" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="profile_pic_button" to="." method="_on_profile_pic_button_pressed"]

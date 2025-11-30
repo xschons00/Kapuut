@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg3umuq2pifrr"
-path="res://.godot/imported/Pria VR white.png-10c94785ab2f495806d57002b1080ef0.ctex"
+uid="uid://dxa41ly143f5x"
+path="res://.godot/imported/avatar6.png-5257af0016738050627258444a3178ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/avatars/Pria VR white.png"
-dest_files=["res://.godot/imported/Pria VR white.png-10c94785ab2f495806d57002b1080ef0.ctex"]
+source_file="res://assets/avatars/avatar6.png"
+dest_files=["res://.godot/imported/avatar6.png-5257af0016738050627258444a3178ee.ctex"]
 
 [params]
 

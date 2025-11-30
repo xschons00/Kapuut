@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://m6kc6qjcljx0"]
+
+[ext_resource type="Script" uid="uid://bsxq1jsgx5nvs" path="res://src/scripts/components/UnlockButton.gd" id="1_cv6ol"]
+
+[node name="UnlockButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1006.0
+offset_bottom = -576.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Unlock
+200 coins"
+script = ExtResource("1_cv6ol")

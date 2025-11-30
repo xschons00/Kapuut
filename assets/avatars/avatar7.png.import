@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjiaa5uo3lhjv"
-path="res://.godot/imported/Pria Rambut Mohawk topi Black.png-1b2bf8b2e400ff467145ca197dee583e.ctex"
+uid="uid://ch3ty2155ouby"
+path="res://.godot/imported/avatar7.png-8270719f99c6720ea18416f70c43118a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/avatars/Pria Rambut Mohawk topi Black.png"
-dest_files=["res://.godot/imported/Pria Rambut Mohawk topi Black.png-1b2bf8b2e400ff467145ca197dee583e.ctex"]
+source_file="res://assets/avatars/avatar7.png"
+dest_files=["res://.godot/imported/avatar7.png-8270719f99c6720ea18416f70c43118a.ctex"]
 
 [params]
 

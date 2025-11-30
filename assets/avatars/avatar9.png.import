@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch3ty2155ouby"
-path="res://.godot/imported/Pria Gimbal Kacamata Gaul Black.png-57649fbbffaed242863e80d8ba279a8a.ctex"
+uid="uid://dhfx2b2r51rk5"
+path="res://.godot/imported/avatar9.png-fd78b72fa65a9e8baa00b09866a7e007.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/avatars/Pria Gimbal Kacamata Gaul Black.png"
-dest_files=["res://.godot/imported/Pria Gimbal Kacamata Gaul Black.png-57649fbbffaed242863e80d8ba279a8a.ctex"]
+source_file="res://assets/avatars/avatar9.png"
+dest_files=["res://.godot/imported/avatar9.png-fd78b72fa65a9e8baa00b09866a7e007.ctex"]
 
 [params]
 

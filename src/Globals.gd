@@ -7,8 +7,8 @@ var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 var menu: Control
 var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
 var score : String 
-
-signal menu_refresh_signal()
+var greyscale_shader: Shader = preload("res://assets/shaders/greyscale.gdshader")
+var greyscale: ShaderMaterial
 
 const default_profile_pic = "res://assets/icons/icon.svg"
 
@@ -19,8 +19,11 @@ func _ready() -> void:
 	data_seed = DataSeed.get_instance()
 	data_manager.clear_data()
 	data_seed.seed()
+	data_seed.test_seed()
 	#menu setup
 	_init_menu()
+	greyscale = ShaderMaterial.new()
+	greyscale.shader = greyscale_shader
 	
 	
 func _init_menu():
@@ -59,3 +62,9 @@ func show_warning(text: String):
 	popup.popup_centered(Vector2(500, 100))
 	await get_tree().create_timer(1.0).timeout
 	popup.queue_free()
+	
+func set_greyscale(rect: TextureRect, enabled: bool = true) -> void:
+	if enabled:
+		rect.material = greyscale
+	else:
+		rect.material = null

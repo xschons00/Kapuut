@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhfx2b2r51rk5"
-path="res://.godot/imported/Wanita Rambut Pendek Black.png-871b19fd0144b456caf3ecd9788b4302.ctex"
+uid="uid://lr403g6mltug"
+path="res://.godot/imported/avatar2.png-5abc84e9347b6b53ef0d742cb864cb5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/avatars/Wanita Rambut Pendek Black.png"
-dest_files=["res://.godot/imported/Wanita Rambut Pendek Black.png-871b19fd0144b456caf3ecd9788b4302.ctex"]
+source_file="res://assets/avatars/avatar2.png"
+dest_files=["res://.godot/imported/avatar2.png-5abc84e9347b6b53ef0d742cb864cb5e.ctex"]
 
 [params]
 

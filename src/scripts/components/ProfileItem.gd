@@ -25,7 +25,7 @@ func set_profile_data(user_obj: ProfileObject) -> void:
 	if ResourceLoader.exists(user.profile_pic):
 		profile_rect.texture = load(user.profile_pic)
 	else:
-		profile_rect.texture = load("res://assets/icons/icon.svg") # fallback
+		profile_rect.texture = load(Globals.default_profile_pic) #fallback
 		
 	user_label.text = user.user_name
 	elo_label.text = str(user.elo)

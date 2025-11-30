@@ -13,7 +13,7 @@ func seed() -> void:
 	var default_user = ProfileObject.new()
 	default_user.user_name = "player 1"
 	default_user.profile_pic = Globals.default_profile_pic
-	default_user.credits = 0
+	default_user.coins = 0
 	default_user.elo = 0
 	Globals.data_manager.profiles.save_profile(default_user)
 	
@@ -114,19 +114,9 @@ func test_seed() -> void:
 	user1.user_name = "John Doe"
 	user1.profile_pic = "res://assets/icons/icon.svg"
 	user1.elo = 1024
+	user1.coins = 2000
 	Globals.data_manager.profiles.save_profile(user1)
 	
-		# addding theme to the mix 
-	var def_game_data = GameThemeObject.new()
-	var def_question = QuestionObject.new()
-	def_question.Question = "Hi"
-	def_question.Correct = "my name is daniel"
-	def_question.otherquestion1 = "my friend is daniel"
-	def_question.otherquestion2 = "what is your favourite colour"
-	def_question.otherquestion3 = "will it ever end ?"
-	def_game_data.img = "res://assets/FlashCardBackgrounds/danodrevo.jpg"
-	def_game_data.Questions = def_question
-	Globals.data_manager.themes.save_Theme("testing", def_game_data)
 	
 	var config = AppConfigObject.new()
 	config.user_id = user1.id

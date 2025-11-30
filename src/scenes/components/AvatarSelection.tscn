@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c5tnnjb6ahbhq" path="res://src/scripts/components/AvatarSelection.gd" id="1_457w2"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_n6ny1"]
-[ext_resource type="Texture2D" uid="uid://b8id4sx2kriua" path="res://assets/avatars/Pria Rambut Lepek Kupluk.png" id="3_lb1mf"]
-[ext_resource type="Texture2D" uid="uid://bg3umuq2pifrr" path="res://assets/avatars/Pria VR white.png" id="4_da30h"]
-[ext_resource type="Texture2D" uid="uid://dxa41ly143f5x" path="res://assets/avatars/Pria Brewok Kupluk.png" id="5_xjb0x"]
-[ext_resource type="Texture2D" uid="uid://cj3p34mtuujv" path="res://assets/avatars/Pria Rambut berponi lurus.png" id="6_45amd"]
-[ext_resource type="Texture2D" uid="uid://lr403g6mltug" path="res://assets/avatars/Wanita Rambut Urai Kupluk.png" id="7_7elxg"]
-[ext_resource type="Texture2D" uid="uid://dhfx2b2r51rk5" path="res://assets/avatars/Wanita Rambut Pendek Black.png" id="8_xcwnk"]
-[ext_resource type="Texture2D" uid="uid://bydvtbn45kpyb" path="res://assets/avatars/Pria Brewok Rambut Maskulin.png" id="9_eo4eh"]
-[ext_resource type="Texture2D" uid="uid://cjiaa5uo3lhjv" path="res://assets/avatars/Pria Rambut Mohawk topi Black.png" id="10_vwv8t"]
-[ext_resource type="Texture2D" uid="uid://ch3ty2155ouby" path="res://assets/avatars/Pria Gimbal Kacamata Gaul Black.png" id="11_80sao"]
+[ext_resource type="Texture2D" uid="uid://b8id4sx2kriua" path="res://assets/avatars/avatar1.png" id="3_lb1mf"]
+[ext_resource type="Texture2D" uid="uid://bg3umuq2pifrr" path="res://assets/avatars/avatar4.png" id="4_da30h"]
+[ext_resource type="Texture2D" uid="uid://dxa41ly143f5x" path="res://assets/avatars/avatar6.png" id="5_xjb0x"]
+[ext_resource type="Texture2D" uid="uid://cj3p34mtuujv" path="res://assets/avatars/avatar8.png" id="6_45amd"]
+[ext_resource type="Texture2D" uid="uid://lr403g6mltug" path="res://assets/avatars/avatar2.png" id="7_7elxg"]
+[ext_resource type="Texture2D" uid="uid://dhfx2b2r51rk5" path="res://assets/avatars/avatar9.png" id="8_xcwnk"]
+[ext_resource type="Texture2D" uid="uid://bydvtbn45kpyb" path="res://assets/avatars/avatar3.png" id="9_eo4eh"]
+[ext_resource type="Texture2D" uid="uid://cjiaa5uo3lhjv" path="res://assets/avatars/avatar5.png" id="10_vwv8t"]
+[ext_resource type="Texture2D" uid="uid://ch3ty2155ouby" path="res://assets/avatars/avatar7.png" id="11_80sao"]
 
 [node name="AvatarSelection" type="Control"]
 layout_mode = 3
@@ -66,7 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_da30h")
+texture = ExtResource("7_7elxg")
 expand_mode = 1
 stretch_mode = 5
 
@@ -81,7 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_xjb0x")
+texture = ExtResource("9_eo4eh")
 expand_mode = 1
 stretch_mode = 5
 
@@ -96,7 +96,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_45amd")
+texture = ExtResource("4_da30h")
 expand_mode = 1
 stretch_mode = 5
 
@@ -111,7 +111,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_7elxg")
+texture = ExtResource("10_vwv8t")
 expand_mode = 1
 stretch_mode = 5
 
@@ -126,7 +126,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("8_xcwnk")
+texture = ExtResource("5_xjb0x")
 expand_mode = 1
 stretch_mode = 5
 
@@ -141,7 +141,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_eo4eh")
+texture = ExtResource("11_80sao")
 expand_mode = 1
 stretch_mode = 5
 
@@ -156,7 +156,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_vwv8t")
+texture = ExtResource("6_45amd")
 expand_mode = 1
 stretch_mode = 5
 
@@ -171,7 +171,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_80sao")
+texture = ExtResource("8_xcwnk")
 expand_mode = 1
 stretch_mode = 5
 

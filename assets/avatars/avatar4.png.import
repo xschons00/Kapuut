@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8id4sx2kriua"
-path="res://.godot/imported/Pria Rambut Lepek Kupluk.png-6fac03c7a1d0cc735622c981fd790eb5.ctex"
+uid="uid://bg3umuq2pifrr"
+path="res://.godot/imported/avatar4.png-547e294fe79597de5ddefe5babc264b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/avatars/Pria Rambut Lepek Kupluk.png"
-dest_files=["res://.godot/imported/Pria Rambut Lepek Kupluk.png-6fac03c7a1d0cc735622c981fd790eb5.ctex"]
+source_file="res://assets/avatars/avatar4.png"
+dest_files=["res://.godot/imported/avatar4.png-547e294fe79597de5ddefe5babc264b4.ctex"]
 
 [params]
 

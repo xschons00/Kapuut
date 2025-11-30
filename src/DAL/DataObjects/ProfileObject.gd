@@ -4,16 +4,22 @@ extends DataObject
 var user_name: String
 var profile_pic: String
 var elo: int
-var credits: int
+var coins: int
+var unlocked_items: Array[AvatarItem]
 
 func _init() -> void: #setting propper id is handled in data access
 	id = "NOT_SET"
 
 func to_dict() -> Dictionary:
+	var tmp_array: Array[Dictionary]
+	for item in unlocked_items:
+		tmp_array.append(item.to_dict())
+		
 	return {"user_name" : user_name,
 			"profile_pic" : profile_pic,
 			"elo" : elo,
-			"credits" : credits
+			"coins" : coins,
+			"unlocked_items" : tmp_array
 			}
 
 static func from_dict(obj_id: String, dict: Dictionary) -> ProfileObject:
@@ -22,5 +28,8 @@ static func from_dict(obj_id: String, dict: Dictionary) -> ProfileObject:
 	obj.user_name = dict.get("user_name", "")
 	obj.profile_pic = dict.get("profile_pic", "")
 	obj.elo = dict.get("elo", 0)
-	obj.credits = dict.get("credits", 0)
+	obj.coins = dict.get("coins", 0)
+	var tmp_array: Array = dict.get("unlocked_items", [])
+	for item in tmp_array:
+		obj.unlocked_items.append(AvatarItem.from_dict("unlocked_item", item))
 	return obj
