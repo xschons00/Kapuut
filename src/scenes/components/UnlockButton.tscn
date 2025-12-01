@@ -15,3 +15,5 @@ size_flags_vertical = 4
 text = "Unlock
 200 coins"
 script = ExtResource("1_cv6ol")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

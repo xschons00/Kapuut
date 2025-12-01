@@ -4,10 +4,9 @@ var config: AppConfigObject
 var active_user: ProfileObject
 
 #signals
-signal refresh_menu_signal()
+signal refresh_menu_signal
+signal user_changed_signal
 
-#scene paths
-var create_profile_path: String = "res://src/scenes/CreateProfile.tscn"
 
 #components
 @onready var profile_item_scene = preload("res://src/scenes/components/ProfileItem.tscn")
@@ -29,6 +28,7 @@ func _ready() -> void:
 	Globals.add_menu(self)
 	# add avatar selection (hidden)
 	avatar_selection = avatar_selection_scene.instantiate()
+	avatar_selection.item_unlock_signal.connect(_on_avatar_unlocked_signal)
 	add_child(avatar_selection)
 	avatar_selection.avatar_selected_signal.connect(_on_avatar_selected_signal)
 	#load profiles
@@ -78,11 +78,15 @@ func _refresh_all_profiles() -> void:
 		profile_item.profile_delete_signal.connect(_on_profile_delete_signal)
 	profile_container.queue_sort()  # ensure container layout updates
 		
+func _on_avatar_unlocked_signal() -> void:
+	_refresh_all_profiles()		
+
 func _on_profile_selected_signal(user_select: ProfileObject) -> void:
 	print("Selected profile:", user_select.user_name)
 	config.user_id = user_select.id
 	Globals.data_manager.app_config.save_config(config)
-	Globals.emit_signal("menu_refresh_signal")
+	Globals.emit_signal("refresh_menu_signal")
+	emit_signal("user_changed_signal")
 	_refresh_page_content()
 	
 func _on_profile_delete_signal(user_select: ProfileObject) -> void:
@@ -111,7 +115,7 @@ func _on_avatar_selected_signal(picture_path: String) -> void:
 		active_user.profile_pic = picture_path
 		Globals.data_manager.profiles.save_profile(active_user)
 		avatar_selection.switch_visibility()
-		Globals.emit_signal("menu_refresh_signal")
+		Globals.emit_signal("refresh_menu_signal")
 		_refresh_page_content()
 	
 func _change_profile_name(new_text: String = "") -> void:

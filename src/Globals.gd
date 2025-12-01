@@ -1,6 +1,8 @@
 extends Node
 # global constants and utilities 
 
+signal refresh_menu_signal
+
 var data_manager: DataManager
 var data_seed: DataSeed
 var menu_scene = preload("res://src/scenes/components/Menu.tscn")

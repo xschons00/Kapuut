@@ -8,6 +8,7 @@ signal profile_delete_signal(user: ProfileObject)
 @onready var profile_rect: TextureRect = $ColorRect/profile_rect
 @onready var user_label: Label = $VBoxContainer/user_label
 @onready var elo_label: Label = $VBoxContainer/HBoxContainer/elo_label
+@onready var coins_label: Label = $VBoxContainer/HBoxContainer2/coins_label
 
 #vars
 var user: ProfileObject
@@ -29,6 +30,7 @@ func set_profile_data(user_obj: ProfileObject) -> void:
 		
 	user_label.text = user.user_name
 	elo_label.text = str(user.elo)
+	coins_label.text = str(user.coins)
 
 
 func _on_select_button_pressed() -> void:

@@ -12,7 +12,7 @@ func to_dict() -> Dictionary:
 			"price" 	: price,
 			}
 
-static func from_dict(obj_id: String, dict: Dictionary) -> ProfileObject:
+static func from_dict(obj_id: String, dict: Dictionary) -> AvatarItem:
 	var obj = AvatarItem.new()
 	obj.id = obj_id
 	obj.item_name = dict.get("item_name", "")

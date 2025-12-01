@@ -24,11 +24,11 @@ script = ExtResource("1_457w2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 437.0
+offset_left = 244.0
 offset_top = 114.0
 offset_right = 911.0
-offset_bottom = 449.0
-color = Color(0.2520276, 0.25202766, 0.25202757, 1)
+offset_bottom = 521.0
+color = Color(0.21176471, 0.7490196, 0.7137255, 1)
 
 [node name="GridContainer" type="GridContainer" parent="ColorRect"]
 layout_mode = 1
@@ -41,7 +41,7 @@ theme = ExtResource("2_n6ny1")
 columns = 4
 
 [node name="avatar1_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar1_button"]
@@ -56,7 +56,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar2_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar2_button"]
@@ -71,7 +71,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar3_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar3_button"]
@@ -86,7 +86,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar4_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar4_button"]
@@ -101,7 +101,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar5_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar5_button"]
@@ -116,7 +116,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar6_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar6_button"]
@@ -131,7 +131,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar7_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar7_button"]
@@ -146,7 +146,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar8_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar8_button"]
@@ -161,7 +161,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="avatar9_button" type="Button" parent="ColorRect/GridContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/avatar9_button"]
@@ -175,8 +175,18 @@ texture = ExtResource("8_xcwnk")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="close_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 468.0
+offset_right = 892.0
+offset_bottom = 502.0
+theme = ExtResource("2_n6ny1")
+text = "close selection"
+
 [connection signal="pressed" from="ColorRect/GridContainer/avatar1_button" to="." method="_on_avatar_1_button_pressed"]
 [connection signal="pressed" from="ColorRect/GridContainer/avatar2_button" to="." method="_on_avatar_2_button_pressed"]
 [connection signal="pressed" from="ColorRect/GridContainer/avatar3_button" to="." method="_on_avatar_3_button_pressed"]
 [connection signal="pressed" from="ColorRect/GridContainer/avatar4_button" to="." method="_on_avatar_4_button_pressed"]
 [connection signal="pressed" from="ColorRect/GridContainer/avatar5_button" to="." method="_on_avatar_5_button_pressed"]
+[connection signal="pressed" from="close_button" to="." method="_on_close_button_pressed"]

@@ -15,7 +15,22 @@ func _process(delta: float) -> void:
 	
 func set_item_data(item_obj: AvatarItem) -> void:
 	item = item_obj
-	self.text = "Unlock for:\n%d" % item_obj.price
+	self.text = "unlock for:\n%d coins" % item_obj.price
 
-func _on_select_button_pressed() -> void:
+
+func _on_pressed() -> void:
+	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
+	if	config == null:
+		print("Error: could not load config")
+		return
+	var user = Globals.data_manager.profiles.get_profile(config.user_id)
+	if user == null:
+		print("Error: could not load current user")
+		return
+	if user.coins < item.price:
+		Globals.show_warning("Warning: not enough coins for this item")
+		return
+	user.coins -= item.price #subtract price for item
+	user.unlocked_items.append(item)
+	Globals.data_manager.profiles.save_profile(user)
 	emit_signal("item_unlock_signal",item)

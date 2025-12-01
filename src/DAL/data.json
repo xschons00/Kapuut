@@ -90,9 +90,16 @@
 		"1": {
 			"coins": 2000,
 			"elo": 1024,
-			"profile_pic": "res://assets/avatars/avatar1.png",
+			"profile_pic": "res://assets/avatars/avatar7.png",
 			"unlocked_items": [],
 			"user_name": "John Doe"
+		},
+		"2": {
+			"coins": 0.0,
+			"elo": 0.0,
+			"profile_pic": "res://assets/icons/icon.svg",
+			"unlocked_items": [],
+			"user_name": "new player"
 		}
 	}
 }

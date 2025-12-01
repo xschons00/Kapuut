@@ -15,7 +15,7 @@ var config: AppConfigObject
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Globals.connect("menu_refresh_signal", _on_menu_refresh_signal)
+	Globals.connect("refresh_menu_signal", _on_refresh_menu_signal)
 	_refresh_profile_pic()
 		
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _on_menu_refresh_signal() -> void:
+func _on_refresh_menu_signal() -> void:
 	print("menu refresh signal")
 	_refresh_profile_pic()
 	

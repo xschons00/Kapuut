@@ -20,7 +20,7 @@ offset_bottom = -423.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(1, 0.28607818, 0.23620042, 1)
+color = Color(1, 0.5176471, 0.09803922, 1)
 script = ExtResource("1_sfuya")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -29,7 +29,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 241.0
 grow_vertical = 2
-color = Color(0.9279653, 0.49587983, 0, 1)
+color = Color(0.7108755, 0.37126333, 0, 1)
 
 [node name="profile_rect" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
@@ -72,6 +72,20 @@ theme_override_fonts/font = SubResource("FontVariation_ehu0m")
 text = "elo: "
 
 [node name="elo_label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_40bxp")
+text = "1000"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_40bxp")
+theme_override_fonts/font = SubResource("FontVariation_ehu0m")
+text = "coins:"
+
+[node name="coins_label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("3_40bxp")
 text = "1000"
