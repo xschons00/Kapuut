@@ -3,3 +3,4 @@
 /android/
 *.uid
 src/DAL/data.json
+src\DAL\data.json
