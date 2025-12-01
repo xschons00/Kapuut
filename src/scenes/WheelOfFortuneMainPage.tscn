@@ -141,11 +141,28 @@ theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
 text = "1000 kreditov"
 
-[node name="CenterPanel" type="VBoxContainer" parent="MainContainer"]
+[node name="CenterPanel" type="CenterContainer" parent="MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 30
+
+[node name="VBox" type="VBoxContainer" parent="MainContainer/CenterPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 1
+
+[node name="WheelContainer" type="CenterContainer" parent="MainContainer/CenterPanel/VBox"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+
+[node name="SpinButton" type="Button" parent="MainContainer/CenterPanel/VBox"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("4_wheel")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "   ¿ Spin ?   "
 
 [node name="RightPanel" type="VBoxContainer" parent="MainContainer"]
 custom_minimum_size = Vector2(280, 0)
@@ -233,66 +250,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.18039216, 0.8, 0.44313726, 1)
 theme_override_font_sizes/font_size = 13
 text = "+300"
-
-[node name="CenterPanel#WheelContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 0
-offset_left = 358.0
-offset_top = 50.0
-offset_right = 808.0
-offset_bottom = 500.0
-
-[node name="CenterPanel_WheelContainer#WheelBackground" type="Panel" parent="."]
-custom_minimum_size = Vector2(450, 450)
-layout_mode = 0
-offset_left = 357.0
-offset_top = 50.0
-offset_right = 807.0
-offset_bottom = 500.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
-
-[node name="CenterPanel_WheelContainer_WheelBackground#WheelPlaceholder" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -158.0
-offset_right = 158.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
-theme_override_font_sizes/font_size = 48
-text = "WHEEL
-[1x] [?] [2x] [?]
-[3x] [?] [4x] [?]"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CenterPanel_WheelContainer#Pointer" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -2.0
-offset_top = 111.999985
-offset_right = 48.0
-offset_bottom = 161.99998
-grow_horizontal = 2
-rotation = 0.785398
-color = Color(0.30588236, 0.8039216, 0.77254903, 1)
-
-[node name="CenterPanel#SpinButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 518.0
-offset_top = 507.0
-offset_right = 632.0
-offset_bottom = 538.0
-size_flags_horizontal = 4
-theme = ExtResource("4_wheel")
-theme_override_colors/font_color = Color(0.10196078, 0.10196078, 0.10196078, 1)
-theme_override_font_sizes/font_size = 22
-text = "   ¿ Spin ?   "
 
 [node name="BottomBar" type="Panel" parent="."]
 layout_mode = 1

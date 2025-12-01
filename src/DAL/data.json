@@ -88,9 +88,9 @@
 			"user_name": "player 1"
 		},
 		"1": {
-			"coins": 2000,
-			"elo": 1024,
-			"profile_pic": "res://assets/avatars/avatar1.png",
+			"coins": 2000.0,
+			"elo": 1024.0,
+			"profile_pic": "res://assets/icons/icon.svg",
 			"unlocked_items": [],
 			"user_name": "John Doe"
 		}
