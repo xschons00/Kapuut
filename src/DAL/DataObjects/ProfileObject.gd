@@ -6,6 +6,7 @@ var profile_pic: String
 var elo: int
 var coins: int
 var unlocked_items: Array[AvatarItem]
+var PvPPoints: int
 
 func _init() -> void: #setting propper id is handled in data access
 	id = "NOT_SET"
@@ -32,4 +33,5 @@ static func from_dict(obj_id: String, dict: Dictionary) -> ProfileObject:
 	var tmp_array: Array = dict.get("unlocked_items", [])
 	for item in tmp_array:
 		obj.unlocked_items.append(AvatarItem.from_dict("unlocked_item", item))
+	
 	return obj

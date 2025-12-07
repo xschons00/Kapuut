@@ -1,5 +1,9 @@
 {
 	"Themes": {
+		"GEOGRAPHY": {
+			"Questions": [],
+			"img": "res://assets/icons/user.png"
+		},
 		"HARRYPOTTER": {
 			"Questions": [
 				{
@@ -74,9 +78,18 @@
 				}
 			],
 			"img": "res://assets/FlashCardBackgrounds/danodrevo.jpg"
+		},
+		"HISTORY": {
+			"Questions": [],
+			"img": "res://assets/FlashCardBackgrounds/danodrevo.jpg"
+		},
+		"SCIENCE": {
+			"Questions": [],
+			"img": "res://assets/icons/icon.svg"
 		}
 	},
 	"app_config": {
+		"opponent": "",
 		"user_id": "1"
 	},
 	"profiles": {
@@ -88,18 +101,11 @@
 			"user_name": "player 1"
 		},
 		"1": {
-			"coins": 2000,
-			"elo": 1024,
-			"profile_pic": "res://assets/avatars/avatar1.png",
-			"unlocked_items": [],
-			"user_name": "John Doe"
-		},
-		"2": {
-			"coins": 0.0,
-			"elo": 0.0,
+			"coins": 2000.0,
+			"elo": 1024.0,
 			"profile_pic": "res://assets/icons/icon.svg",
 			"unlocked_items": [],
-			"user_name": "new player"
+			"user_name": "John Doe"
 		}
 	}
 }

@@ -1,14 +1,38 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
+
+const GAME_SCENE_PATH := "res://src/scenes/FlashCardGame/FlashGameStart.tscn"
+
+@onready var selection_list: Control = $GameSelectionWrapper/GameSelectionList
+
 func _ready() -> void:
 	Globals.add_menu(self)
+	_populate_games()
 
+func _populate_games() -> void:
+	if not selection_list:
+		return
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	var items: Array = []
+	var themes: Array = Globals.data_manager.themes.get_all_Themes()
+	for theme: GameThemeObject in themes:
+		var display_name := theme.id.replace("_", " ").capitalize()
+		items.append({
+			"name": display_name,
+			"image": theme.img,
+			"path": GAME_SCENE_PATH,
+			"theme": theme.id
+		})
 
+	if items.is_empty():
+		items.append({
+			"name": "Demo game",
+			"image": Globals.default_profile_pic,
+			"path": GAME_SCENE_PATH,
+			"theme": Globals.GameTheme
+		})
+
+	selection_list.set_items(items)
 
 
 func _on_home_button_pressed() -> void:

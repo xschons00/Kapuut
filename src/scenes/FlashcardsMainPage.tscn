@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://bbpci1rgw5qa0" path="res://src/scripts/FlashcardsMainPage.gd" id="1_sem6h"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="2_aea2l"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_5l2re"]
-[ext_resource type="Script" uid="uid://mcxtobhwi0c7" path="res://src/scripts/FlashCardGame/test.gd" id="4_aea2l"]
+[ext_resource type="PackedScene" path="res://src/scenes/components/GameSelectionList.tscn" id="4_aea2l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnibc"]
-bg_color = Color(0.16078432, 0.18431373, 0.21176471, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l2re"]
+bg_color = Color(0.91764706, 0.972549, 0.9490196, 1)
 
 [node name="FlashcardsMainPage" type="Control"]
 layout_mode = 3
@@ -25,34 +25,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_aea2l")
-
-[node name="description_panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_bottom = 281.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_5l2re")
-theme_override_styles/panel = SubResource("StyleBoxFlat_gnibc")
-
-[node name="Button" type="Button" parent="description_panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -103.0
-offset_top = -91.0
-offset_right = 103.0
-offset_bottom = 91.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "START GAME"
-script = ExtResource("4_aea2l")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -73,4 +45,34 @@ text = "welcome to
 flashcard quiz"
 horizontal_alignment = 1
 
-[connection signal="button_down" from="description_panel/Button" to="description_panel/Button" method="_on_button_button_down"]
+[node name="GameSelectionWrapper" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.45
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5l2re")
+
+[node name="SectionLabel" type="Label" parent="GameSelectionWrapper"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = -24.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "Available games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameSelectionList" parent="GameSelectionWrapper" instance=ExtResource("4_aea2l")]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 4.400009
+offset_right = -10.0
+offset_bottom = -3.9999695

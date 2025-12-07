@@ -125,7 +125,17 @@ text = "
 horizontal_alignment = 1
 clip_text = true
 
+[node name="Leave" type="Button" parent="."]
+layout_mode = 0
+offset_left = 990.3253
+offset_top = 12.0
+offset_right = 1138.0
+offset_bottom = 72.0
+theme = ExtResource("1_8wpbs")
+text = "LEAVE"
+
 [connection signal="button_down" from="Panel/FlashCard" to="." method="_on_FlashCard_button_down"]
 [connection signal="button_down" from="Panel/FlashCard" to="Panel/FlashCard" method="_on_button_down"]
 [connection signal="button_down" from="Panel/next" to="." method="_on_next_button_down"]
 [connection signal="button_down" from="Panel/next" to="Panel/next" method="_on_button_down"]
+[connection signal="button_down" from="Leave" to="." method="_on_leave_button_down"]

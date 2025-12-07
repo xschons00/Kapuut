@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://nd64dnlmeku"]
+
+[ext_resource type="Script" uid="uid://blpsr175d88ub" path="res://src/scripts/components/game_selection_item.gd" id="1_j3lel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3lel"]
+bg_color = Color(0.9137255, 0.9137255, 0.9137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r540b"]
+bg_color = Color(1, 0.29411766, 0.36078432, 1)
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndtun"]
+bg_color = Color(0.9999835, 0.29601914, 0.36069903, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+
+[node name="GameSelectionItem" type="Control"]
+custom_minimum_size = Vector2(260, 320)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 280.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j3lel")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 38.0
+offset_right = -24.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j3lel")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -88.0
+offset_right = -24.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_r540b")
+text = "Start Game"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -24.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ndtun")
+text = "NAME OF THE GAME "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

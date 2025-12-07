@@ -20,6 +20,7 @@ func seed() -> void:
 	# Build the HARRYPOTTER theme programmatically
 	var hp_game_data = GameThemeObject.new()
 	hp_game_data.img = "res://assets/FlashCardBackgrounds/danodrevo.jpg"
+	hp_game_data.Questions = []
 
 	var q
 
@@ -104,6 +105,19 @@ func seed() -> void:
 	hp_game_data.Questions.append(q)
 
 	Globals.data_manager.themes.save_Theme("HARRYPOTTER", hp_game_data)
+
+	# Empty showcase themes for selection UI
+	var empty_themes = [
+		{"id": "SCIENCE", "img": "res://assets/icons/icon.svg"},
+		{"id": "HISTORY", "img": "res://assets/FlashCardBackgrounds/danodrevo.jpg"},
+		{"id": "GEOGRAPHY", "img": "res://assets/icons/user.png"}
+	]
+
+	for theme_data in empty_themes:
+		var theme := GameThemeObject.new()
+		theme.img = theme_data["img"]
+		theme.Questions = []
+		Globals.data_manager.themes.save_Theme(theme_data["id"], theme)
 
 	var config = AppConfigObject.new()
 	config.user_id = default_user.id

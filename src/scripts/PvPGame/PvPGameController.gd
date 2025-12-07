@@ -6,8 +6,9 @@ var CorrectAnswer:int
 var game_status:Array = [0,0,0,0,0,0,0,0,0,0] # 1 je P1,2 je P2, -1 nobody
 var Curr_Player:int = 1
 var wrong:int = 0
-var P1 : int  = 0
-var P2 : int = 0
+var P1 : String = Globals.data_manager.app_config.get_config().user_id
+var P2 : String =  Globals.data_manager.app_config.get_config().opponent
+var selected_opponent_id: String = ""
 #buttons
 @onready
 var buttons:Array = [
@@ -52,7 +53,9 @@ func BallPressed(index:int):
 func RefreshMain():
 	var index:int = 0
 	if not game_status.has(0):
-		Globals.score = str(P1,": ",P2)
+		var P1elo: int = Globals.data_manager.profiles.get_profile(P1).elo
+		var P2elo: int  = Globals.data_manager.profiles.get_profile(P2).elo
+		Globals.score = str(P1elo,": ",P2elo)
 		get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPEnd.tscn")
 		
 	for i in game_status:
@@ -74,7 +77,7 @@ func RefreshMain():
 		index+=1
 
 func RefreshQuestion():
-
+	revelared = false
 	var questionData:Dictionary = data["Questions"][Question]
 	# add randomization to the answers
 	CorrectAnswer = 1
@@ -84,7 +87,10 @@ func RefreshQuestion():
 	$Question/AnswerPanel/VBoxContainer/Answer3.text = questionData["otherquestion2"]
 	$Question/AnswerPanel/VBoxContainer/Answer4.text = questionData["otherquestion3"]
 
+var revelared: bool = false
+
 func RevealAnswer(button: Button):
+	revelared = true
 	var stylebox_flat = StyleBoxFlat.new()
 	var name_str = str(button.name)
 	var index = int(name_str[-1])
@@ -93,9 +99,9 @@ func RevealAnswer(button: Button):
 		stylebox_flat.bg_color = Color.GREEN
 		game_status[Question] = Curr_Player
 		if Curr_Player == 1:
-			P1 +=1
+			add_point(P1)
 		else:
-			P2 += 1
+			add_point(P2)
 	else:
 		wrong +=1
 		if wrong == 2:
@@ -114,20 +120,34 @@ func RevealAnswer(button: Button):
 	button.remove_theme_stylebox_override("hover")
 	Start()
 
+func add_point(player:String ):
+	var PlayerObject:ProfileObject = Globals.data_manager.profiles.get_profile(player)
+	PlayerObject.elo += 1
+	Globals.data_manager.profiles.save_profile(PlayerObject)
+	
+
 func _on_answer_1_button_down() -> void:
 	var button:Button = $Question/AnswerPanel/VBoxContainer/Answer1
+	if revelared:
+		return
 	RevealAnswer(button)
 
 func _on_answer_2_button_down() -> void:
 	var button:Button = $Question/AnswerPanel/VBoxContainer/Answer2
+	if revelared:
+		return
 	RevealAnswer(button)	
 
 func _on_answer_3_button_down() -> void:
 	var button:Button = $Question/AnswerPanel/VBoxContainer/Answer3
+	if revelared:
+		return
 	RevealAnswer(button)
 
 func _on_answer_4_button_down() -> void:
 	var button:Button = $Question/AnswerPanel/VBoxContainer/Answer4
+	if revelared:
+		return
 	RevealAnswer(button)
 
 func _on_0_button_down() -> void:
@@ -162,7 +182,46 @@ func _on_9_button_down() -> void:
 
 
 func _on_start_button_down() -> void:
-	get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPGame.tscn")
+	if Globals.data_manager.app_config.get_config().opponent != "":
+		get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPGame.tscn")
 
 func _on_leave_button_down() -> void:
+	var config = Globals.data_manager.app_config.get_config()
+	config.opponent = ""
+	Globals.data_manager.app_config.save_config(config)
 	get_tree().change_scene_to_file("res://src/scenes/PvPMainPageTmp.tscn")
+
+
+func _on_grid_container_ready() -> void:
+	var container: GridContainer = $"Panel/ScrollContainer/GridContainer"
+	for child in container.get_children():
+		child.queue_free()
+	var profiles: Array[ProfileObject] = Globals.data_manager.profiles.get_all_profiles()
+	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
+	selected_opponent_id = config.opponent
+	var button_group := ButtonGroup.new()
+	for profile in profiles:
+		if profile.id == config.user_id:
+			continue
+		var button := Button.new()
+		button.text = profile.user_name
+		button.toggle_mode = true
+		button.button_group = button_group
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.pressed.connect(Callable(self, "_on_opponent_selected").bind(profile.id))
+		container.add_child(button)
+		if profile.id == selected_opponent_id:
+			button.set_pressed_no_signal(true)
+	_update_start_button_state()
+
+func _on_opponent_selected(opponent_id: String) -> void:
+	selected_opponent_id = opponent_id
+	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
+	config.opponent = opponent_id
+	Globals.data_manager.app_config.save_config(config)
+	_update_start_button_state()
+
+func _update_start_button_state() -> void:
+	var start_button: Button = get_node_or_null("Panel/Start")
+	if start_button:
+		start_button.disabled = selected_opponent_id == ""
