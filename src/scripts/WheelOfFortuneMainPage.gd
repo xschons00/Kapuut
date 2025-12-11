@@ -10,9 +10,19 @@ var main_page_path: String = "res://src/scenes/MainPage.tscn"
 @onready var balance_label: Label = $BottomBar/StatsContainer/BalanceContainer/BalanceValue
 @onready var win_label: Label = $BottomBar/StatsContainer/WinContainer/WinValue
 @onready var spin_button: Button = $MainContainer/CenterPanel/VBox/SpinButton
+@onready var placeholder_wheel: Node2D = $MainContainer/CenterPanel/VBox/WheelContainer/PlaceholderWheel
+@onready var center_skull_label: Label = $MainContainer/CenterPanel/VBox/WheelContainer/CenterSkull
+@onready var question_popup: Panel = $QuestionPopup
+@onready var question_label: Label = $QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/QuestionLabel
+@onready var answer_buttons: Array = [
+	$QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer/Answer1,
+	$QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer/Answer2,
+	$QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer/Answer3,
+	$QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer/Answer4
+]
 
 # vars
-var selected_price: int = 100
+var selected_price: int
 var user_balance: int
 var last_win: int
 var spin_history: Array  # Array of {cost: int, multiplier: float/string, win: int, profit: int}
@@ -24,12 +34,15 @@ var wheel_segments: Array = []		# Multipliers or "?"
 var segment_colors: Array = []		# Colors for each segment
 var segment_angle: float = 30.0		# 360 / 12 segments = 30
 var wheel_node: Node2D = null
-var placeholder_node: Node2D = null
 var question_color: Color = Color(0.17254902, 0.24313726, 0.3137255, 1)
 var container_fill_color: Color = Color(0.10196078, 0.10196078, 0.10196078, 1)
 var neon_color: Color = Color(0.30588236, 0.8039216, 0.77254903, 1)
-var is_spinning: bool = false 
-var center_skull_label: Label = null
+var is_spinning: bool = false
+
+# question vars
+var current_question_correct_answer: String = ""
+var question_multiplier: float = 2.5
+var current_spin_price: int = 0  # Price locked at spin time
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,9 +51,8 @@ func _ready() -> void:
 	_setup_price_options()
 	_update_stats_display()
 	_update_history_display()
-	_create_placeholder_wheel()
-	_create_wheel_pointer()
 	_connect_spin_button()
+	_create_placeholder_wheel_circles()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -66,15 +78,19 @@ func _load_user_data() -> void:
 	# Load user balance
 	user_balance = profile.coins
 
-	# Load spin history
+	# Load extra data from raw dict
 	var profiles_dict = data_manager.profiles._get_section("profiles")
 	var profile_data = profiles_dict.get(current_user_id, {})
-	var history_data = profile_data.get("spin_history", [])
 
+	# Load spin history (default empty array)
+	var history_data = profile_data.get("spin_history", [])
 	if typeof(history_data) == TYPE_ARRAY:
 		spin_history = history_data
 	else:
 		spin_history = []
+
+	# Load selected price (default 50)
+	selected_price = profile_data.get("selected_price", 50)
 
 	# Load last win
 	if spin_history.size() > 0:
@@ -95,10 +111,11 @@ func _save_user_data() -> void:
 	# Save profile
 	data_manager.profiles.save_profile(profile)
 
-	# Save spin history
+	# Save spin history and selected price
 	var profiles_dict = data_manager.profiles._get_section("profiles")
 	if profiles_dict.has(current_user_id):
 		profiles_dict[current_user_id]["spin_history"] = spin_history
+		profiles_dict[current_user_id]["selected_price"] = selected_price
 		data_manager.profiles._save_section("profiles", profiles_dict)
 
 func _setup_price_options() -> void:
@@ -107,12 +124,23 @@ func _setup_price_options() -> void:
 		var child = price_selector_container.get_child(i)
 		if child is Button:
 			child.connect("pressed", Callable(self, "_on_price_option_pressed").bind(child))
-	
-	# Set default selected - Option100 is at index 2 (after Label and Option25)
-	if price_selector_container.get_child_count() > 2:
-		var default_button = price_selector_container.get_child(2)	# 100 credits option
-		if default_button is Button:
-			default_button.modulate = neon_color
+
+			# Highlight button if it matches selected_price
+			var text = child.text.split(" ")[0]
+			var button_price = 0
+			if "50" == text:
+				button_price = 50
+			elif "100" == text:
+				button_price = 100
+			elif "250" == text:
+				button_price = 250
+			elif "1000" == text:
+				button_price = 1000
+
+			if button_price == selected_price:
+				child.modulate = neon_color
+			else:
+				child.modulate = Color.WHITE
 
 func _on_price_option_pressed(button: Button) -> void:
 	# Reset all buttons colors (skip Label at index 0)
@@ -127,15 +155,21 @@ func _on_price_option_pressed(button: Button) -> void:
 	# Extract price from button text
 	var text = button.text.split(" ")[0]
 
-	if "25" == text:
-		selected_price = 25
+	if "50" == text:
+		selected_price = 50
 	elif "100" == text:
 		selected_price = 100
 	elif "250" == text:
 		selected_price = 250
 	elif "1000" == text:
 		selected_price = 1000
-	
+
+	# Save selected price to profile
+	var profiles_dict = data_manager.profiles._get_section("profiles")
+	if profiles_dict.has(current_user_id):
+		profiles_dict[current_user_id]["selected_price"] = selected_price
+		data_manager.profiles._save_section("profiles", profiles_dict)
+
 	print("Selected price: ", selected_price)
 
 func _update_stats_display() -> void:
@@ -225,55 +259,6 @@ func _on_spin_button_pressed() -> void:
 	print("Spin wheel with price: ", selected_price)
 	_spin_wheel()
 
-func _create_placeholder_wheel() -> void:
-	placeholder_node = Node2D.new()
-	placeholder_node.name = "PlaceholderWheel"
-	wheel_container.add_child(placeholder_node)
-
-	placeholder_node.position = Vector2(200, 200)
-
-	var wheel_radius: float = 180.0
-	var border_width: float = 3.0
-
-	# Neon border circle (outer)
-	var outer_circle = Polygon2D.new()
-	outer_circle.name = "OuterBorder"
-	outer_circle.color = neon_color
-
-	var outer_points: PackedVector2Array = []
-	var segments: int = 64
-	for i in range(segments):
-		var angle: float = (float(i) / float(segments)) * TAU
-		var point: Vector2 = Vector2(cos(angle), sin(angle)) * (wheel_radius + border_width)
-		outer_points.append(point)
-
-	outer_circle.polygon = outer_points
-	placeholder_node.add_child(outer_circle)
-
-	# Dark filler circle (inner)
-	var circle = Polygon2D.new()
-	circle.name = "Circle"
-	circle.color = container_fill_color
-
-	var points: PackedVector2Array = []
-	for i in range(segments):
-		var angle: float = (float(i) / float(segments)) * TAU
-		var point: Vector2 = Vector2(cos(angle), sin(angle)) * wheel_radius
-		points.append(point)
-
-	circle.polygon = points
-	placeholder_node.add_child(circle)
-
-	# Text "¿ Kapuut ?"
-	var label = Label.new()
-	label.text = "¿ Kapuut ?"
-	label.add_theme_font_size_override("font_size", 32)
-	label.add_theme_color_override("font_color", Color.WHITE)
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.position = Vector2(-80, -20)	# Center approximately
-	placeholder_node.add_child(label)
-
 func _generate_random_wheel() -> void:
 	wheel_segments.clear()
 	segment_colors.clear()
@@ -291,9 +276,9 @@ func _generate_random_wheel() -> void:
 	for i in range(question_count):
 		all_segments.append("?")
 
-	# Add multiplier segments with random values 0.0 to 3.0
+	# Add multiplier segments with random values 0.0 to 2.0
 	for i in range(multiplier_count):
-		var multiplier: float = randf() * 3.0
+		var multiplier: float = randf() * 2.0
 		multiplier = snapped(multiplier, 0.1)	# Round to 1 decimal
 		all_segments.append(multiplier)
 
@@ -313,7 +298,7 @@ func _generate_random_wheel() -> void:
 
 func _get_multiplier_color(multiplier: float) -> Color:
 	# Higher multiplier - lighter blue
-	var t: float = multiplier / 3.0  # Normalize to 0.0-1.0
+	var t: float = multiplier / 2.0  # Normalize to 0.0-1.0
 
 	var dark_blue: Color = Color(0.2, 0.3, 0.4)
 	var light_blue: Color = Color(0.31, 0.8, 0.77)
@@ -348,46 +333,6 @@ func _create_wheel() -> void:
 	for i in range(12):
 		var label = _create_label(i, wheel_radius)
 		wheel_node.add_child(label)
-
-func _create_wheel_pointer() -> void:
-	var pointer = Node2D.new()
-	pointer.name = "WheelPointer"
-	pointer.z_index = 50  # Above wheel
-	wheel_container.add_child(pointer)
-	pointer.position = Vector2(200, 200)
-
-	# White triangle (outer)
-	var outer_triangle = Polygon2D.new()
-	var outer_points: PackedVector2Array = []
-	outer_points.append(Vector2(-25, -198))		# Top left
-	outer_points.append(Vector2(25, -198))		# Top right
-	outer_points.append(Vector2(0, -165.35))	# Bottom
-	outer_triangle.polygon = outer_points
-	outer_triangle.color = Color.WHITE
-	pointer.add_child(outer_triangle)
-
-	# Blue triangle (inner)
-	var inner_triangle = Polygon2D.new()
-	var inner_points: PackedVector2Array = []
-	inner_points.append(Vector2(-20, -195.5))	# Top left
-	inner_points.append(Vector2(20, -195.5))	# Top right
-	inner_points.append(Vector2(0, -170))		# Bottom
-	inner_triangle.polygon = inner_points
-	inner_triangle.color = neon_color
-	pointer.add_child(inner_triangle)
-
-func _create_center_skull() -> void:
-	# Only create on first spin
-	if center_skull_label == null:
-		center_skull_label = Label.new()
-		center_skull_label.name = "CenterSkull"
-		center_skull_label.text = "💀"
-		center_skull_label.add_theme_font_size_override("font_size", 40)
-		center_skull_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		center_skull_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		center_skull_label.position = Vector2(200 - 20, 200 - 20)
-		center_skull_label.z_index = 100
-		wheel_container.add_child(center_skull_label)
 
 func _create_segment(index: int, radius: float, color: Color) -> Node2D:
 	var segment = Node2D.new()
@@ -483,6 +428,126 @@ func _create_divider_line(segment_index: int, length: float, color: Color, width
 func _connect_spin_button() -> void:
 	spin_button.connect("pressed", Callable(self, "_on_spin_button_pressed"))
 
+func _create_placeholder_wheel_circles() -> void:
+	# Create border circle (neon color)
+	var border_circle = _create_background_circle(183.0, neon_color)
+	border_circle.z_index = 0
+	placeholder_wheel.add_child(border_circle)
+
+	# Create inner circle (dark color)
+	var inner_circle = _create_background_circle(180.0, container_fill_color)
+	inner_circle.z_index = 1
+	placeholder_wheel.add_child(inner_circle)
+
+func _get_random_question() -> Dictionary:
+	# Load themes from data.json
+	var themes_data = data_manager.themes._get_section("Themes")
+	if themes_data == null or themes_data.size() == 0:
+		print("Error: No themes found")
+		return {}
+
+	# Filter themes that have questions
+	var themes_with_questions: Array = []
+	for theme_name in themes_data.keys():
+		var theme = themes_data[theme_name]
+		if theme.has("Questions") and theme["Questions"].size() > 0:
+			themes_with_questions.append(theme_name)
+
+	if themes_with_questions.size() == 0:
+		print("Error: No themes with questions found")
+		return {}
+
+	# Pick random theme
+	var random_theme_name = themes_with_questions[randi() % themes_with_questions.size()]
+	var random_theme = themes_data[random_theme_name]
+
+	# Pick random question
+	var questions = random_theme["Questions"]
+	var random_question = questions[randi() % questions.size()]
+
+	return random_question
+
+func _show_question_popup(question_data: Dictionary) -> void:
+	if question_data.is_empty():
+		print("Error: No question data")
+		return
+
+	# Set question text
+	question_label.text = question_data["Question"]
+
+	# Store correct answer
+	current_question_correct_answer = question_data["Correct"]
+
+	# Create answers array and shuffle
+	var answers: Array = [
+		question_data["Correct"],
+		question_data["otherquestion1"],
+		question_data["otherquestion2"],
+		question_data["otherquestion3"]
+	]
+	answers.shuffle()
+
+	# Set button texts and connect signals
+	for i in range(4):
+		var button: Button = answer_buttons[i]
+		button.text = answers[i]
+		# Disconnect previous signals if any
+		if button.is_connected("pressed", Callable(self, "_on_answer_selected")):
+			button.disconnect("pressed", Callable(self, "_on_answer_selected"))
+		# Connect new signal
+		button.connect("pressed", Callable(self, "_on_answer_selected").bind(answers[i]))
+		button.disabled = false
+		button.modulate = Color.WHITE
+
+	# Show popup
+	question_popup.visible = true
+
+func _on_answer_selected(selected_answer: String) -> void:
+	# Disable all buttons
+	for button in answer_buttons:
+		button.disabled = true
+
+	# Check if answer is correct
+	var is_correct: bool = (selected_answer == current_question_correct_answer)
+
+	# Highlight selected answer
+	for button in answer_buttons:
+		if button.text == selected_answer:
+			if is_correct:
+				button.modulate = Color(0.18039216, 0.8, 0.44313726, 1)  # Green
+			else:
+				button.modulate = Color(0.8, 0.18039216, 0.18039216, 1)  # Red
+		# Show correct answer
+		if button.text == current_question_correct_answer:
+			button.modulate = Color(0.18039216, 0.8, 0.44313726, 1)  # Green
+
+	# Wait a moment then process result
+	await get_tree().create_timer(2.0).timeout
+
+	# If correct, add win amount
+	if is_correct:
+		var win_amount = int(current_spin_price * question_multiplier)
+		user_balance += win_amount
+		last_win = win_amount
+
+		# Update history with correct multiplier
+		if spin_history.size() > 0:
+			spin_history[0]["multiplier"] = question_multiplier
+			spin_history[0]["win"] = win_amount
+			spin_history[0]["profit"] = win_amount - current_spin_price
+
+		# Save updated data
+		_save_user_data()
+
+	# Hide popup and update display
+	question_popup.visible = false
+	_update_stats_display()
+	_update_history_display()
+
+	# Re-enable spin button
+	is_spinning = false
+	spin_button.disabled = false
+
 func _spin_wheel() -> void:
 	if is_spinning:
 		return
@@ -491,16 +556,15 @@ func _spin_wheel() -> void:
 		print("Not enough credits!")
 		return
 
+	# Lock the price at spin time
+	current_spin_price = selected_price
+
 	is_spinning = true
 	spin_button.disabled = true
 
-	# Hide placeholder wheel on first spin
-	if placeholder_node:
-		placeholder_node.queue_free()
-		placeholder_node = null
-
-	# Skull emoji
-	_create_center_skull()
+	# Hide placeholder wheel and show skull
+	placeholder_wheel.visible = false
+	center_skull_label.visible = true
 
 	# Generate new random wheel
 	_generate_random_wheel()
@@ -519,23 +583,27 @@ func _spin_wheel() -> void:
 	# Calculate win amount and profit
 	var win_amount: int = 0
 	if typeof(winning_value) != TYPE_STRING:
-		win_amount = int(selected_price * winning_value)
+		win_amount = int(current_spin_price * winning_value)
 
-	var profit: int = win_amount - selected_price
+	var profit: int = win_amount - current_spin_price
+
+	# Visually deduct the selected price from balance
+	balance_label.text = str(user_balance - current_spin_price) + " credits"
 
 	# Update balance
-	user_balance -= selected_price
-	user_balance += win_amount
+	user_balance = user_balance - current_spin_price + win_amount
 
 	# Create history entry
 	var spin_entry: Dictionary = {
-		"cost": selected_price,
+		"cost": current_spin_price,
 		"multiplier": winning_value,
 		"win": win_amount,
 		"profit": profit
 	}
 	spin_history.insert(0, spin_entry)
 	last_win = win_amount
+
+	# Save data
 	_save_user_data()
 
 	print("Random angle: ", random_angle)
@@ -566,6 +634,12 @@ func _spin_wheel() -> void:
 		_update_stats_display()
 		_update_history_display()
 
-		is_spinning = false
-		spin_button.disabled = false
+		# If question segment, show question popup
+		if typeof(winning_value) == TYPE_STRING:
+			var question_data = _get_random_question()
+			_show_question_popup(question_data)
+		else:
+			# Normal multiplier segment - re-enable spin button
+			is_spinning = false
+			spin_button.disabled = false
 	)

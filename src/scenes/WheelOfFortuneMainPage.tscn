@@ -47,7 +47,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -100.0
+offset_left = 31.0
+offset_top = 24.0
+offset_right = -31.0
+offset_bottom = -124.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 30
@@ -60,8 +63,9 @@ theme_override_constants/separation = 25
 alignment = 1
 
 [node name="InfoBox" type="Panel" parent="MainContainer/LeftPanel"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
+size_flags_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/LeftPanel/InfoBox"]
@@ -75,9 +79,11 @@ offset_right = -25.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Title" type="Label" parent="MainContainer/LeftPanel/InfoBox/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 theme = ExtResource("3_wheel")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
@@ -88,13 +94,15 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.8)
 theme_override_font_sizes/font_size = 14
-text = "Vyber si cenu točenia a riskuj čím viac zaplatíš, tým väčšie výhry ťa čakajú. Dokážeš zostať v profite?"
+text = "Vyber si cenu točenia a riskuj. Čím viac zaplatíš, tým väčšie výhry ťa čakajú... 
+Dokážeš zostať v profite?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="PriceSelector" type="Panel" parent="MainContainer/LeftPanel"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 290)
 layout_mode = 2
+size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/LeftPanel/PriceSelector"]
@@ -103,25 +111,27 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 25.0
-offset_top = 25.0
+offset_top = 30.0
 offset_right = -25.0
-offset_bottom = -25.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
+alignment = 1
 
 [node name="Label" type="Label" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "Vyber cenu točenia"
 horizontal_alignment = 1
 
-[node name="Option25" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
+[node name="Option50" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "25 kreditov"
+text = "50 kreditov"
 
 [node name="Option100" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
@@ -153,6 +163,41 @@ alignment = 1
 [node name="WheelContainer" type="CenterContainer" parent="MainContainer/CenterPanel/VBox"]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+
+[node name="PlaceholderWheel" type="Node2D" parent="MainContainer/CenterPanel/VBox/WheelContainer"]
+position = Vector2(200, 200)
+
+[node name="Label" type="Label" parent="MainContainer/CenterPanel/VBox/WheelContainer/PlaceholderWheel"]
+z_index = 10
+offset_left = -80.0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "¿  Kapuut ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WheelPointer" type="Node2D" parent="MainContainer/CenterPanel/VBox/WheelContainer"]
+z_index = 50
+position = Vector2(200, 200)
+
+[node name="OuterTriangle" type="Polygon2D" parent="MainContainer/CenterPanel/VBox/WheelContainer/WheelPointer"]
+polygon = PackedVector2Array(-25, -200.5, 25, -200.5, 0, -165.35)
+
+[node name="InnerTriangle" type="Polygon2D" parent="MainContainer/CenterPanel/VBox/WheelContainer/WheelPointer"]
+color = Color(0.30588236, 0.8039216, 0.77254903, 1)
+polygon = PackedVector2Array(-20, -198.35, 20, -198.35, 0, -170)
+
+[node name="CenterSkull" type="Label" parent="MainContainer/CenterPanel/VBox/WheelContainer"]
+visible = false
+z_index = 100
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "💀"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpinButton" type="Button" parent="MainContainer/CenterPanel/VBox"]
 custom_minimum_size = Vector2(150, 50)
@@ -319,5 +364,88 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
 theme_override_font_sizes/font_size = 18
 text = "12500 credits"
+
+[node name="QuestionPopup" type="Panel" parent="."]
+visible = false
+z_index = 200
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="QuestionPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PopupContainer" type="CenterContainer" parent="QuestionPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupPanel" type="Panel" parent="QuestionPopup/PopupContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuestionPopup/PopupContainer/PopupPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="QuestionLabel" type="Label" parent="QuestionPopup/PopupContainer/PopupPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Question text here?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnswersContainer" type="VBoxContainer" parent="QuestionPopup/PopupContainer/PopupPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Answer1" type="Button" parent="QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 18
+text = "Answer 1"
+
+[node name="Answer2" type="Button" parent="QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 18
+text = "Answer 2"
+
+[node name="Answer3" type="Button" parent="QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 18
+text = "Answer 3"
+
+[node name="Answer4" type="Button" parent="QuestionPopup/PopupContainer/PopupPanel/VBoxContainer/AnswersContainer"]
+layout_mode = 2
+theme = ExtResource("4_wheel")
+theme_override_font_sizes/font_size = 18
+text = "Answer 4"
 
 [connection signal="pressed" from="BottomBar/BackButton" to="." method="_on_back_button_pressed"]
