@@ -1,5 +1,17 @@
 extends Control
 
+# Helper class for drawing circles
+class CircleDrawer extends Node2D:
+	var radius: float
+	var color: Color
+
+	func _init(p_radius: float, p_color: Color):
+		radius = p_radius
+		color = p_color
+
+	func _draw():
+		draw_circle(Vector2.ZERO, radius, color)
+
 # scene paths
 var main_page_path: String = "res://src/scenes/MainPage.tscn"
 
@@ -52,7 +64,7 @@ func _ready() -> void:
 	_update_stats_display()
 	_update_history_display()
 	_connect_spin_button()
-	_create_placeholder_wheel_circles()
+	_create_placeholder_circles()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -227,7 +239,7 @@ func _create_history_item(spin_data: Dictionary) -> Panel:
 	var result_label = Label.new()
 	var multiplier = spin_data.multiplier
 	if typeof(multiplier) == TYPE_STRING:
-		result_label.text = "? → 0 kreditov"
+		result_label.text = "? → %d kreditov" % spin_data.win
 	else:
 		result_label.text = "%.1fx → %d kreditov" % [multiplier, spin_data.win]
 	result_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -316,7 +328,7 @@ func _create_wheel() -> void:
 	var border_width: float = 3.0
 
 	# Background circle
-	var background_circle = _create_background_circle(wheel_radius + border_width, neon_color)
+	var background_circle = CircleDrawer.new(wheel_radius + border_width, neon_color)
 	wheel_node.add_child(background_circle)
 
 	# Segment color
@@ -393,21 +405,6 @@ func _create_label(index: int, radius: float) -> Label:
 
 	return label
 
-func _create_background_circle(radius: float, color: Color) -> Polygon2D:
-	var circle = Polygon2D.new()
-	circle.name = "BackgroundCircle"
-	circle.color = color
-
-	var points: PackedVector2Array = []
-	var segments: int = 64
-	for i in range(segments):
-		var angle: float = (float(i) / float(segments)) * TAU
-		var point: Vector2 = Vector2(cos(angle), sin(angle)) * radius
-		points.append(point)
-
-	circle.polygon = points
-	return circle
-
 func _create_divider_line(segment_index: int, length: float, color: Color, width: float) -> Line2D:
 	var line = Line2D.new()
 	line.name = "Divider_" + str(segment_index)
@@ -428,15 +425,13 @@ func _create_divider_line(segment_index: int, length: float, color: Color, width
 func _connect_spin_button() -> void:
 	spin_button.connect("pressed", Callable(self, "_on_spin_button_pressed"))
 
-func _create_placeholder_wheel_circles() -> void:
+func _create_placeholder_circles() -> void:
 	# Create border circle (neon color)
-	var border_circle = _create_background_circle(183.0, neon_color)
-	border_circle.z_index = 0
+	var border_circle = CircleDrawer.new(183.0, neon_color)
 	placeholder_wheel.add_child(border_circle)
 
 	# Create inner circle (dark color)
-	var inner_circle = _create_background_circle(180.0, container_fill_color)
-	inner_circle.z_index = 1
+	var inner_circle = CircleDrawer.new(180.0, container_fill_color)
 	placeholder_wheel.add_child(inner_circle)
 
 func _get_random_question() -> Dictionary:
@@ -530,9 +525,8 @@ func _on_answer_selected(selected_answer: String) -> void:
 		user_balance += win_amount
 		last_win = win_amount
 
-		# Update history with correct multiplier
+		# Update history - keep "?" multiplier, but update win and profit
 		if spin_history.size() > 0:
-			spin_history[0]["multiplier"] = question_multiplier
 			spin_history[0]["win"] = win_amount
 			spin_history[0]["profit"] = win_amount - current_spin_price
 
