@@ -31,6 +31,7 @@ func _on_pressed() -> void:
 		Globals.show_warning("Warning: not enough coins for this item")
 		return
 	user.coins -= item.price #subtract price for item
+	item.is_unlocked = true;
 	user.unlocked_items.append(item)
 	Globals.data_manager.profiles.save_profile(user)
 	emit_signal("item_unlock_signal",item)

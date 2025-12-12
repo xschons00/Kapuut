@@ -79,7 +79,7 @@ func _refresh_all_profiles() -> void:
 	profile_container.queue_sort()  # ensure container layout updates
 		
 func _on_avatar_unlocked_signal() -> void:
-	_refresh_all_profiles()		
+	_refresh_page_content()	
 
 func _on_profile_selected_signal(user_select: ProfileObject) -> void:
 	print("Selected profile:", user_select.user_name)
