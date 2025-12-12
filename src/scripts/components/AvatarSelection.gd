@@ -28,13 +28,11 @@ func _reload_avatars() -> void:
 			for child in button.get_children():
 				if child.is_in_group("UnlockButtons"):   # match root node name of UnlockButton.tscn
 					child.queue_free()
-					
-			var obj_name: String = button.name.substr(0, 7)
-			# check if index already exists
-			var obj: AvatarItem = _init_new_item(button)
-			if _is_item_unloked(obj_name):
-				obj.is_unlocked = true
 				
+			# check if index already exists
+			var obj: AvatarItem = _load_item_or_default(button)
+			if obj == null:
+				return
 				
 			if obj.is_unlocked:
 				Globals.set_greyscale(button.get_node("TextureRect"), false)
@@ -45,25 +43,27 @@ func _reload_avatars() -> void:
 				Globals.set_greyscale(button.get_node("TextureRect"))
 				_set_unlock_button(button, obj)
 				
-func _is_item_unloked(item_name: String) -> bool: #checks if item already is unloked for this user
+func _load_item_or_default(button: Button) -> AvatarItem: #checks if item already is unloked for this user
+	var item_name: String = button.name.substr(0, 7) #first 7 char (avatarN)
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	if	config == null:
 		print("Error: could not load config")
-		return false
+		return null
 	var user = Globals.data_manager.profiles.get_profile(config.user_id)
 	if user == null:
 		print("Error: could not load current user")
-		return false
+		return null
 	for unlocked in user.unlocked_items:
 		if unlocked.item_name == item_name:
 			print("item already owned: ", item_name)
-			return true
-	return false
+			unlocked.is_unlocked = true
+			return unlocked
+	return _init_new_item(button)
 				
 func _init_new_item(button: Button) -> AvatarItem:
-	var obj_index: int = int(button.name.substr(6, 7)) #index N only
+	var obj_index: int = int(button.name.replace("avatar", "")) #index N only
 	var obj = AvatarItem.new()
-	obj.item_name = button.name.substr(0, 7) #first 7 char (avatarN)
+	obj.item_name = button.name.replace("_button", "") #first 7-8 char (avatarN)
 	obj.item_path = button.get_node("TextureRect").texture.resource_path
 	if obj_index <= 3:
 		obj.is_unlocked = true

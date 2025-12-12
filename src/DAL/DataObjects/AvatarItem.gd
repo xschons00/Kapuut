@@ -18,5 +18,5 @@ static func from_dict(obj_id: String, dict: Dictionary) -> AvatarItem:
 	obj.item_name = dict.get("item_name", "")
 	obj.item_path = dict.get("item_path", "")
 	obj.price = dict.get("price", 0)
-	obj.is_unlocked = dict.get("is_unlocked", 0)
+	obj.is_unlocked = dict.get("is_unlocked", false)
 	return obj
