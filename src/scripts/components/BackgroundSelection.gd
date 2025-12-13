@@ -1,7 +1,7 @@
 extends Control
 
 # Signals
-signal avatar_selected_signal(picture_path: String)
+signal background_selected_signal(picture_path: String)
 signal item_unlock_signal
 #components
 @onready var unlock_button_scene = preload("res://src/scenes/components/UnlockButton.tscn")
@@ -11,19 +11,19 @@ signal item_unlock_signal
 
 #vars
 var is_open: bool = false
-var new_avatar_path: String
+var new_background_path: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var parent_node = get_parent()
 	if parent_node.has_signal("user_changed_signal"):
-		parent_node.connect("user_changed_signal", Callable(self, "_reload_avatars"))
+		parent_node.connect("user_changed_signal", Callable(self, "_reload_backgrounds"))
 	self.visible = false
-	_reload_avatars()
+	_reload_backgrounds()
 				
-func _reload_avatars() -> void:
+func _reload_backgrounds() -> void:
 	for button in container.get_children():
-		if button is Button and button.name.contains("avatar"): #only for avatar buttons
+		if button is Button and button.name.contains("bg"): #only for background buttons
 			#remove old unlock button
 			for child in button.get_children():
 				if child.is_in_group("UnlockButtons"):   # match root node name of UnlockButton.tscn
@@ -36,15 +36,15 @@ func _reload_avatars() -> void:
 				
 			if obj.is_unlocked:
 				Globals.set_greyscale(button.get_node("TextureRect"), false)
-				if not button.is_connected("pressed", Callable(self, "_on_avatar_button_pressed")):
-					button.connect("pressed", Callable(self, "_on_avatar_button_pressed").bind(button))
+				if not button.is_connected("pressed", Callable(self, "_on_background_button_pressed")):
+					button.connect("pressed", Callable(self, "_on_background_button_pressed").bind(button))
 
 			else:
 				Globals.set_greyscale(button.get_node("TextureRect"))
 				_set_unlock_button(button, obj)
 				
 func _load_item_or_default(button: Button) -> AvatarItem: #checks if item already is unloked for this user
-	var item_name: String = button.name.replace("_button", "") #first 7 char (avatarN)
+	var item_name: String = button.name.replace("_button", "") #first 7 char (backgroundN)
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	if	config == null:
 		print("Error: could not load config")
@@ -61,9 +61,9 @@ func _load_item_or_default(button: Button) -> AvatarItem: #checks if item alread
 	return _init_new_item(button)
 				
 func _init_new_item(button: Button) -> AvatarItem:
-	var obj_index: int = int(button.name.replace("avatar", "").replace("_button", "")) #index N only
+	var obj_index: int = int(button.name.replace("bg", "").replace("_button","" )) #index N only
 	var obj = AvatarItem.new()
-	obj.item_name = button.name.replace("_button", "") #first 7-8 char (avatarN)
+	obj.item_name = button.name.replace("_button", "") #first 7-8 char (backgroundN)
 	obj.item_path = button.get_node("TextureRect").texture.resource_path
 	if obj_index <= 3:
 		obj.is_unlocked = true
@@ -74,17 +74,18 @@ func _init_new_item(button: Button) -> AvatarItem:
 	else:
 		obj.is_unlocked = false
 		obj.price = 750
+	print("index bg:", obj_index)
 	return obj
 
-func _on_avatar_button_pressed(button: Button) -> void:
+func _on_background_button_pressed(button: Button) -> void:
 	var texture_rect: TextureRect = button.get_node("TextureRect")
-	new_avatar_path = texture_rect.texture.resource_path
-	emit_signal("avatar_selected_signal", new_avatar_path)
+	new_background_path = texture_rect.texture.resource_path
+	emit_signal("background_selected_signal", new_background_path)
 	
-func _set_unlock_button(avatar_button: Button, item: AvatarItem) -> void:
+func _set_unlock_button(background_button: Button, item: AvatarItem) -> void:
 
 	var unlock_button = unlock_button_scene.instantiate()
-	avatar_button.add_child(unlock_button)
+	background_button.add_child(unlock_button)
 	unlock_button.set_item_data(item)
 	unlock_button.item_unlock_signal.connect(_on_item_unlock_signal)
 	#center
@@ -105,7 +106,7 @@ func _on_item_unlock_signal(item: AvatarItem) -> void:
 	item.is_unlocked = true
 	print("Unlocked: ",item.item_name)
 	emit_signal("item_unlock_signal")
-	_reload_avatars()
+	_reload_backgrounds()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -128,6 +129,7 @@ func _unhandled_input(event: InputEvent) -> void:# close if any key is pressed
 	if event is InputEventKey and is_open:
 		switch_visibility()
 		
-func _on_background_button_pressed() -> void: # switch to bg selection
+func _on_avatar_button_pressed() -> void: #switch to avatar selection
 	switch_visibility()
-	get_parent().get_node("BackgroundSelection").switch_visibility()
+	get_parent().get_node("AvatarSelection").switch_visibility()
+	

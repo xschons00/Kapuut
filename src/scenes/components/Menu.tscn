@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://co0c6xjluuvp1"]
+[gd_scene load_steps=8 format=3 uid="uid://co0c6xjluuvp1"]
 
-[ext_resource type="Script" uid="uid://cn7g6kwjfg6ny" path="res://src/scripts/components/Menu.gd" id="1_5gk33"]
+[ext_resource type="Script" uid="uid://dl3dkbnggyyee" path="res://src/scripts/components/Menu.gd" id="1_5gk33"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="2_qg5fg"]
+[ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="3_qg5fg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyv1a"]
 bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
@@ -103,6 +104,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_qg5fg")
 
 [node name="Label" type="Label" parent="profiles_button"]
 layout_mode = 0

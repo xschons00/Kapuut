@@ -1,0 +1,206 @@
+[gd_scene load_steps=14 format=3 uid="uid://c87u1oyj3lyr4"]
+
+[ext_resource type="Script" uid="uid://cwg1uoqs88exn" path="res://src/scripts/components/BackgroundSelection.gd" id="1_cwrt5"]
+[ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_0ow5e"]
+[ext_resource type="Texture2D" uid="uid://e36fnkbqbm21" path="res://assets/backgrounds/red_bg.png" id="2_vhde7"]
+[ext_resource type="Texture2D" uid="uid://3jr5pgmngame" path="res://assets/backgrounds/green_bg.png" id="3_cwrt5"]
+[ext_resource type="Texture2D" uid="uid://j8r7bi5u3hoa" path="res://assets/backgrounds/blue_bg.png" id="4_drvum"]
+[ext_resource type="Texture2D" uid="uid://dnn0ydj5g5a43" path="res://assets/backgrounds/space_bg.jpg" id="5_0ow5e"]
+[ext_resource type="Texture2D" uid="uid://blccr1kjllqe5" path="res://assets/backgrounds/leaves_bg.png" id="6_8c01g"]
+[ext_resource type="Texture2D" uid="uid://bh0u5xrxnr0d2" path="res://assets/backgrounds/valley_bg.png" id="7_ka42q"]
+[ext_resource type="Texture2D" uid="uid://c5j42qqhlu0y1" path="res://assets/backgrounds/mountain_bg.png" id="8_ui4go"]
+[ext_resource type="Texture2D" uid="uid://bvm7u6fmb0y4p" path="res://assets/backgrounds/forest_bg.jpg" id="9_ng7q8"]
+[ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="12_1x2ng"]
+[ext_resource type="Texture2D" uid="uid://dymwwos3wvsc0" path="res://assets/icons/close.png" id="13_i5q8w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da30h"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="BackgroundSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cwrt5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 162.0
+offset_right = 911.0
+offset_bottom = 569.0
+color = Color(0.21176471, 0.7490196, 0.7137255, 1)
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0ow5e")
+columns = 4
+
+[node name="bg1_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg1_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vhde7")
+expand_mode = 1
+
+[node name="bg2_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg2_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cwrt5")
+expand_mode = 1
+
+[node name="bg3_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg3_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_drvum")
+expand_mode = 1
+
+[node name="bg4_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg4_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_0ow5e")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="bg5_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg5_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_8c01g")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="bg6_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg6_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ka42q")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="bg7_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg7_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_ui4go")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="bg8_button" type="Button" parent="ColorRect/GridContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/GridContainer/bg8_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_ng7q8")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="avatar_button" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 356.0
+offset_right = 571.0
+offset_bottom = 399.0
+theme = ExtResource("2_0ow5e")
+text = "avatar selection
+"
+
+[node name="close_button" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 356.0
+offset_right = 651.41174
+offset_bottom = 399.0
+theme = ExtResource("2_0ow5e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_da30h")
+text = "
+"
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/close_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_1x2ng")
+texture = ExtResource("13_i5q8w")
+expand_mode = 1
+
+[connection signal="pressed" from="ColorRect/GridContainer/bg1_button" to="." method="_on_avatar_1_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/bg2_button" to="." method="_on_avatar_2_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/bg3_button" to="." method="_on_avatar_3_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/bg4_button" to="." method="_on_avatar_4_button_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/bg5_button" to="." method="_on_avatar_5_button_pressed"]
+[connection signal="pressed" from="ColorRect/avatar_button" to="." method="_on_avatar_button_pressed"]
+[connection signal="pressed" from="ColorRect/close_button" to="." method="_on_close_button_pressed"]

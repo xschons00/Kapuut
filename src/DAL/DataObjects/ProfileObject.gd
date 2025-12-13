@@ -3,6 +3,7 @@ extends DataObject
 
 var user_name: String
 var profile_pic: String
+var background_pic: String
 var elo: int
 var coins: int
 var unlocked_items: Array
@@ -19,6 +20,7 @@ func to_dict() -> Dictionary:
 		
 	return {"user_name" : user_name,
 			"profile_pic" : profile_pic,
+			"background_pic" : background_pic,
 			"elo" : elo,
 			"coins" : coins,
 			"unlocked_items" : tmp_array
@@ -29,6 +31,7 @@ static func from_dict(obj_id: String, dict: Dictionary) -> ProfileObject:
 	obj.id = obj_id
 	obj.user_name = dict.get("user_name", "")
 	obj.profile_pic = dict.get("profile_pic", "")
+	obj.background_pic = dict.get("background_pic", "")
 	obj.elo = dict.get("elo", 0)
 	obj.coins = dict.get("coins", 0)
 	obj.unlocked_items = []

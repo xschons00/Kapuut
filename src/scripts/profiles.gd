@@ -11,7 +11,7 @@ signal user_changed_signal
 #components
 @onready var profile_item_scene = preload("res://src/scenes/components/ProfileItem.tscn")
 @onready var avatar_selection_scene = preload("res://src/scenes/components/AvatarSelection.tscn")
-
+@onready var background_selection_scene = preload("res://src/scenes/components/BackgroundSelection.tscn")
 #nodes
 @onready var profile_rect: TextureRect = $ColorRect/profile_rect
 @onready var user_label: Label = $HBoxContainer/user_label
@@ -19,6 +19,7 @@ signal user_changed_signal
 @onready var line_edit: LineEdit = $LineEdit
 @onready var profile_pic_button: TextureRect = $profile_pic_button/TextureRect
 @onready var avatar_selection: Control
+@onready var background_selection: Control
 #@onready var menu: Control
 
 
@@ -29,8 +30,13 @@ func _ready() -> void:
 	# add avatar selection (hidden)
 	avatar_selection = avatar_selection_scene.instantiate()
 	avatar_selection.item_unlock_signal.connect(_on_avatar_unlocked_signal)
-	add_child(avatar_selection)
 	avatar_selection.avatar_selected_signal.connect(_on_avatar_selected_signal)
+	add_child(avatar_selection)
+	# add background selection (hidden)
+	background_selection = background_selection_scene.instantiate()
+	background_selection.background_selected_signal.connect(_on_background_selected_signal)
+	background_selection.item_unlock_signal.connect(_on_background_unlocked_signal)
+	add_child(background_selection)
 	#load profiles
 	_refresh_page_content()
 	
@@ -80,6 +86,9 @@ func _refresh_all_profiles() -> void:
 		
 func _on_avatar_unlocked_signal() -> void:
 	_refresh_page_content()	
+	
+func _on_background_unlocked_signal() -> void:
+	_refresh_page_content()	
 
 func _on_profile_selected_signal(user_select: ProfileObject) -> void:
 	print("Selected profile:", user_select.user_name)
@@ -108,15 +117,31 @@ func _on_new_button_pressed() -> void:
 
 func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection
 	avatar_selection.switch_visibility()
+	if background_selection.is_visible:
+		background_selection.switch_visibility()
+	
+func _on_background_pic_button_pressed() -> void:
+	background_selection.switch_visibility()
+	if avatar_selection.is_open:
+		avatar_selection.switch_visibility()
 	
 func _on_avatar_selected_signal(picture_path: String) -> void:
 	print("Avatar change, path: ", picture_path)
 	if active_user.profile_pic != picture_path:
 		active_user.profile_pic = picture_path
 		Globals.data_manager.profiles.save_profile(active_user)
-		avatar_selection.switch_visibility()
 		Globals.emit_signal("refresh_menu_signal")
 		_refresh_page_content()
+	avatar_selection.switch_visibility()
+
+func _on_background_selected_signal(picture_path: String) -> void:
+	print("Background change, path: ", picture_path)
+	if active_user.background_pic != picture_path:
+		active_user.background_pic = picture_path
+		Globals.data_manager.profiles.save_profile(active_user)
+		Globals.emit_signal("refresh_menu_signal")
+		_refresh_page_content()
+	background_selection.switch_visibility()
 	
 func _change_profile_name(new_text: String = "") -> void:
 	var new_name: String

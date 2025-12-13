@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr4mhw04gii4p"]
+[gd_scene load_steps=10 format=3 uid="uid://cr4mhw04gii4p"]
 
 [ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/Profiles.gd" id="1_1rjmx"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_nqd4w"]
-[ext_resource type="Texture2D" uid="uid://qthnwgd2estu" path="res://assets/icons/plus.png" id="3_1rjmx"]
+[ext_resource type="Texture2D" uid="uid://c7iwdbw7g8mb8" path="res://assets/icons/edit-image.png" id="3_1rjmx"]
+[ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="3_frq67"]
+[ext_resource type="Texture2D" uid="uid://blnemh1ko4tkh" path="res://assets/icons/change_avatar.png" id="5_lpqd2"]
 
 [sub_resource type="FontVariation" id="FontVariation_1rjmx"]
 variation_embolden = 0.54
@@ -11,6 +13,12 @@ spacing_glyph = 1
 [sub_resource type="FontVariation" id="FontVariation_nqd4w"]
 variation_embolden = 0.54
 spacing_glyph = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myq8y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voeg3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Profiles" type="Control"]
 layout_mode = 3
@@ -32,10 +40,10 @@ theme = ExtResource("2_nqd4w")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 773.0
-offset_top = 178.0
-offset_right = 1033.0
-offset_bottom = 504.0
+offset_left = 729.0
+offset_top = 179.0
+offset_right = 1069.0
+offset_bottom = 505.0
 mouse_filter = 2
 color = Color(0.8980392, 0.46666667, 0.16470589, 1)
 
@@ -70,31 +78,22 @@ text = "user"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 768.0
+offset_left = 729.0
 offset_top = 511.0
-offset_right = 1037.0
-offset_bottom = 544.0347
+offset_right = 1070.0
+offset_bottom = 549.0
 theme = ExtResource("2_nqd4w")
 placeholder_text = "change name"
 keep_editing_on_text_submit = true
 
-[node name="button_container" type="HBoxContainer" parent="."]
+[node name="save_button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 770.0
-offset_top = 550.0
-offset_right = 1037.0
-offset_bottom = 599.0
+offset_left = 832.0
+offset_top = 557.0
+offset_right = 986.0
+offset_bottom = 606.0
 theme = ExtResource("2_nqd4w")
-
-[node name="accessory_button" type="Button" parent="button_container"]
-layout_mode = 2
-theme = ExtResource("2_nqd4w")
-text = " add accessory "
-
-[node name="save_button" type="Button" parent="button_container"]
-layout_mode = 2
-theme = ExtResource("2_nqd4w")
-text = " save changes "
+text = " save name"
 
 [node name="all_profiles" type="ScrollContainer" parent="."]
 layout_mode = 0
@@ -113,7 +112,7 @@ theme = ExtResource("2_nqd4w")
 
 [node name="new_button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 336.0
+offset_left = 311.0
 offset_top = 550.0
 offset_right = 454.0
 offset_bottom = 599.0
@@ -132,10 +131,12 @@ text = "Profiles"
 
 [node name="profile_pic_button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 971.0
-offset_top = 449.0
-offset_right = 1010.7091
-offset_bottom = 488.0
+offset_left = 993.0
+offset_top = 435.0
+offset_right = 1051.0364
+offset_bottom = 492.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_myq8y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_voeg3")
 
 [node name="TextureRect" type="TextureRect" parent="profile_pic_button"]
 layout_mode = 1
@@ -144,6 +145,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_frq67")
+texture = ExtResource("5_lpqd2")
+expand_mode = 1
+
+[node name="background_pic_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 924.0
+offset_top = 436.0
+offset_right = 984.0
+offset_bottom = 493.0
+theme = ExtResource("3_frq67")
+
+[node name="TextureRect" type="TextureRect" parent="background_pic_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_frq67")
 texture = ExtResource("3_1rjmx")
 expand_mode = 1
 
@@ -151,6 +172,7 @@ expand_mode = 1
 [connection signal="focus_entered" from="background" to="." method="_on_background_focus_entered"]
 [connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="button_container/save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="save_button" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="new_button" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="profile_pic_button" to="." method="_on_profile_pic_button_pressed"]
+[connection signal="pressed" from="background_pic_button" to="." method="_on_background_pic_button_pressed"]
