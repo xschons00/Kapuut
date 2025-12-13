@@ -47,6 +47,16 @@ offset_bottom = 505.0
 mouse_filter = 2
 color = Color(0.8980392, 0.46666667, 0.16470589, 1)
 
+[node name="background_rect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
 [node name="profile_rect" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
@@ -57,6 +67,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_nqd4w")
 expand_mode = 1
+stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -89,9 +100,9 @@ keep_editing_on_text_submit = true
 [node name="save_button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 832.0
-offset_top = 557.0
+offset_top = 565.0
 offset_right = 986.0
-offset_bottom = 606.0
+offset_bottom = 614.0
 theme = ExtResource("2_nqd4w")
 text = " save name"
 
@@ -100,7 +111,7 @@ layout_mode = 0
 offset_left = 13.0
 offset_top = 181.0
 offset_right = 661.0
-offset_bottom = 539.0
+offset_bottom = 561.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -113,9 +124,9 @@ theme = ExtResource("2_nqd4w")
 [node name="new_button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 311.0
-offset_top = 550.0
+offset_top = 566.0
 offset_right = 454.0
-offset_bottom = 599.0
+offset_bottom = 615.0
 theme = ExtResource("2_nqd4w")
 text = "new profile"
 

@@ -74,7 +74,6 @@ func _init_new_item(button: Button) -> AvatarItem:
 	else:
 		obj.is_unlocked = false
 		obj.price = 750
-	print("index bg:", obj_index)
 	return obj
 
 func _on_background_button_pressed(button: Button) -> void:
@@ -130,6 +129,7 @@ func _unhandled_input(event: InputEvent) -> void:# close if any key is pressed
 		switch_visibility()
 		
 func _on_avatar_button_pressed() -> void: #switch to avatar selection
-	switch_visibility()
 	get_parent().get_node("AvatarSelection").switch_visibility()
+	switch_visibility()
+	
 	

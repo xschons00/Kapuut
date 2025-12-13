@@ -14,6 +14,7 @@ signal user_changed_signal
 @onready var background_selection_scene = preload("res://src/scenes/components/BackgroundSelection.tscn")
 #nodes
 @onready var profile_rect: TextureRect = $ColorRect/profile_rect
+@onready var background_rect: TextureRect = $ColorRect/background_rect
 @onready var user_label: Label = $HBoxContainer/user_label
 @onready var profile_container: VBoxContainer = $all_profiles/VBoxContainer
 @onready var line_edit: LineEdit = $LineEdit
@@ -48,6 +49,7 @@ func _process(delta: float) -> void:
 func _refresh_page_content() -> void:
 	_refresh_models()
 	_refresh_profile_rect()
+	_refresh_background_rect()
 	_refresh_user_label()
 	_refresh_all_profiles()
 	
@@ -65,8 +67,10 @@ func _refresh_models() -> void:
 		print("Error: Invalid path: ", active_user.profile_pic)
 		
 func _refresh_profile_rect() -> void:
-	#if user
 	profile_rect.texture = load(active_user.profile_pic)	
+	
+func _refresh_background_rect() -> void:
+	background_rect.texture = load(active_user.background_pic)
 	
 func _refresh_user_label() -> void:
 	user_label.text = active_user.user_name
@@ -85,9 +89,11 @@ func _refresh_all_profiles() -> void:
 	profile_container.queue_sort()  # ensure container layout updates
 		
 func _on_avatar_unlocked_signal() -> void:
+	Globals.emit_signal("refresh_menu_signal")
 	_refresh_page_content()	
 	
 func _on_background_unlocked_signal() -> void:
+	Globals.emit_signal("refresh_menu_signal")
 	_refresh_page_content()	
 
 func _on_profile_selected_signal(user_select: ProfileObject) -> void:
@@ -117,7 +123,7 @@ func _on_new_button_pressed() -> void:
 
 func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection
 	avatar_selection.switch_visibility()
-	if background_selection.is_visible:
+	if background_selection.is_open:
 		background_selection.switch_visibility()
 	
 func _on_background_pic_button_pressed() -> void:
@@ -157,6 +163,7 @@ func _change_profile_name(new_text: String = "") -> void:
 	active_user.user_name = new_name
 	line_edit.text = ""
 	Globals.data_manager.profiles.save_profile(active_user)
+	Globals.emit_signal("refresh_menu_signal")
 	_refresh_page_content()
 
 func _on_save_button_pressed() -> void: #save profile changes

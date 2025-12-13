@@ -5,7 +5,8 @@ signal profile_selected_signal(user: ProfileObject)
 signal profile_delete_signal(user: ProfileObject)
 
 # nodes
-@onready var profile_rect: TextureRect = $ColorRect/profile_rect
+@onready var avatar_rect: TextureRect = $ColorRect/avatar_rect
+@onready var background_rect: TextureRect = $ColorRect/background_rect
 @onready var user_label: Label = $VBoxContainer/user_label
 @onready var elo_label: Label = $VBoxContainer/HBoxContainer/elo_label
 @onready var coins_label: Label = $VBoxContainer/HBoxContainer2/coins_label
@@ -23,10 +24,12 @@ func _process(delta: float) -> void:
 	
 func set_profile_data(user_obj: ProfileObject) -> void:
 	user = user_obj
-	if ResourceLoader.exists(user.profile_pic):
-		profile_rect.texture = load(user.profile_pic)
+	if ResourceLoader.exists(user.profile_pic) and ResourceLoader.exists(user.background_pic):
+		background_rect.texture = load(user.background_pic)
+		avatar_rect.texture = load(user.profile_pic)
 	else:
-		profile_rect.texture = load(Globals.default_profile_pic) #fallback
+		background_rect.texture = load(Globals.default_profile_background)
+		avatar_rect.texture = load(Globals.default_profile_pic) #fallback
 		
 	user_label.text = user.user_name
 	elo_label.text = str(user.elo)

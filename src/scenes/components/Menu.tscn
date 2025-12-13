@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://co0c6xjluuvp1"]
+[gd_scene load_steps=9 format=3 uid="uid://co0c6xjluuvp1"]
 
 [ext_resource type="Script" uid="uid://dl3dkbnggyyee" path="res://src/scripts/components/Menu.gd" id="1_5gk33"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="2_qg5fg"]
 [ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="3_qg5fg"]
+[ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="4_32nyv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyv1a"]
 bg_color = Color(0.21176471, 0.7490196, 0.7058824, 1)
@@ -51,7 +52,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_nyv1a")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = -194.0
+offset_right = -295.0
 offset_bottom = 92.0
 grow_horizontal = 2
 theme = ExtResource("2_qg5fg")
@@ -62,6 +63,10 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("2_qg5fg")
 text = "¿ Kapuut ?"
+
+[node name="spacer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 
 [node name="home_button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -90,14 +95,38 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_oyl3k")
 text = "Lucky Mode"
 
-[node name="profiles_button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1051.0
-offset_top = 7.0
-offset_right = 1123.0
-offset_bottom = 73.0
+[node name="profile_area" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1034.0
+offset_top = -22.0
+offset_right = 1168.0
+offset_bottom = 105.0
 
-[node name="TextureRect" type="TextureRect" parent="profiles_button"]
+[node name="profiles_button" type="Button" parent="profile_area"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -33.0
+offset_right = 36.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background_rect" type="TextureRect" parent="profile_area/profiles_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="avatar_rect" type="TextureRect" parent="profile_area/profiles_button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,8 +134,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_qg5fg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Label" type="Label" parent="profiles_button"]
+[node name="Label" type="Label" parent="profile_area/profiles_button"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 61.0
@@ -117,8 +148,38 @@ theme_override_fonts/font = SubResource("SystemFont_nyv1a")
 theme_override_font_sizes/font_size = 16
 text = "profiles"
 
+[node name="username_label" type="Label" parent="profile_area"]
+layout_mode = 0
+offset_left = -84.0
+offset_top = 41.5
+offset_right = 4.0
+offset_bottom = 65.5
+theme = ExtResource("4_32nyv")
+theme_override_font_sizes/font_size = 16
+text = "user name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="profile_area"]
+layout_mode = 0
+offset_left = -84.0
+offset_top = 56.5
+offset_right = 20.0
+offset_bottom = 96.5
+
+[node name="Label" type="Label" parent="profile_area/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_32nyv")
+theme_override_font_sizes/font_size = 16
+text = "coins:"
+
+[node name="coins_label" type="Label" parent="profile_area/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_32nyv")
+theme_override_font_sizes/font_size = 16
+text = "
+"
+
 [connection signal="pressed" from="HBoxContainer/home_button" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/flashcards_button" to="." method="_on_flashcards_button_pressed"]
 [connection signal="button_up" from="HBoxContainer/pvp_button" to="." method="_on_pvp_button_button_up"]
 [connection signal="button_down" from="HBoxContainer/lucky_mode_button" to="." method="_on_lucky_mode_button_button_down"]
-[connection signal="pressed" from="profiles_button" to="." method="_on_profiles_button_pressed"]
+[connection signal="pressed" from="profile_area/profiles_button" to="." method="_on_profiles_button_pressed"]

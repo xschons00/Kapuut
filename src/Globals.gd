@@ -12,7 +12,8 @@ var score : String
 var greyscale_shader: Shader = preload("res://assets/shaders/greyscale.gdshader")
 var greyscale: ShaderMaterial
 
-const default_profile_pic = "res://assets/icons/icon.svg"
+const default_profile_background = "res://assets/backgrounds/blue_bg.png"
+const default_profile_pic = "res://assets/avatars/avatar1.png"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

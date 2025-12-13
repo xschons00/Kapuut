@@ -13,6 +13,7 @@ func seed() -> void:
 	var default_user = ProfileObject.new()
 	default_user.user_name = "player 1"
 	default_user.profile_pic = Globals.default_profile_pic
+	default_user.background_pic = Globals.default_profile_background
 	default_user.coins = 0
 	default_user.elo = 0
 	Globals.data_manager.profiles.save_profile(default_user)

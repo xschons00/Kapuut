@@ -8,7 +8,10 @@ var wheel_of_fortune_path: String = "res://src/scenes/WheelOfFortuneMainPage.tsc
 var pvp_path:String = "res://src/scenes/PvPMainPageTmp.tscn"
 
 #nodes
-@onready var profile_button: TextureRect = $profiles_button/TextureRect
+@onready var background_rect: TextureRect = $profile_area/profiles_button/background_rect
+@onready var avatar_rect: TextureRect = $profile_area/profiles_button/avatar_rect
+@onready var username_label: Label = $profile_area/username_label
+@onready var coins_label: Label = $profile_area/HBoxContainer/coins_label
 
 #vars
 var config: AppConfigObject
@@ -16,7 +19,7 @@ var config: AppConfigObject
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.connect("refresh_menu_signal", _on_refresh_menu_signal)
-	_refresh_profile_pic()
+	_refresh_profile_info()
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,9 +28,9 @@ func _process(delta: float) -> void:
 	
 func _on_refresh_menu_signal() -> void:
 	print("menu refresh signal")
-	_refresh_profile_pic()
+	_refresh_profile_info()
 	
-func _refresh_profile_pic() -> void:
+func _refresh_profile_info() -> void:
 	config = Globals.data_manager.app_config.get_config()
 	if config == null:
 		print("ERROR: config not found")
@@ -37,15 +40,15 @@ func _refresh_profile_pic() -> void:
 		if not ResourceLoader.exists(user.profile_pic):
 			print("Error: Invalid path: ", user.profile_pic)
 			return
-		profile_button.texture = load(user.profile_pic)
-		profile_button.stretch_mode = TextureRect.STRETCH_SCALE
-		profile_button.expand = true
+		background_rect.texture = load(user.background_pic)
+		avatar_rect.texture = load(user.profile_pic)
+		username_label.text = user.user_name
+		coins_label.text = str(user.coins)
 		return
 	#fallback value	
 	print("Warning: User not set: ")
-	profile_button.texture = load(Globals.default_profile_pic)
-	profile_button.stretch_mode = TextureRect.STRETCH_SCALE
-	profile_button.expand = true
+	background_rect.texture = load(Globals.default_profile_background)
+	avatar_rect.texture = load(Globals.default_profile_pic)
 	
 
 func _on_home_button_pressed() -> void:

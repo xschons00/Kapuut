@@ -129,5 +129,6 @@ func _unhandled_input(event: InputEvent) -> void:# close if any key is pressed
 		switch_visibility()
 		
 func _on_background_button_pressed() -> void: # switch to bg selection
-	switch_visibility()
 	get_parent().get_node("BackgroundSelection").switch_visibility()
+	switch_visibility()
+	
