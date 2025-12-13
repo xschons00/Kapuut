@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cr2hbpbspfqr3" path="res://src/scripts/pvp_main_page_tmp.gd" id="1_56rtd"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="1_odapm"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="2_56rtd"]
-[ext_resource type="PackedScene" path="res://src/scenes/components/GameSelectionList.tscn" id="3_9hqqh"]
+[ext_resource type="PackedScene" uid="uid://dw8i61om15lht" path="res://src/scenes/components/GameSelectionList.tscn" id="3_9hqqh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3awe"]
 bg_color = Color(0.16078432, 0.18431373, 0.21176471, 1)
@@ -57,7 +57,7 @@ grow_vertical = 2
 theme = ExtResource("2_56rtd")
 theme_override_font_sizes/font_size = 68
 text = "welcome to
-flashcard quiz"
+PvP Battles"
 horizontal_alignment = 1
 
 [node name="GameSelectionWrapper" type="Panel" parent="."]
