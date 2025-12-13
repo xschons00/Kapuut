@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://nd64dnlmeku"]
 
-[ext_resource type="Script" uid="uid://blpsr175d88ub" path="res://src/scripts/components/game_selection_item.gd" id="1_j3lel"]
+[ext_resource type="Script" uid="uid://bh1d88n66f7ow" path="res://src/scripts/components/game_selection_item.gd" id="1_j3lel"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3lel"]
 bg_color = Color(0.9137255, 0.9137255, 0.9137255, 1)
@@ -19,10 +19,8 @@ corner_radius_top_right = 25
 custom_minimum_size = Vector2(260, 320)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 280.0
-offset_bottom = 340.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 260.0
+offset_bottom = 320.0
 script = ExtResource("1_j3lel")
 
 [node name="Panel" type="Panel" parent="."]

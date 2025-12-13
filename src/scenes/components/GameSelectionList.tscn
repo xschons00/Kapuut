@@ -1,25 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw8i61om15lht"]
+[gd_scene load_steps=7 format=3 uid="uid://dw8i61om15lht"]
 
-[ext_resource type="Script" uid="uid://dke3a8s82u7l8" path="res://src/scripts/components/game_selection_list.gd" id="1_wtvtk"]
-[ext_resource type="PackedScene" path="res://src/scenes/components/Game_Selection_item.tscn" id="2_lvjpy"]
+[ext_resource type="Script" uid="uid://bgqpxfpscsi8y" path="res://src/scripts/components/game_selection_list.gd" id="1_wtvtk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgfy3"]
-bg_color = Color(0.91764706, 0.972549, 0.9490196, 1)
+bg_color = Color(0.92156863, 1, 0.92156863, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
-corner_radius_bottom_left = 8
 corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xuec"]
+bg_color = Color(1, 0.5176471, 0.09803922, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67fd8"]
+bg_color = Color(1, 0.5176471, 0.09803922, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okch8"]
+bg_color = Color(1, 0.5176471, 0.09803922, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7qml"]
+bg_color = Color(1, 0.5176471, 0.09803922, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="GameSelectionList" type="Control"]
+custom_minimum_size = Vector2(0, 340)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_minimum_size = Vector2(0, 340)
 script = ExtResource("1_wtvtk")
-card_scene = ExtResource("2_lvjpy")
 scroll_step = 360.0
 
 [node name="Panel" type="Panel" parent="."]
@@ -42,7 +68,6 @@ offset_right = -60.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
-horizontal_scroll_mode = 1
 vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer"]
@@ -52,16 +77,24 @@ alignment = 1
 
 [node name="PrevButton" type="Button" parent="Panel"]
 layout_mode = 1
+anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 8.0
+offset_left = -1.0
 offset_top = -28.0
 offset_right = 48.0
 offset_bottom = 28.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5xuec")
+theme_override_styles/focus = SubResource("StyleBoxFlat_67fd8")
+toggle_mode = true
 text = "<"
 
 [node name="NextButton" type="Button" parent="Panel"]
 layout_mode = 1
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -69,6 +102,11 @@ anchor_bottom = 0.5
 offset_left = -48.0
 offset_top = -28.0
 offset_bottom = 28.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_okch8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y7qml")
+toggle_mode = true
 text = ">"
 
 [connection signal="pressed" from="Panel/PrevButton" to="." method="_on_prev_button_pressed"]
