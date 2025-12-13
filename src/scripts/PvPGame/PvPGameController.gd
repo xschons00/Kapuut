@@ -8,7 +8,8 @@ var Curr_Player:int = 1
 var wrong:int = 0
 var P1 : String = Globals.data_manager.app_config.get_config().user_id
 var P2 : String =  Globals.data_manager.app_config.get_config().opponent
-var selected_opponent_id: String = ""
+var Player1Points: int = 0
+var Player2Points: int = 0
 #buttons
 @onready
 var buttons:Array = [
@@ -29,9 +30,19 @@ func _on_ready():
 	Start()
 
 func Start():
-	if Question == -1 : return
+	if Question == -1 : 
+		$Panel/Player1.visible = true
+		$Panel/Player2.visible = false
+		return
+	
 	if $Question.visible:
 		RefreshQuestion()
+		if Curr_Player == 1:
+			$Panel/Player1.visible = true
+			$Panel/Player2.visible = false
+		elif Curr_Player == 2:
+			$Panel/Player1.visible = false
+			$Panel/Player2.visible = true
 	else:
 		RefreshMain()
 		if game_status[Question] == 0:
@@ -43,6 +54,13 @@ func Start():
 		if game_status[Question] == 2:
 			Curr_Player = 1
 			Question = -1
+		if Curr_Player == 1:
+			$Panel/Player1.visible = true
+			$Panel/Player2.visible = false
+		elif Curr_Player == 2:
+			$Panel/Player1.visible = false
+			$Panel/Player2.visible = true
+
 
 func BallPressed(index:int):
 	Question = index
@@ -53,11 +71,11 @@ func BallPressed(index:int):
 func RefreshMain():
 	var index:int = 0
 	if not game_status.has(0):
-		var P1elo: int = Globals.data_manager.profiles.get_profile(P1).elo
-		var P2elo: int  = Globals.data_manager.profiles.get_profile(P2).elo
-		Globals.score = str(P1elo,": ",P2elo)
+		var prof1 = Globals.data_manager.profiles.get_profile(P1).user_name
+		var prof2 = Globals.data_manager.profiles.get_profile(P2).user_name
+		Globals.score = str(prof1,"   ",prof2,"\n",Player1Points,"    /    ",Player2Points,)
 		get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPEnd.tscn")
-		
+
 	for i in game_status:
 		var stylebox_flat = StyleBoxFlat.new()
 		stylebox_flat.corner_radius_bottom_left = 45
@@ -109,8 +127,6 @@ func RevealAnswer(button: Button):
 			wrong = 0
 		stylebox_flat.bg_color = Color.RED
 	
-	
-	
 	button.add_theme_stylebox_override("normal", stylebox_flat)
 	button.add_theme_stylebox_override("hover", stylebox_flat)
 	await get_tree().create_timer(2.0).timeout
@@ -123,6 +139,10 @@ func RevealAnswer(button: Button):
 func add_point(player:String ):
 	var PlayerObject:ProfileObject = Globals.data_manager.profiles.get_profile(player)
 	PlayerObject.elo += 1
+	if player == P1 :
+		Player1Points+=1
+	else :
+		Player2Points+=1
 	Globals.data_manager.profiles.save_profile(PlayerObject)
 	
 
@@ -189,6 +209,12 @@ func _on_leave_button_down() -> void:
 	var config = Globals.data_manager.app_config.get_config()
 	config.opponent = ""
 	Globals.data_manager.app_config.save_config(config)
+	var prof1 = Globals.data_manager.profiles.get_profile(P1)
+	prof1.elo -= Player1Points
+	Globals.data_manager.profiles.save_profile(prof1)
+	var prof2 = Globals.data_manager.profiles.get_profile(P2)
+	prof2.elo -= Player2Points
+	Globals.data_manager.profiles.save_profile(prof2)
 	get_tree().change_scene_to_file("res://src/scenes/PvPMainPageTmp.tscn")
 
 
@@ -198,7 +224,7 @@ func _on_grid_container_ready() -> void:
 		child.queue_free()
 	var profiles: Array[ProfileObject] = Globals.data_manager.profiles.get_all_profiles()
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
-	selected_opponent_id = config.opponent
+	P2 = config.opponent
 	var button_group := ButtonGroup.new()
 	for profile in profiles:
 		if profile.id == config.user_id:
@@ -210,12 +236,12 @@ func _on_grid_container_ready() -> void:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.pressed.connect(Callable(self, "_on_opponent_selected").bind(profile.id))
 		container.add_child(button)
-		if profile.id == selected_opponent_id:
+		if profile.id == P2:
 			button.set_pressed_no_signal(true)
 	_update_start_button_state()
 
 func _on_opponent_selected(opponent_id: String) -> void:
-	selected_opponent_id = opponent_id
+	P2 = opponent_id
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	config.opponent = opponent_id
 	Globals.data_manager.app_config.save_config(config)
@@ -224,4 +250,4 @@ func _on_opponent_selected(opponent_id: String) -> void:
 func _update_start_button_state() -> void:
 	var start_button: Button = get_node_or_null("Panel/Start")
 	if start_button:
-		start_button.disabled = selected_opponent_id == ""
+		start_button.disabled = P2 == ""
