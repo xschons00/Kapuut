@@ -14,6 +14,12 @@ var P2 : String =  Globals.data_manager.app_config.get_config().opponent
 var Player1Points: int = 0
 var Player2Points: int = 0
 var winner_coin_awarded: bool = false
+var revelared: bool = false
+
+# Mission targets
+const FLASHCARDS_TARGET: int = 10
+const PVP_TARGET: int = 3
+const LUCKY_MODE_TARGET: int = 20
 #buttons
 @onready
 var buttons:Array = [
@@ -28,7 +34,6 @@ $"Main/HFlowContainer4/7",
 $"Main/HFlowContainer4/8",
 $"Main/HFlowContainer4/9"
 ]
-
 func _on_ready():
 	randomize()
 	Globals.pvp_winner = 0
@@ -144,7 +149,7 @@ func RefreshQuestion():
 		if answer_entry["is_correct"]:
 			CorrectAnswer = i + 1
 
-var revelared: bool = false
+
 
 # Processes chosen answer and updates score/turn
 func RevealAnswer(button: Button):
@@ -199,6 +204,8 @@ func _award_winner_coin() -> void:
 		winner_id = P2
 	else:
 		return
+	if winner_id == Globals.data_manager.app_config.get_config().user_id:
+		increment_mission("pvp")
 	var winner_profile: ProfileObject = Globals.data_manager.profiles.get_profile(winner_id)
 	if winner_profile == null:
 		return
@@ -324,3 +331,34 @@ func _update_opponent_buttons_style() -> void:
 		if button == null:
 			continue
 		button.modulate = Color(0.7, 0.7, 0.7) if button.button_pressed else Color(1, 1, 1)
+func increment_mission(mission_type: String) -> void:
+	var current_user_id = Globals.data_manager.app_config.get_config().user_id
+	var profiles_dict = Globals.data_manager.profiles._get_section("profiles")
+	if not profiles_dict.has(current_user_id):
+		return
+
+	var profile_data = profiles_dict[current_user_id]
+
+	if not profile_data.has("daily_missions"):
+		profile_data["daily_missions"] = {
+			"flashcards": 0,
+			"pvp": 0,
+			"lucky_mode": 0
+		}
+
+	var missions = profile_data["daily_missions"]
+
+	# Increment the specified mission
+	match mission_type:
+		"flashcards":
+			if missions["flashcards"] < FLASHCARDS_TARGET:
+				missions["flashcards"] += 1
+		"pvp":
+			if missions["pvp"] < PVP_TARGET:
+				missions["pvp"] += 1
+		"lucky_mode":
+			if missions["lucky_mode"] < LUCKY_MODE_TARGET:
+				missions["lucky_mode"] += 1
+
+	profile_data["daily_missions"] = missions
+	Globals.data_manager.profiles._save_section("profiles", profiles_dict)
