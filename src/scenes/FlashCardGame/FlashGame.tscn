@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2kbc2ys7y4pe"]
+[gd_scene load_steps=8 format=3 uid="uid://b2kbc2ys7y4pe"]
 
 [ext_resource type="Theme" uid="uid://b0ji2k11r3230" path="res://assets/themes/SlideGame.tres" id="1_8wpbs"]
 [ext_resource type="Script" uid="uid://u50hdgt343c7" path="res://src/scripts/FlashCardGame/FlashCardGame.gd" id="1_dgs6y"]
@@ -27,6 +27,13 @@ script/source = "extends Panel
 
 
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onksy"]
+bg_color = Color(0, 0.6, 0, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
 
 [node name="FlashGame" type="Control"]
 layout_mode = 3
@@ -134,8 +141,36 @@ offset_bottom = 72.0
 theme = ExtResource("1_8wpbs")
 text = "LEAVE"
 
+[node name="Know" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -260.0
+offset_right = -21.0
+offset_bottom = -150.11853
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_8wpbs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_onksy")
+text = "Viem"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 963.6371
+offset_top = 126.308044
+offset_right = 1115.0
+offset_bottom = 198.0
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="Panel/FlashCard" to="." method="_on_FlashCard_button_down"]
 [connection signal="button_down" from="Panel/FlashCard" to="Panel/FlashCard" method="_on_button_down"]
 [connection signal="button_down" from="Panel/next" to="." method="_on_next_button_down"]
 [connection signal="button_down" from="Panel/next" to="Panel/next" method="_on_button_down"]
 [connection signal="button_down" from="Leave" to="." method="_on_leave_button_down"]
+[connection signal="button_down" from="Know" to="." method="_on_Know_button_down"]
