@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5wqp7hk8n3jm"]
 
-[ext_resource type="Script" uid="uid://bofhh0g2ua1cd" path="res://src/scripts/WheelOfFortuneMainPage.gd" id="1_wheel"]
+[ext_resource type="Script" uid="uid://bw5qp7hk8n3jl" path="res://src/scripts/WheelOfFortuneMainPage.gd" id="1_wheel"]
 [ext_resource type="PackedScene" uid="uid://co0c6xjluuvp1" path="res://src/scenes/components/Menu.tscn" id="2_menu"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_wheel"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="4_wheel"]

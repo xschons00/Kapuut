@@ -18,7 +18,7 @@ class CircleDrawer extends Node2D:
 # nodes
 @onready var menu: Control = $Menu
 @onready var daily_missions: Control = $DailyMissions
-@onready var coins_label: Label = $Menu/menu_panel/profile_area/coins_label
+@onready var coins_label: Label = $Menu/menu_panel/profile_area/VBoxContainer/HBoxContainer/coins_label
 @onready var price_selector_container: VBoxContainer = $MainContainer/LeftPanel/PriceSelector/VBoxContainer
 @onready var wheel_container: CenterContainer = $MainContainer/CenterPanel/VBox/WheelContainer
 @onready var history_container: VBoxContainer = $MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer
@@ -51,7 +51,7 @@ var segment_angle: float = 30.0		# 360 / 12 segments = 30
 var wheel_node: Node2D = null
 var is_spinning: bool = false
 
-# color constants (rounded to 3 decimal places)
+# color constants
 var neon_color: Color = Color(0.306, 0.804, 0.773, 1.0)
 var container_fill_color: Color = Color(0.102, 0.102, 0.102, 1.0)
 var question_color: Color = Color(0.173, 0.243, 0.314, 1.0)
