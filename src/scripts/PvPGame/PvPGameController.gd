@@ -30,6 +30,7 @@ $"Main/HFlowContainer4/9"
 ]
 
 func _on_ready():
+	randomize()
 	Globals.pvp_winner = 0
 	Globals.pvp_user_elo_gain = 0
 	Globals.pvp_opponent_elo_gain = 0
@@ -121,13 +122,27 @@ func RefreshMain():
 func RefreshQuestion():
 	revelared = false
 	var questionData:Dictionary = data["Questions"][Question]
-	# add randomization to the answers
+	var answers := [
+		{"text": questionData["Correct"], "is_correct": true},
+		{"text": questionData["otherquestion1"], "is_correct": false},
+		{"text": questionData["otherquestion2"], "is_correct": false},
+		{"text": questionData["otherquestion3"], "is_correct": false},
+	]
+	answers.shuffle()
+	var answer_buttons := [
+		$Question/AnswerPanel/VBoxContainer/Answer1,
+		$Question/AnswerPanel/VBoxContainer/Answer2,
+		$Question/AnswerPanel/VBoxContainer/Answer3,
+		$Question/AnswerPanel/VBoxContainer/Answer4,
+	]
 	CorrectAnswer = 1
 	$Question/QuestionPanel/Question.text = questionData["Question"]
-	$Question/AnswerPanel/VBoxContainer/Answer1.text = questionData["Correct"]
-	$Question/AnswerPanel/VBoxContainer/Answer2.text = questionData["otherquestion1"]
-	$Question/AnswerPanel/VBoxContainer/Answer3.text = questionData["otherquestion2"]
-	$Question/AnswerPanel/VBoxContainer/Answer4.text = questionData["otherquestion3"]
+	for i in range(answers.size()):
+		var answer_button: Button = answer_buttons[i]
+		var answer_entry: Dictionary = answers[i]
+		answer_button.text = answer_entry["text"]
+		if answer_entry["is_correct"]:
+			CorrectAnswer = i + 1
 
 var revelared: bool = false
 
