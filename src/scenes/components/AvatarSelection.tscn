@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brlke5ifrh8l7"]
+[gd_scene load_steps=16 format=3 uid="uid://brlke5ifrh8l7"]
 
 [ext_resource type="Script" uid="uid://c5tnnjb6ahbhq" path="res://src/scripts/components/AvatarSelection.gd" id="1_457w2"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_n6ny1"]
@@ -13,6 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://ch3ty2155ouby" path="res://assets/avatars/avatar7.png" id="11_80sao"]
 [ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="12_da30h"]
 [ext_resource type="Texture2D" uid="uid://dymwwos3wvsc0" path="res://assets/icons/close.png" id="12_lb1mf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjb0x"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.5176471, 0.09803922, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da30h"]
 bg_color = Color(0, 0, 0, 0)
@@ -62,6 +70,16 @@ texture = ExtResource("3_lb1mf")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar1_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
+
 [node name="avatar2_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -76,6 +94,16 @@ grow_vertical = 2
 texture = ExtResource("7_7elxg")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar2_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
 
 [node name="avatar3_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
@@ -92,6 +120,16 @@ texture = ExtResource("9_eo4eh")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar3_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
+
 [node name="avatar4_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -106,6 +144,16 @@ grow_vertical = 2
 texture = ExtResource("4_da30h")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar4_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
 
 [node name="avatar5_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
@@ -122,6 +170,16 @@ texture = ExtResource("10_vwv8t")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar5_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
+
 [node name="avatar6_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -136,6 +194,16 @@ grow_vertical = 2
 texture = ExtResource("5_xjb0x")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar6_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
 
 [node name="avatar7_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
@@ -152,6 +220,16 @@ texture = ExtResource("11_80sao")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar7_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
+
 [node name="avatar8_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -167,6 +245,16 @@ texture = ExtResource("6_45amd")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar8_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
+
 [node name="avatar9_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -181,6 +269,16 @@ grow_vertical = 2
 texture = ExtResource("8_xcwnk")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/avatar9_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjb0x")
 
 [node name="background_button" type="Button" parent="ColorRect"]
 layout_mode = 0

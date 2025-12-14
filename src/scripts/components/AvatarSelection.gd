@@ -24,13 +24,16 @@ func _ready() -> void:
 func _reload_avatars() -> void:
 	for button in container.get_children():
 		if button is Button and button.name.contains("avatar"): #only for avatar buttons
+			var select_panel := button.get_node("select_panel")
+			select_panel.visible = false
+			
 			#remove old unlock button
 			for child in button.get_children():
 				if child.is_in_group("UnlockButtons"):   # match root node name of UnlockButton.tscn
 					child.queue_free()
 				
 			# check if index already exists
-			var obj: AvatarItem = _load_item_or_default(button)
+			var obj: AvatarItem = _load_item_or_default(button, select_panel)
 			if obj == null:
 				return
 				
@@ -43,7 +46,7 @@ func _reload_avatars() -> void:
 				Globals.set_greyscale(button.get_node("TextureRect"))
 				_set_unlock_button(button, obj)
 				
-func _load_item_or_default(button: Button) -> AvatarItem: #checks if item already is unloked for this user
+func _load_item_or_default(button: Button, select_panel: Panel) -> AvatarItem: #checks if item already is unloked for this user
 	var item_name: String = button.name.replace("_button", "") #first 7 char (avatarN)
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	if	config == null:
@@ -58,14 +61,14 @@ func _load_item_or_default(button: Button) -> AvatarItem: #checks if item alread
 			print("item already owned: ", item_name)
 			unlocked.is_unlocked = true
 			print("this: ",unlocked.item_path, " selected: ", user.profile_pic)
-			#if unlocked.item_path == user.profile_pic: #in case its selected
-			#	button.disabled = true
+			if unlocked.item_path == user.profile_pic: #in case its selected
+				select_panel.visible = true
 					
 			return unlocked
 
-	return _init_new_item(button)
+	return _init_new_item(button, select_panel, user)
 				
-func _init_new_item(button: Button) -> AvatarItem:
+func _init_new_item(button: Button, select_panel: Panel, user: ProfileObject) -> AvatarItem:
 	var obj_index: int = int(button.name.replace("avatar", "").replace("_button", "")) #index N only
 	var obj = AvatarItem.new()
 	obj.item_name = button.name.replace("_button", "") #first 7-8 char (avatarN)
@@ -79,12 +82,16 @@ func _init_new_item(button: Button) -> AvatarItem:
 	else:
 		obj.is_unlocked = false
 		obj.price = 750
+		
+	if obj.item_path == user.profile_pic:
+		select_panel.visible = true
 	return obj
 
 func _on_avatar_button_pressed(button: Button) -> void:
 	var texture_rect: TextureRect = button.get_node("TextureRect")
 	new_avatar_path = texture_rect.texture.resource_path
 	emit_signal("avatar_selected_signal", new_avatar_path)
+	_reload_avatars()
 	
 func _set_unlock_button(avatar_button: Button, item: AvatarItem) -> void:
 
