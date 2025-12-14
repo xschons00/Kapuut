@@ -13,15 +13,15 @@ bg_color = Color(0.92156863, 1, 0.92156863, 1)
 variation_embolden = 0.54
 spacing_glyph = 1
 
-[sub_resource type="FontVariation" id="FontVariation_nqd4w"]
-variation_embolden = 0.54
-spacing_glyph = 1
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myq8y"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voeg3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_nqd4w"]
+variation_embolden = 0.54
+spacing_glyph = 1
 
 [node name="Profiles" type="Control"]
 layout_mode = 3
@@ -42,7 +42,12 @@ grow_vertical = 2
 theme = ExtResource("2_nqd4w")
 theme_override_styles/panel = SubResource("StyleBoxFlat_frq67")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="detail_area" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="detail_area"]
 layout_mode = 0
 offset_left = 729.0
 offset_top = 179.0
@@ -51,7 +56,7 @@ offset_bottom = 505.0
 mouse_filter = 2
 color = Color(0.8980392, 0.46666667, 0.16470589, 1)
 
-[node name="background_rect" type="TextureRect" parent="ColorRect"]
+[node name="background_rect" type="TextureRect" parent="detail_area/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,7 +66,7 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 6
 
-[node name="profile_rect" type="TextureRect" parent="ColorRect"]
+[node name="profile_rect" type="TextureRect" parent="detail_area/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,25 +78,25 @@ theme = ExtResource("2_nqd4w")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="detail_area"]
 layout_mode = 0
 offset_left = 773.0
 offset_top = 129.0
 offset_right = 1133.0
 offset_bottom = 169.0
 
-[node name="edit_label" type="Label" parent="HBoxContainer"]
+[node name="edit_label" type="Label" parent="detail_area/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nqd4w")
 theme_override_fonts/font = SubResource("FontVariation_1rjmx")
 text = "Player Edit: "
 
-[node name="user_label" type="Label" parent="HBoxContainer"]
+[node name="user_label" type="Label" parent="detail_area/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nqd4w")
 text = "user"
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="LineEdit" type="LineEdit" parent="detail_area"]
 layout_mode = 0
 offset_left = 729.0
 offset_top = 511.0
@@ -101,7 +106,7 @@ theme = ExtResource("2_nqd4w")
 placeholder_text = "change name"
 keep_editing_on_text_submit = true
 
-[node name="save_button" type="Button" parent="."]
+[node name="save_button" type="Button" parent="detail_area"]
 layout_mode = 0
 offset_left = 832.0
 offset_top = 565.0
@@ -110,41 +115,7 @@ offset_bottom = 614.0
 theme = ExtResource("2_nqd4w")
 text = " save name"
 
-[node name="all_profiles" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 181.0
-offset_right = 661.0
-offset_bottom = 561.0
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="all_profiles"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_nqd4w")
-
-[node name="new_button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 311.0
-offset_top = 566.0
-offset_right = 454.0
-offset_bottom = 615.0
-theme = ExtResource("2_nqd4w")
-text = "new profile"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 132.0
-offset_right = 184.0
-offset_bottom = 166.0
-theme = ExtResource("2_nqd4w")
-theme_override_fonts/font = SubResource("FontVariation_nqd4w")
-text = "Profiles"
-
-[node name="profile_pic_button" type="Button" parent="."]
+[node name="profile_pic_button" type="Button" parent="detail_area"]
 layout_mode = 0
 offset_left = 993.0
 offset_top = 435.0
@@ -153,7 +124,7 @@ offset_bottom = 492.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_myq8y")
 theme_override_styles/hover = SubResource("StyleBoxFlat_voeg3")
 
-[node name="TextureRect" type="TextureRect" parent="profile_pic_button"]
+[node name="TextureRect" type="TextureRect" parent="detail_area/profile_pic_button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,7 +135,7 @@ theme = ExtResource("3_frq67")
 texture = ExtResource("5_lpqd2")
 expand_mode = 1
 
-[node name="background_pic_button" type="Button" parent="."]
+[node name="background_pic_button" type="Button" parent="detail_area"]
 layout_mode = 0
 offset_left = 924.0
 offset_top = 436.0
@@ -172,7 +143,7 @@ offset_right = 984.0
 offset_bottom = 493.0
 theme = ExtResource("3_frq67")
 
-[node name="TextureRect" type="TextureRect" parent="background_pic_button"]
+[node name="TextureRect" type="TextureRect" parent="detail_area/background_pic_button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,11 +154,61 @@ theme = ExtResource("3_frq67")
 texture = ExtResource("3_1rjmx")
 expand_mode = 1
 
+[node name="profiles_area" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 683.0
+offset_bottom = 641.0
+
+[node name="all_profiles" type="ScrollContainer" parent="profiles_area"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 181.0
+offset_right = 661.0
+offset_bottom = 561.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="profiles_area/all_profiles"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_nqd4w")
+
+[node name="new_button" type="Button" parent="profiles_area"]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 566.0
+offset_right = 454.0
+offset_bottom = 615.0
+theme = ExtResource("2_nqd4w")
+text = "new profile"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="profiles_area"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 129.0
+offset_right = 505.0
+offset_bottom = 169.0
+theme = ExtResource("2_nqd4w")
+
+[node name="Label" type="Label" parent="profiles_area/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nqd4w")
+theme_override_fonts/font = SubResource("FontVariation_nqd4w")
+text = "Profiles"
+
+[node name="search_bar" type="LineEdit" parent="profiles_area/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("2_nqd4w")
+placeholder_text = "🔍             search for profile"
+
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_entered" from="background" to="." method="_on_background_focus_entered"]
-[connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
-[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="save_button" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="new_button" to="." method="_on_new_button_pressed"]
-[connection signal="pressed" from="profile_pic_button" to="." method="_on_profile_pic_button_pressed"]
-[connection signal="pressed" from="background_pic_button" to="." method="_on_background_pic_button_pressed"]
+[connection signal="focus_exited" from="detail_area/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="detail_area/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="detail_area/save_button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="detail_area/profile_pic_button" to="." method="_on_profile_pic_button_pressed"]
+[connection signal="pressed" from="detail_area/background_pic_button" to="." method="_on_background_pic_button_pressed"]
+[connection signal="pressed" from="profiles_area/new_button" to="." method="_on_new_button_pressed"]
+[connection signal="text_changed" from="profiles_area/HBoxContainer/search_bar" to="." method="_on_search_bar_text_changed"]

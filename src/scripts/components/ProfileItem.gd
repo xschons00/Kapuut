@@ -65,3 +65,6 @@ func _on_select_button_pressed() -> void:
 	
 func _on_delete_button_pressed() -> void:
 	emit_signal("profile_delete_signal", user)
+	
+func get_profile() -> ProfileObject:
+	return user
