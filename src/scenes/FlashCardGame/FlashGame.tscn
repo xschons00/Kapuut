@@ -173,7 +173,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_onksy")
 theme_override_styles/hover = SubResource("StyleBoxFlat_onksy")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_onksy")
 theme_override_styles/focus = SubResource("StyleBoxFlat_onksy")
-text = "Viem"
+text = "Know"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

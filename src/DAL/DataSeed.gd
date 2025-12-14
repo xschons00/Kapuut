@@ -141,7 +141,7 @@ func _create_harry_potter_theme() -> GameThemeObject:
 # Creates Science themed questions
 func _create_science_theme() -> GameThemeObject:
 	var theme := GameThemeObject.new()
-	theme.img = "res://assets/icons/icon.svg"
+	theme.img = "res://assets/FlashCardBackgrounds/science.jpg"
 	theme.Questions = []
 
 	var q
@@ -270,7 +270,7 @@ func _create_science_theme() -> GameThemeObject:
 
 func _create_history_theme() -> GameThemeObject:
 	var theme := GameThemeObject.new()
-	theme.img = "res://assets/FlashCardBackgrounds/danodrevo.jpg"
+	theme.img = "res://assets/FlashCardBackgrounds/history.jpg"
 	theme.Questions = []
 
 	var q
@@ -400,7 +400,7 @@ func _create_history_theme() -> GameThemeObject:
 # Creates Geography themed questions
 func _create_geography_theme() -> GameThemeObject:
 	var theme := GameThemeObject.new()
-	theme.img = "res://assets/icons/user.png"
+	theme.img = "res://assets/FlashCardBackgrounds/geography.jpg"
 	theme.Questions = []
 
 	var q
