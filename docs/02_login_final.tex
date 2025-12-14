@@ -21,9 +21,10 @@
 
 \section{Cieľ a zadanie projektu}
 \begin{itemize}
-    \item Stručné zhrnutie pôvodného zadania (funkcionality, cieľové prostredie, kľúčové obmedzenia).
-    \item Zdôraznenie odchýlok oproti pôvodnému zadaniu: \textit{čo sa menilo, prečo a ako sa to prejavilo v implementácii}.
-    \item Hlavné pridané hodnoty oproti zadaniu: \textit{bonusové funkcionality, zlepšenia použiteľnosti alebo výkonu}.
+    \item \textbf{Pôvodné zadanie:} zábavno-edukačná kvízová aplikácia Kapuut s viacerými režimami (flashcards na tréning, PvP duel na jednom zariadení, režim Wheel of Fortune), jednoduchou navigáciou a podporou viacerých profilov bez serverového backendu.
+    \item \textbf{Rozsah FE:} Godot UI nad lokálnymi dátami (JSON/DAL), prehľad tém, správa profilov, denné misie a vizuálne komponenty pre výber hier.
+    \item \textbf{Odchýlky oproti návrhu:} zachovali sme lokálne uloženie (žiadny online PvP), PvP beží ako striedanie kôl na jednom zariadení; misie a lucky wheel ukladajú progres priamo do profilu cez rozšírený DAL.
+    \item \textbf{Pridané hodnoty:} história točení vo Wheel of Fortune, denné misie, responzívnejšie layouty hlavných stránok, zachovanie coinov a nastavení stávky v profile.
 \end{itemize}
 
 \section{Rozdelenie práce členov tímu na výslednej FE implementácii}
@@ -31,13 +32,11 @@
     \hline
     Člen tímu & Oblasť FE & Stručný popis príspevku \\
     \hline
-    \textit{Meno 1} & \textit{napr. UI navigácia} & \textit{hlavné komponenty, obrazovky, refaktoring, štýly} \\
+    Šimon Schön (xschons00) & Navigácia, profily, menu & Hlavné menu, profilový modul (výber/úprava/odomykanie), globálne inicializácie, komponenty Avatar/Background selection a Menu. \\
     \hline
-    \textit{Meno 2} & \textit{napr. minihry} & \textit{implementované scény, správanie, integrácie} \\
+    Kamil Jakubčák (xjakubk00) & Flashcards \& PvP, správa tém & Gameplay pre Flashcards (ovládanie otázok, misie), PvPGameController, komponenty GameSelectionList/Item a karta výberu hier, DAL pre herné okruhy (GameThemeAccess, QuestionsObject) a seedovanie misií/spin histórie. \\
     \hline
-    \textit{Meno 3} & \textit{napr. stav aplikácie} & \textit{manažment dát, prepojenie so serverom, optimalizácie} \\
-    \hline
-    \textit{Meno 4} & \textit{napr. vizuál} & \textit{dizajnové úpravy, animácie, responzivita} \\
+    Adrián Pitka Kester (xpitkaa00) & Wheel of Fortune, vizuál & Scéna Wheel of Fortune (spin logika, otázkové segmenty, história), vizuál a animácie kolesa, úpravy layoutov stránok s hrami. \\
     \hline
 \end{tabularx}
 

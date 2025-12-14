@@ -9,8 +9,8 @@ var CorrectAnswer:int
 var game_status:Array = [0,0,0,0,0,0,0,0,0,0] # 1 je P1,2 je P2, -1 nobody
 var Curr_Player:int = 1
 var wrong:int = 0
-var P1 : String = Globals.data_manager.app_config.get_config().user_id
-var P2 : String =  Globals.data_manager.app_config.get_config().opponent
+var P1 : String = Globals.data_manager.app_config.get_config().opponent
+var P2 : String =  Globals.data_manager.app_config.get_config().user_id
 var Player1Points: int = 0
 var Player2Points: int = 0
 var winner_coin_awarded: bool = false
@@ -87,17 +87,17 @@ func BallPressed(index:int):
 func RefreshMain():
 	var index:int = 0
 	if not game_status.has(0):
-		var prof1 = Globals.data_manager.profiles.get_profile(P1).user_name
-		var prof2 = Globals.data_manager.profiles.get_profile(P2).user_name
-		Globals.score = str(prof1,"   ",prof2,"\n",Player1Points,"    /    ",Player2Points,)
-		Globals.pvp_user_elo_gain = Player1Points
-		Globals.pvp_opponent_elo_gain = Player2Points
+		var user_profile = Globals.data_manager.profiles.get_profile(P2)
+		var opponent_profile = Globals.data_manager.profiles.get_profile(P1)
+		Globals.score = str(user_profile.user_name,"   ",opponent_profile.user_name,"\n",Player2Points,"    /    ",Player1Points,)
+		Globals.pvp_user_elo_gain = Player2Points
+		Globals.pvp_opponent_elo_gain = Player1Points
 		Globals.pvp_user_coins_gain = 0
 		Globals.pvp_opponent_coins_gain = 0
-		if Player1Points > Player2Points:
+		if Player2Points > Player1Points:
 			Globals.pvp_winner = 1
 			Globals.pvp_user_coins_gain = 100
-		elif Player2Points > Player1Points:
+		elif Player1Points > Player2Points:
 			Globals.pvp_winner = 2
 			Globals.pvp_opponent_coins_gain = 100
 		else:
@@ -199,14 +199,17 @@ func _award_winner_coin() -> void:
 		return
 	var winner_id := ""
 	if Globals.pvp_winner == 1:
-		winner_id = P1
-	elif Globals.pvp_winner == 2:
 		winner_id = P2
+	elif Globals.pvp_winner == 2:
+		winner_id = P1
 	else:
 		return
-	if winner_id == Globals.data_manager.app_config.get_config().user_id:
-		increment_mission("pvp")
+	
+	# Increment mission for the logged-in user, then reload profile to avoid overwriting updated data
 	var winner_profile: ProfileObject = Globals.data_manager.profiles.get_profile(winner_id)
+	if winner_profile.id == Globals.data_manager.app_config.get_config().user_id:
+		increment_mission("pvp")
+		winner_profile = Globals.data_manager.profiles.get_profile(winner_id)
 	if winner_profile == null:
 		return
 	winner_profile.coins += 100
@@ -292,7 +295,7 @@ func _on_grid_container_ready() -> void:
 		child.queue_free()
 	var profiles: Array[ProfileObject] = Globals.data_manager.profiles.get_all_profiles()
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
-	P2 = config.opponent
+	P1 = config.opponent
 	var button_group := ButtonGroup.new()
 	for profile in profiles:
 		if profile.id == config.user_id:
@@ -304,13 +307,13 @@ func _on_grid_container_ready() -> void:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.pressed.connect(Callable(self, "_on_opponent_selected").bind(profile.id))
 		container.add_child(button)
-		if profile.id == P2:
+		if profile.id == P1:
 			button.set_pressed_no_signal(true)
 	_update_opponent_buttons_style()
 	_update_start_button_state()
 
 func _on_opponent_selected(opponent_id: String) -> void:
-	P2 = opponent_id
+	P1 = opponent_id
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	config.opponent = opponent_id
 	Globals.data_manager.app_config.save_config(config)
@@ -320,7 +323,7 @@ func _on_opponent_selected(opponent_id: String) -> void:
 func _update_start_button_state() -> void:
 	var start_button: Button = get_node_or_null("Panel/Start")
 	if start_button:
-		start_button.disabled = P2 == ""
+		start_button.disabled = P1 == ""
 
 func _update_opponent_buttons_style() -> void:
 	var container: GridContainer = get_node_or_null("Panel/ScrollContainer/GridContainer")
