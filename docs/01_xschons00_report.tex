@@ -1,0 +1,136 @@
+\documentclass[a4paper,12pt]{article}
+    \usepackage[slovak]{babel}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{graphicx}
+    \usepackage{hyperref}
+    \usepackage{enumitem}
+    \usepackage{titlesec}
+    \usepackage{geometry}
+    \geometry{margin=2.5cm}
+    
+    \titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+    \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.5em}{}
+    \setlist[itemize]{noitemsep, topsep=0pt}
+    
+    
+    
+    \begin{document}
+    
+%---------------------------------
+% Titulná strana
+%---------------------------------
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	{\Huge \textbf{Tvorba užívateľských rozhraní}}\\[1em]
+	{\Large \textbf{Návrh aplikácie}}\\[5em]
+	    	    
+	{\Large \textbf{Tím: Chleba}}\\[2em]
+	{\large
+		\textbf{Šimon Schön (xschons00)}\\
+		\textit{Kamil Jakubčák (xjakubk00)}\\
+		\textit{Adrián Pitka Kester (xpitkaa00)}
+		}\\[6em]
+	    	    
+	{\large \today}\\[20em]
+	    	    
+	{\large Fakulta informačných technológií, VUT v Brne}
+	\vfill
+\end{titlepage}
+    
+%---------------------------------
+% Obsah
+%---------------------------------
+\tableofcontents
+\newpage
+    
+%---------------------------------
+% Text dokumentu
+%---------------------------------
+\section{Návrh témy}
+\begin{itemize}
+	\item \textbf{Názov aplikácie:} Kapuut \\
+\end{itemize}
+    
+Naša aplikácia má slúžiť ako zábavno edukatívna hra, v podobe kvízu s viacerými hernými režimami. Aplikácia je určená pre jedného hráča v režime pre precvičovanie otázok a odpovedí, alebo viacerých hráčov na jednom zariadení, v režime súťažného kvízu.
+    
+    
+\section{Rozdelenie práce v tíme}
+\begin{itemize}
+	\item \textbf{xschons00} – Domovská obrazovka, úvodné obrazovky jednotlivých herných režimov a správa profilov.
+	\item \textbf{xjakubk00} – Správa herných okruhov, tréningový režim a súťažný kvíz.
+	\item \textbf{xpitkaa00} – Herný režim koleso štastia, Okno "Daily Tasks" pre odmeňovanie pravideľného hrania.
+\end{itemize}
+
+\section{Testovanie výslednej aplikácie}
+\subsection{Testovanie [xschons00]}
+
+Testovanie aplikácie prebiehalo formou používateľského testovania s respondentom z prvej časti používateľského prieskumu (študent vysokej školy, aktívny používateľ edukačných hier). Cieľom testovania bolo overiť zrozumiteľnosť používateľského rozhrania, intuitívnosť ovládania a celkový dojem z herných mechaník.
+
+\textbf{Priebeh testovania:}
+\\
+Používateľ dostal krátke vysvetlenie účelu aplikácie bez detailného návodu. Následne mal vykonať sériu úloh:
+\begin{itemize}
+	\item vytvoriť nový používateľský profil a nastaviť ho ako aktívny,
+	\item zmeniť meno a avatar profilu,
+	\item kúpiť nové profilové pozadie a vybrať ho,
+	\item vyhľadať konkrétny profil pomocou vyhľadávacieho poľa,
+	\item spustiť herný režim a odpovedať na niekoľko otázok,
+	\item vyskúšať výber položiek v menu a orientáciu v aplikácii.
+\end{itemize}
+Po dokončení úloh nasledoval krátky rozhovor zameraný na spätnú väzbu.
+
+
+\textbf{Zistenia z testovania:}
+\begin{itemize}
+	\item Používateľ dokázal bez problémov vytvoriť a spravovať profily, rozhranie považoval za intuitívne.
+	\item Vyhľadávacie pole bolo pochopené okamžite a výrazne uľahčilo orientáciu pri väčšom počte profilov.
+	\item Navigácia pomocou menu bola zrozumiteľná a nevyžadovala vysvetlenie.
+	\item Používateľ ocenil krátke herné kolá a absenciu nutnosti pripojenia na internet.
+\end{itemize}
+
+
+\subsection{Testovanie [xjakubk00]}
+
+Testovanie prebiehalo s respondentom z úvodného prieskumu (študent pripravujúci sa na prijímačky). Cieľom bolo overiť zrozumiteľnosť tréningového a PvP režimu vrátane očakávaní pri nastavovaní obtiažnosti.
+
+\textbf{Profil používateľa:}
+\begin{itemize}
+	\item 15-ročný študent (muž), pripravuje sa na prijímačky, bežný používateľ mobilu, stredná technická zdatnosť.
+\end{itemize}
+
+\textbf{Priebeh testovania:}
+\\
+Vysvetlil som účel testu, neukázal som mu postup a požiadal som ho, aby nahlas komentoval, čo chce urobiť, čo mu nie je jasné a čo očakáva. Sledoval som najmä momenty, keď si nebol istý, čo sa stane po kliknutí alebo prechode na inú obrazovku. Vyskúšal tieto úlohy:
+\begin{itemize}
+	\item spustiť tréningový kvíz, vybrať tému a odohrať kolo,
+	\item spustiť PvP na jednom zariadení, pochopiť ovládanie ruletového výberu otázky,
+	\item nájsť štatistiky/progress po hre.
+\end{itemize}
+
+\textbf{Zistenia z testovania:}
+\begin{itemize}
+	\item Pri PvP chvíľu váhal, či sa hra hrá online alebo lokálne; pomohlo by krátke vysvetlenie režimu na úvodnej obrazovke.
+	\item Po tréningu hľadal, kde si pred ďalším kolom nastaviť počet otázok alebo vyššiu obtiažnosť; v aktuálnom prototypu to nenašiel.
+	\item Ruletu pochopil rýchlo a chválil krátke kolá, nepoužil (ani nehľadal) nastavenie obtiažnosti.
+\end{itemize}
+
+\textbf{Kľúčové výsledky (ponaučenia):}
+\begin{itemize}
+	\item Stručný popis pri spustení PvP má vysvetliť, že ide o lokálnu hru na jednom zariadení, aby sa predišlo váhaniu.
+	\item Pridať rýchle nastavenie tréningu (počet otázok/obtížnosť) na štartovú obrazovku, aby hráč nemusel hľadať, kde to zmeniť.
+\end{itemize}
+
+\section{Zapracovanie pripomienok z kontrolnej prezentácie}
+
+\subsection{Pripomienky a úpravy [xjakubk00]}
+
+Počas kontrolnej prezentácie zaznela pripomienka, že režim FlashCards pôsobí skôr ako pasívna prezentácia a chýba mu interaktivita. Zapracované riešenie:
+\begin{itemize}
+	\item doplnené tlačidlo \textit{Know}, ktorým používateľ označí, že otázku vedel správne; tým sa flashcard režim správa viac ako cvičenie než len slideshow,
+	\item spätná väzba z tlačidla sa odráža v internom hodnotení (užívateľ vidí, koľko otázok zvládol), čím sa zvyšuje motivácia a kontrola nad postupom.
+\end{itemize}
+
+    
+\end{document}
