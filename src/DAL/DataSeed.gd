@@ -22,6 +22,13 @@ func seed() -> void:
 	default_user.background_pic = Globals.default_profile_background
 	default_user.coins = 0
 	default_user.elo = 0
+	default_user.daily_missions = {
+		"flashcards": 0,
+		"pvp": 0,
+		"lucky_mode": 0
+	}
+	default_user.spin_history = []
+	default_user.selected_price = 50
 	Globals.data_manager.profiles.save_profile(default_user)
 	
 	var hp_game_data := _create_harry_potter_theme()
@@ -585,4 +592,11 @@ func _create_profile_from_seed(seed: Dictionary) -> String:
 	profile.background_pic = seed.get("background_pic", Globals.default_profile_background)
 	profile.elo = seed.get("elo", 0)
 	profile.coins = seed.get("coins", 0)
+	profile.daily_missions = seed.get("daily_missions", {
+		"flashcards": 0,
+		"pvp": 0,
+		"lucky_mode": 0
+	})
+	profile.spin_history = seed.get("spin_history", [])
+	profile.selected_price = seed.get("selected_price", 50)
 	return Globals.data_manager.profiles.save_profile(profile)

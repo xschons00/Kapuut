@@ -1,0 +1,86 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\geometry{margin=2.5cm}
+\setlist[itemize]{topsep=2pt,itemsep=2pt}
+
+\title{02\_login\_final -- Záverečný report}
+\author{Tím Kapuut}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Cieľ a zadanie projektu}
+\begin{itemize}
+    \item Stručné zhrnutie pôvodného zadania (funkcionality, cieľové prostredie, kľúčové obmedzenia).
+    \item Zdôraznenie odchýlok oproti pôvodnému zadaniu: \textit{čo sa menilo, prečo a ako sa to prejavilo v implementácii}.
+    \item Hlavné pridané hodnoty oproti zadaniu: \textit{bonusové funkcionality, zlepšenia použiteľnosti alebo výkonu}.
+\end{itemize}
+
+\section{Rozdelenie práce členov tímu na výslednej FE implementácii}
+\begin{tabularx}{\textwidth}{|>{\bfseries}l|>{\bfseries}l|X|}
+    \hline
+    Člen tímu & Oblasť FE & Stručný popis príspevku \\
+    \hline
+    \textit{Meno 1} & \textit{napr. UI navigácia} & \textit{hlavné komponenty, obrazovky, refaktoring, štýly} \\
+    \hline
+    \textit{Meno 2} & \textit{napr. minihry} & \textit{implementované scény, správanie, integrácie} \\
+    \hline
+    \textit{Meno 3} & \textit{napr. stav aplikácie} & \textit{manažment dát, prepojenie so serverom, optimalizácie} \\
+    \hline
+    \textit{Meno 4} & \textit{napr. vizuál} & \textit{dizajnové úpravy, animácie, responzivita} \\
+    \hline
+\end{tabularx}
+
+\section{Zapracovanie pripomienok z kontrolnej prezentácie}
+\begin{itemize}
+    \item \textbf{Pripomienka 1:} \textit{stručný opis pripomienky}.
+    \item \textbf{Úprava:} \textit{čo sme zmenili, kto to riešil, aký je stav (dokončené/potrebné dopracovať)}.
+    \item \textbf{Dopad:} \textit{vplyv na UX/FW, prípadné riziká}.
+    \item \textbf{Pripomienka 2:} \textit{... (pokračujte pre každú pripomienku)}.
+\end{itemize}
+
+\section{Testovanie}
+\subsection{Prístup a rozsah testovania}
+\begin{itemize}
+    \item Typy testovania: \textit{manuálne scenáre, exploratory, prípadne automatizované skripty}.
+    \item Pokryté časti FE: \textit{navigácia, kľúčové scény, kritické minihry, chybové stavy}.
+    \item Použité nástroje a prostredia: \textit{verzia engine, OS, zariadenia}.
+\end{itemize}
+
+\subsection{Scenáre a výsledky}
+\begin{tabularx}{\textwidth}{|>{\bfseries}l|X|>{\bfseries}l|>{\bfseries}l|}
+    \hline
+    ID scenára & Popis kroku & Výsledok & Návrh riešenia \\
+    \hline
+    \textit{T-01} & \textit{napr. registrácia a prihlásenie používateľa} & \textit{OK/Zlyhalo} & \textit{oprava, ticket, dôvod} \\
+    \hline
+    \textit{T-02} & \textit{napr. prechod medzi hlavnými obrazovkami} & \textit{OK/Zlyhalo} & \textit{návrh fixu alebo potvrdenie stability} \\
+    \hline
+    \textit{T-03} & \textit{napr. stabilita minihry pri opakovaní} & \textit{OK/Zlyhalo} & \textit{identifikovaný bug alebo nie} \\
+    \hline
+\end{tabularx}
+
+\subsection{Zistené problémy a ich riešenie}
+\begin{itemize}
+    \item \textbf{Najdôležitejšie chyby:} \textit{popis, priorita, stav opravy}.
+    \item \textbf{Regresné riziká:} \textit{oblasti s nedostatočným pokrytím alebo závislosťami}.
+    \item \textbf{Plán do odovzdania:} \textit{čo ešte otestovať alebo opraviť}.
+\end{itemize}
+
+\section{Záver}
+\begin{itemize}
+    \item Zhrnutie stavu projektu pred odovzdaním: \textit{hlavné prínosy, stabilita, známe limity}.
+    \item Odporúčania pre ďalší rozvoj: \textit{čo by sa hodilo dopracovať po odovzdaní}.
+\end{itemize}
+
+\end{document}

@@ -5,8 +5,8 @@
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="3_aea2l"]
 [ext_resource type="PackedScene" uid="uid://dw8i61om15lht" path="res://src/scenes/components/GameSelectionList.tscn" id="4_aea2l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l2re"]
-bg_color = Color(0.92156863, 1, 0.92156863, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aea2l"]
+bg_color = Color(0.91764706, 0.972549, 0.9490196, 1)
 
 [node name="FlashcardsMainPage" type="Control"]
 layout_mode = 3
@@ -52,36 +52,27 @@ text = "      Flashcards mode lets you practice quickly and effectively.
       Perfect for short sessions when you want to learn fast without pressure."
 
 [node name="GameSelectionWrapper" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 340)
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.409
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.883
-offset_top = 34.567993
-offset_bottom = 75.81598
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_bottom = 276.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5l2re")
-
-[node name="SectionLabel" type="Label" parent="GameSelectionWrapper"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = -24.0
-offset_bottom = 44.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 28
-text = "Available games"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_aea2l")
 
 [node name="GameSelectionList" parent="GameSelectionWrapper" instance=ExtResource("4_aea2l")]
 layout_mode = 1
-offset_left = -2.0
-offset_top = -40.6
-offset_bottom = -49.0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -170.0
+offset_right = -6.0
+offset_bottom = 170.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

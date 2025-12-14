@@ -83,6 +83,7 @@ vertical_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 24
 alignment = 1
 

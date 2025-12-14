@@ -341,7 +341,7 @@ func increment_mission(mission_type: String) -> void:
 
 	if not profile_data.has("daily_missions"):
 		profile_data["daily_missions"] = {
-			"flashcards": 0,
+			"flashcards": 0,	
 			"pvp": 0,
 			"lucky_mode": 0
 		}
