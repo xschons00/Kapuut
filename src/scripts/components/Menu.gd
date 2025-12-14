@@ -43,7 +43,7 @@ func _refresh_profile_info() -> void:
 			return
 		background_rect.texture = load(user.background_pic)
 		avatar_rect.texture = load(user.profile_pic)
-		username_label.text = user.user_name
+		username_label.text = user.user_name.substr(0,12)
 		coins_label.text = str(user.coins)
 		elo_label.text = str(user.elo)
 		return
