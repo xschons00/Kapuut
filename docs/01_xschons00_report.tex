@@ -132,5 +132,28 @@ Počas kontrolnej prezentácie zaznela pripomienka, že režim FlashCards pôsob
 	\item spätná väzba z tlačidla sa odráža v internom hodnotení (užívateľ vidí, koľko otázok zvládol), čím sa zvyšuje motivácia a kontrola nad postupom.
 \end{itemize}
 
+\section{Príspevky autorov a interaktívna práca s dátami vo FE}
+\subsection{Príspevok [xschons00]}
+\begin{itemize}
+	\item Implementoval základné obrazovky a navigáciu: domovskú stránku (\texttt{src/scripts/MainPage.gd}) a globálne menu (\texttt{src/scripts/components/Menu.gd}), ktoré sa pripája na \texttt{Globals.data\_manager} a po signáli \texttt{refresh\_menu\_signal} obnovuje avatara, pozadie, mince a ELO priamo v UI.
+	\item Správa profilov (\texttt{src/scripts/profiles.gd}) – LineEdit a tlačidlá volajú \texttt{Globals.data\_manager.profiles} a \texttt{app\_config}, aby uložili meno, aktívny profil a jeho ID; zmeny emitujú \texttt{refresh\_menu\_signal} a okamžite prefarbujú/obnovujú zoznam profilov a detail panel.
+	\item Výber avatara/pozadia (\texttt{src/scripts/components/AvatarSelection.gd}, \texttt{src/scripts/components/BackgroundSelection.gd}) napojený na \texttt{src/scripts/components/UnlockButton.gd}: tlačidlo odčíta mince používateľa, uloží nový odomknutý item cez \texttt{profiles.save\_profile()} a komponent opätovne prekreslí grid a zvýrazní aktuálnu voľbu.
+	\item Úvodná obrazovka Flashcards (\texttt{src/scripts/FlashcardsMainPage.gd}) využíva \texttt{GameSelectionList} na zostavenie kariet tém z \texttt{GameThemeAccess}; preklik nastaví \texttt{Globals.GameTheme} a UI tak otvára priamo príslušnú scénu hry.
+\end{itemize}
+
+\subsection{Príspevok [xjakubk00]}
+\begin{itemize}
+	\item Datová vrstva herných okruhov (\texttt{src/DAL/DataAccess/GameThemeAccess.gd}, \texttt{src/DAL/DataObjects/GameThemeObject.gd}, \texttt{src/DAL/DataObjects/QuestionsObject.gd}) – poskytuje API, ktoré FE používa na načítanie/uloženie tém a otázok; volajú ho výbery hier aj herné scény.
+	\item Tréningový režim Flashcards (\texttt{src/scripts/FlashCardGame/FlashCardGame.gd}) – UI tlačidlá \texttt{Know/Next/Back} menia interný index, aktualizujú progress bar/label a ukladajú počty správnych odpovedí do \texttt{Globals.flash\_known\_count}; zároveň sa inkrementuje denná misia priamo v profile.
+	\item Súťažný PvP kvíz (\texttt{src/scripts/PvPGame/PvPGameController.gd}) – mriežka tlačidiel mapuje na pole \texttt{game\_status}; po odpovedi sa mení hráč, prefarbuje tlačidlo a podľa výsledku sa zapisuje ELO a mince do profilov cez \texttt{Globals.data\_manager.profiles.save\_profile()}, vrátane započítania misie PvP.
+	\item Komponenty výberu hry (\texttt{src/scripts/components/game\_selection\_list.gd}, \texttt{src/scripts/components/game\_selection\_item.gd}) – generujú karty z dát a reagujú na vyhľadávanie; stlačenie tlačidla nastaví vybranú tému a zavolá \texttt{change\_scene\_to\_file} na štart PvP alebo Flashcards.
+\end{itemize}
+
+\subsection{Príspevok [xpitkaa00]}
+\begin{itemize}
+	\item Denné úlohy (\texttt{src/scripts/components/DailyMissions.gd}) – pri načítaní číta a vytvára štruktúru \texttt{daily\_missions} v profile cez \texttt{Globals.data\_manager.profiles}; zmeny okamžite prepisujú UI progress labely a tlačidlo Claim po splnení troch cieľov resetuje počítadlá, pripíše 500 mincí a vyvolá \texttt{refresh\_menu\_signal}.
+	\item Herný režim Koleso šťastia (\texttt{src/scripts/WheelOfFortuneMainPage.gd}) – tlačidlá cien ukladajú zvolenú sumu do profilu, tlačidlo Spin generuje segmenty, odpočíta mince používateľa a pridá výsledok do histórie \texttt{spin\_history}; pri segmente otázky sa náhodná otázka načíta z tém (DataManager) a po správnej odpovedi sa pripíšu mince a aktualizuje sa zobrazenie histórie aj dennej misie \texttt{lucky\_mode}.
+\end{itemize}
+
     
 \end{document}
