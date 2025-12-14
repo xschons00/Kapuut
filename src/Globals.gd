@@ -13,6 +13,10 @@ var menu: Control
 var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
 var score : String 
 var pvp_winner: int = 0 # 0 = tie, 1 = user, 2 = opponent
+var pvp_user_elo_gain: int = 0
+var pvp_opponent_elo_gain: int = 0
+var pvp_user_coins_gain: int = 0
+var pvp_opponent_coins_gain: int = 0
 var flash_known_count: int = 0
 var flash_total_questions: int = 0
 var greyscale_shader: Shader = preload("res://assets/shaders/greyscale.gdshader")
