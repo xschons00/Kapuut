@@ -128,6 +128,7 @@ func test_seed() -> void:
 	var user1 = ProfileObject.new()
 	user1.user_name = "John Doe"
 	user1.profile_pic = Globals.default_profile_pic
+	user1.background_pic = Globals.default_profile_background
 	user1.elo = 1024
 	user1.coins = 2000
 	Globals.data_manager.profiles.save_profile(user1)

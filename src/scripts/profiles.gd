@@ -118,6 +118,7 @@ func _on_new_button_pressed() -> void:
 	var new_profile = ProfileObject.new()
 	new_profile.user_name = "new player"
 	new_profile.profile_pic = Globals.default_profile_pic
+	new_profile.background_pic = Globals.default_profile_background
 	Globals.data_manager.profiles.save_profile(new_profile)
 	_refresh_page_content()
 
