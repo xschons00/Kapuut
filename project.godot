@@ -19,6 +19,11 @@ config/icon="res://assets/icons/icon.svg"
 
 Globals="*res://src/Globals.gd"
 
+[display]
+
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
