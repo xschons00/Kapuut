@@ -1,4 +1,4 @@
-# Author:
+# Author: xjakubk00
 # Description: Holds quiz question text with correct and alternate answers.
 
 class_name QuestionObject

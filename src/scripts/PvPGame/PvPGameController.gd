@@ -1,4 +1,4 @@
-# Author:
+# Author:xjakubk00
 # Description: Controls PvP board flow, turn logic, and scoring.
 
 class_name PvPGame
