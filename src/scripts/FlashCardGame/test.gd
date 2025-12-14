@@ -1,3 +1,6 @@
+# Author:xjakubk00
+# Description: Button handler to start the Harry Potter demo game.
+
 extends Button
 
 

@@ -1,3 +1,6 @@
+# Author: xschons00
+# Description: Global menu bar showing profile info and navigation actions.
+
 extends Control
 
 #scene paths
@@ -10,8 +13,9 @@ var pvp_path:String = "res://src/scenes/PvPMainPageTmp.tscn"
 #nodes
 @onready var background_rect: TextureRect = $menu_panel/profile_area/profiles_button/background_rect
 @onready var avatar_rect: TextureRect = $menu_panel/profile_area/profiles_button/avatar_rect
-@onready var username_label: Label = $menu_panel/profile_area/username_label
-@onready var coins_label: Label = $menu_panel/profile_area/coins_label
+@onready var username_label: Label = $menu_panel/profile_area/VBoxContainer/username_label
+@onready var coins_label: Label = $menu_panel/profile_area/VBoxContainer/HBoxContainer/coins_label
+@onready var elo_label: Label = $menu_panel/profile_area/VBoxContainer/HBoxContainer2/elo_label
 
 #vars
 var config: AppConfigObject
@@ -42,8 +46,9 @@ func _refresh_profile_info() -> void:
 			return
 		background_rect.texture = load(user.background_pic)
 		avatar_rect.texture = load(user.profile_pic)
-		username_label.text = user.user_name
+		username_label.text = user.user_name.substr(0,12)
 		coins_label.text = str(user.coins)
+		elo_label.text = str(user.elo)
 		return
 	#fallback value	
 	print("Warning: User not set: ")

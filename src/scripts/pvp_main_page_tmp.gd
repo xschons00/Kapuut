@@ -1,3 +1,6 @@
+# Author:
+# Description: PvP game selection page with search/filter support.
+
 extends Control
 
 const GAME_SCENE_PATH := "res://src/scenes/PvPGame/PvPStart.tscn"
@@ -8,6 +11,7 @@ func _ready() -> void:
 	Globals.add_menu(self)
 	_populate_games()
 
+# Build card list for available themes
 func _populate_games() -> void:
 	if not selection_list:
 		return

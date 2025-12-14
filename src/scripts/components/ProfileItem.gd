@@ -1,3 +1,6 @@
+# Author: xschons00
+# Description: Profile list item showing avatar, stats, and selection controls.
+
 extends Control
 
 # Signals
@@ -41,6 +44,7 @@ func set_profile_data(user_obj: ProfileObject) -> void:
 	elo_label.text = str(user.elo)
 	coins_label.text = str(user.coins)
 	
+# Cache current config and mark which profile is active
 	_get_app_config()
 	if user.id == active_user.id:
 		self.color = SELECTED_COLOR
@@ -65,3 +69,6 @@ func _on_select_button_pressed() -> void:
 	
 func _on_delete_button_pressed() -> void:
 	emit_signal("profile_delete_signal", user)
+	
+func get_profile() -> ProfileObject:
+	return user

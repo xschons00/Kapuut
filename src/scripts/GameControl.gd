@@ -1,3 +1,6 @@
+# Author:
+# Description: Base UI controller for game scenes (background + navigation).
+
 class_name GameController
 extends Control
 
@@ -17,9 +20,11 @@ func _ready() -> void:
 
 	load_additional_data()
 	
+# Allow child scenes to extend initialization
 func load_additional_data():
 	pass
 			
+# Sets panel background texture
 func add_background(TexPath):
 	var Tex: Texture2D  = load(TexPath)
 	if Tex:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtt0pl0h650y2"]
 
-[ext_resource type="Script" uid="uid://bsdhfdfsjws6v" path="res://src/scripts/FlashcardsMainPage.gd" id="1_sem6h"]
+[ext_resource type="Script" uid="uid://bbpci1rgw5qa0" path="res://src/scripts/FlashcardsMainPage.gd" id="1_sem6h"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="2_aea2l"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="3_aea2l"]
 [ext_resource type="PackedScene" uid="uid://dw8i61om15lht" path="res://src/scenes/components/GameSelectionList.tscn" id="4_aea2l"]
@@ -54,11 +54,11 @@ text = "      Flashcards mode lets you practice quickly and effectively.
 [node name="GameSelectionWrapper" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.45
+anchor_top = 0.409
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 8.0
-offset_bottom = -76.0
+anchor_bottom = 0.883
+offset_top = 34.567993
+offset_bottom = 75.81598
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5l2re")
@@ -79,10 +79,9 @@ vertical_alignment = 1
 
 [node name="GameSelectionList" parent="GameSelectionWrapper" instance=ExtResource("4_aea2l")]
 layout_mode = 1
-offset_left = 14.0
-offset_top = -33.59999
-offset_right = -10.0
-offset_bottom = 34.00003
+offset_left = -2.0
+offset_top = -40.6
+offset_bottom = -49.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

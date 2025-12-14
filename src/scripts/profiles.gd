@@ -1,3 +1,6 @@
+# Author: xschons00
+# Description: Profile management page handling selection, edits, and unlocks.
+
 extends Control
 
 var config: AppConfigObject
@@ -13,12 +16,14 @@ signal user_changed_signal
 @onready var avatar_selection_scene = preload("res://src/scenes/components/AvatarSelection.tscn")
 @onready var background_selection_scene = preload("res://src/scenes/components/BackgroundSelection.tscn")
 #nodes
-@onready var profile_rect: TextureRect = $ColorRect/profile_rect
-@onready var background_rect: TextureRect = $ColorRect/background_rect
-@onready var user_label: Label = $HBoxContainer/user_label
-@onready var profile_container: VBoxContainer = $all_profiles/VBoxContainer
-@onready var line_edit: LineEdit = $LineEdit
-@onready var profile_pic_button: TextureRect = $profile_pic_button/TextureRect
+#detail area
+@onready var profile_rect: TextureRect = $HBoxContainer/detail_area/ColorRect/profile_rect
+@onready var background_rect: TextureRect = $HBoxContainer/detail_area/ColorRect/background_rect
+@onready var user_label: Label = $HBoxContainer/detail_area/HBoxContainer/user_label
+@onready var line_edit: LineEdit = $HBoxContainer/detail_area/LineEdit
+#profiles area
+@onready var profile_container: VBoxContainer = $HBoxContainer/profiles_area/all_profiles/VBoxContainer
+@onready var search_bar: LineEdit = $HBoxContainer/profiles_area/HBoxContainer/search_bar
 @onready var avatar_selection: Control
 @onready var background_selection: Control
 #@onready var menu: Control
@@ -46,6 +51,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+# Refreshes current data and UI elements
 func _refresh_page_content() -> void:
 	_refresh_models()
 	_refresh_profile_rect()
@@ -54,6 +60,7 @@ func _refresh_page_content() -> void:
 	_refresh_all_profiles()
 	
 	
+# Loads active user/config into memory
 func _refresh_models() -> void:
 	config = Globals.data_manager.app_config.get_config()
 	if config == null:
@@ -75,6 +82,7 @@ func _refresh_background_rect() -> void:
 func _refresh_user_label() -> void:
 	user_label.text = active_user.user_name
 	
+# Rebuilds profile list and applies search filter
 func _refresh_all_profiles() -> void:
 	var profiles: Array[ProfileObject] = Globals.data_manager.profiles.get_all_profiles()
 	for child in profile_container.get_children():
@@ -87,6 +95,7 @@ func _refresh_all_profiles() -> void:
 		profile_item.profile_selected_signal.connect(_on_profile_selected_signal)
 		profile_item.profile_delete_signal.connect(_on_profile_delete_signal)
 	profile_container.queue_sort()  # ensure container layout updates
+	_filter_profiles(search_bar.text)
 		
 func _on_avatar_unlocked_signal() -> void:
 	Globals.emit_signal("refresh_menu_signal")
@@ -118,7 +127,13 @@ func _on_new_button_pressed() -> void:
 	var new_profile = ProfileObject.new()
 	new_profile.user_name = "new player"
 	new_profile.profile_pic = Globals.default_profile_pic
-	Globals.data_manager.profiles.save_profile(new_profile)
+	new_profile.background_pic = Globals.default_profile_background
+
+	var new_id: String = Globals.data_manager.profiles.save_profile(new_profile)
+	config.user_id = new_id
+	Globals.data_manager.app_config.save_config(config)
+	Globals.emit_signal("refresh_menu_signal")
+	emit_signal("user_changed_signal")
 	_refresh_page_content()
 
 func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection
@@ -171,4 +186,19 @@ func _on_save_button_pressed() -> void: #save profile changes
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	_change_profile_name(new_text)
-		
+	
+func _on_search_bar_text_changed(new_text: String) -> void:
+	_filter_profiles(new_text)
+	
+func _filter_profiles(search_text: String) -> void:
+	var query := search_text.strip_edges().to_lower()
+
+	for profile_item in profile_container.get_children():
+		if not profile_item.has_method("get_profile"):
+			continue
+
+		var profile: ProfileObject = profile_item.get_profile()
+		var profile_name := profile.user_name.to_lower()
+
+		var matches := query.is_empty() or profile_name.contains(query)
+		profile_item.visible = matches

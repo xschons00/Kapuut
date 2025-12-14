@@ -57,13 +57,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bgfy3")
 
+[node name="SearchBar" type="LineEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 60.0
+offset_top = 2.0
+offset_right = -60.0
+offset_bottom = 34.0
+grow_horizontal = 2
+placeholder_text = "Search games"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 60.0
-offset_top = 12.0
+offset_top = 60.0
 offset_right = -60.0
 offset_bottom = -12.0
 grow_horizontal = 2
@@ -102,6 +113,8 @@ anchor_bottom = 0.5
 offset_left = -48.0
 offset_top = -28.0
 offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_okch8")
@@ -109,5 +122,6 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_y7qml")
 toggle_mode = true
 text = ">"
 
+[connection signal="text_changed" from="Panel/SearchBar" to="." method="_on_search_bar_text_changed"]
 [connection signal="pressed" from="Panel/PrevButton" to="." method="_on_prev_button_pressed"]
 [connection signal="pressed" from="Panel/NextButton" to="." method="_on_next_button_pressed"]

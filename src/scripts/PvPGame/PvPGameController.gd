@@ -1,3 +1,6 @@
+# Author:xjakubk00
+# Description: Controls PvP board flow, turn logic, and scoring.
+
 class_name PvPGame
 extends GameController
 
@@ -10,6 +13,7 @@ var P1 : String = Globals.data_manager.app_config.get_config().user_id
 var P2 : String =  Globals.data_manager.app_config.get_config().opponent
 var Player1Points: int = 0
 var Player2Points: int = 0
+var winner_coin_awarded: bool = false
 #buttons
 @onready
 var buttons:Array = [
@@ -26,9 +30,16 @@ $"Main/HFlowContainer4/9"
 ]
 
 func _on_ready():
+	randomize()
+	Globals.pvp_winner = 0
+	Globals.pvp_user_elo_gain = 0
+	Globals.pvp_opponent_elo_gain = 0
+	Globals.pvp_user_coins_gain = 0
+	Globals.pvp_opponent_coins_gain = 0
 	$Question.hide()
 	Start()
 
+# Initializes UI visibility or question depending on state
 func Start():
 	if Question == -1 : 
 		$Panel/Player1.visible = true
@@ -46,7 +57,6 @@ func Start():
 	else:
 		RefreshMain()
 		if game_status[Question] == 0:
-			Curr_Player = 2
 			BallPressed(Question)
 		if game_status[Question] == 1:
 			Curr_Player = 2
@@ -68,12 +78,26 @@ func BallPressed(index:int):
 	$Main.hide()
 	Start()
 
+# Updates board tiles, checks end-state, and colors selections
 func RefreshMain():
 	var index:int = 0
 	if not game_status.has(0):
 		var prof1 = Globals.data_manager.profiles.get_profile(P1).user_name
 		var prof2 = Globals.data_manager.profiles.get_profile(P2).user_name
 		Globals.score = str(prof1,"   ",prof2,"\n",Player1Points,"    /    ",Player2Points,)
+		Globals.pvp_user_elo_gain = Player1Points
+		Globals.pvp_opponent_elo_gain = Player2Points
+		Globals.pvp_user_coins_gain = 0
+		Globals.pvp_opponent_coins_gain = 0
+		if Player1Points > Player2Points:
+			Globals.pvp_winner = 1
+			Globals.pvp_user_coins_gain = 100
+		elif Player2Points > Player1Points:
+			Globals.pvp_winner = 2
+			Globals.pvp_opponent_coins_gain = 100
+		else:
+			Globals.pvp_winner = 0
+		_award_winner_coin()
 		get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPEnd.tscn")
 
 	for i in game_status:
@@ -94,19 +118,35 @@ func RefreshMain():
 			buttons[index].add_theme_stylebox_override("hover", stylebox_flat)
 		index+=1
 
+# Populates UI for the current question card
 func RefreshQuestion():
 	revelared = false
 	var questionData:Dictionary = data["Questions"][Question]
-	# add randomization to the answers
+	var answers := [
+		{"text": questionData["Correct"], "is_correct": true},
+		{"text": questionData["otherquestion1"], "is_correct": false},
+		{"text": questionData["otherquestion2"], "is_correct": false},
+		{"text": questionData["otherquestion3"], "is_correct": false},
+	]
+	answers.shuffle()
+	var answer_buttons := [
+		$Question/AnswerPanel/VBoxContainer/Answer1,
+		$Question/AnswerPanel/VBoxContainer/Answer2,
+		$Question/AnswerPanel/VBoxContainer/Answer3,
+		$Question/AnswerPanel/VBoxContainer/Answer4,
+	]
 	CorrectAnswer = 1
 	$Question/QuestionPanel/Question.text = questionData["Question"]
-	$Question/AnswerPanel/VBoxContainer/Answer1.text = questionData["Correct"]
-	$Question/AnswerPanel/VBoxContainer/Answer2.text = questionData["otherquestion1"]
-	$Question/AnswerPanel/VBoxContainer/Answer3.text = questionData["otherquestion2"]
-	$Question/AnswerPanel/VBoxContainer/Answer4.text = questionData["otherquestion3"]
+	for i in range(answers.size()):
+		var answer_button: Button = answer_buttons[i]
+		var answer_entry: Dictionary = answers[i]
+		answer_button.text = answer_entry["text"]
+		if answer_entry["is_correct"]:
+			CorrectAnswer = i + 1
 
 var revelared: bool = false
 
+# Processes chosen answer and updates score/turn
 func RevealAnswer(button: Button):
 	revelared = true
 	var stylebox_flat = StyleBoxFlat.new()
@@ -120,16 +160,20 @@ func RevealAnswer(button: Button):
 			add_point(P1)
 		else:
 			add_point(P2)
+		wrong = 0
 	else:
 		wrong +=1
 		if wrong == 2:
 			game_status[Question] = -1
 			wrong = 0
+		else:
+			# pass turn to the other player after a single wrong attempt
+			Curr_Player = 2 if Curr_Player == 1 else 1
 		stylebox_flat.bg_color = Color.RED
 	
 	button.add_theme_stylebox_override("normal", stylebox_flat)
 	button.add_theme_stylebox_override("hover", stylebox_flat)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	$Question.hide()
 	$Main.show()
 	button.remove_theme_stylebox_override("normal")
@@ -144,6 +188,23 @@ func add_point(player:String ):
 	else :
 		Player2Points+=1
 	Globals.data_manager.profiles.save_profile(PlayerObject)
+	
+func _award_winner_coin() -> void:
+	if winner_coin_awarded:
+		return
+	var winner_id := ""
+	if Globals.pvp_winner == 1:
+		winner_id = P1
+	elif Globals.pvp_winner == 2:
+		winner_id = P2
+	else:
+		return
+	var winner_profile: ProfileObject = Globals.data_manager.profiles.get_profile(winner_id)
+	if winner_profile == null:
+		return
+	winner_profile.coins += 100
+	Globals.data_manager.profiles.save_profile(winner_profile)
+	winner_coin_awarded = true
 	
 
 func _on_answer_1_button_down() -> void:
@@ -230,7 +291,7 @@ func _on_grid_container_ready() -> void:
 		if profile.id == config.user_id:
 			continue
 		var button := Button.new()
-		button.text = profile.user_name
+		button	.text = profile.user_name
 		button.toggle_mode = true
 		button.button_group = button_group
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -238,6 +299,7 @@ func _on_grid_container_ready() -> void:
 		container.add_child(button)
 		if profile.id == P2:
 			button.set_pressed_no_signal(true)
+	_update_opponent_buttons_style()
 	_update_start_button_state()
 
 func _on_opponent_selected(opponent_id: String) -> void:
@@ -245,9 +307,20 @@ func _on_opponent_selected(opponent_id: String) -> void:
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	config.opponent = opponent_id
 	Globals.data_manager.app_config.save_config(config)
+	_update_opponent_buttons_style()
 	_update_start_button_state()
 
 func _update_start_button_state() -> void:
 	var start_button: Button = get_node_or_null("Panel/Start")
 	if start_button:
 		start_button.disabled = P2 == ""
+
+func _update_opponent_buttons_style() -> void:
+	var container: GridContainer = get_node_or_null("Panel/ScrollContainer/GridContainer")
+	if container == null:
+		return
+	for child in container.get_children():
+		var button := child as Button
+		if button == null:
+			continue
+		button.modulate = Color(0.7, 0.7, 0.7) if button.button_pressed else Color(1, 1, 1)

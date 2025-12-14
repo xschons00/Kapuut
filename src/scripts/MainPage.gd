@@ -1,3 +1,6 @@
+# Author: xschons00
+# Description: Landing page wrapper that attaches the global menu.
+
 extends Control
 
 # Called when the node enters the scene tree for the first time.

@@ -1,3 +1,6 @@
+# Author:xjakubk00
+# Description: Displays opponent name in PvP screens.
+
 extends Label
 
 
