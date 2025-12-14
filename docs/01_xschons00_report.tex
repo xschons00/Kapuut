@@ -123,6 +123,14 @@ Vysvetlil som účel testu, neukázal som mu postup a požiadal som ho, aby nahl
 \end{itemize}
 
 \section{Zapracovanie pripomienok z kontrolnej prezentácie}
+\subsection{Pripomienky a úpravy [xschons00]}
+\subsection{Zapracovanie pripomienok}
+
+Na základe spätnej väzby získanej počas interných konzultácií a používateľského testovania boli do návrhu používateľského rozhrania zapracované viaceré úpravy.
+
+Jednou z hlavných zmien bolo \textbf{odstránenie zastaraného prístupu založeného na dialógových oknách}, ktoré boli pôvodne používané pri vytváraní a úprave používateľských profilov. Nahradený bol priamou interakciou priamo v rámci obrazovky, čo znižuje počet krokov potrebných na vykonanie jednotlivých úkonov.
+
+Zároveň došlo k \textbf{pridaniu nových interaktívnych prvkov}, ako sú ovládacie tlačidlá, vizuálne zvýraznenie aktívnych a odomknutých položiek, vyhľadávacie pole či dynamické reakcie rozhrania na používateľské vstupy. Tieto prvky zlepšujú orientáciu v aplikácii a poskytujú používateľovi okamžitú spätnú väzbu.
 
 \subsection{Pripomienky a úpravy [xjakubk00]}
 
@@ -135,7 +143,7 @@ Počas kontrolnej prezentácie zaznela pripomienka, že režim FlashCards pôsob
 \section{Príspevky autorov a interaktívna práca s dátami vo FE}
 \subsection{Príspevok [xschons00]}
 \begin{itemize}
-	\item Implementoval základné obrazovky a navigáciu: domovskú stránku (\texttt{src/scripts/MainPage.gd}) a globálne menu (\texttt{src/scripts/components/Menu.gd}), ktoré sa pripája na \texttt{Globals.data\_manager} a po signáli \texttt{refresh\_menu\_signal} obnovuje avatara, pozadie, mince a ELO priamo v UI.
+	\item Základné obrazovky a navigáciu: domovskú stránku (\texttt{src/scripts/MainPage.gd}) a globálne menu (\texttt{src/scripts/components/Menu.gd}), ktoré sa pripája na \texttt{Globals.data\_manager} a po signáli \texttt{refresh\_menu\_signal} obnovuje avatara, pozadie, mince a ELO priamo v UI.
 	\item Správa profilov (\texttt{src/scripts/profiles.gd}) – LineEdit a tlačidlá volajú \texttt{Globals.data\_manager.profiles} a \texttt{app\_config}, aby uložili meno, aktívny profil a jeho ID; zmeny emitujú \texttt{refresh\_menu\_signal} a okamžite prefarbujú/obnovujú zoznam profilov a detail panel.
 	\item Výber avatara/pozadia (\texttt{src/scripts/components/AvatarSelection.gd}, \texttt{src/scripts/components/BackgroundSelection.gd}) napojený na \texttt{src/scripts/components/UnlockButton.gd}: tlačidlo odčíta mince používateľa, uloží nový odomknutý item cez \texttt{profiles.save\_profile()} a komponent opätovne prekreslí grid a zvýrazní aktuálnu voľbu.
 	\item Úvodná obrazovka Flashcards (\texttt{src/scripts/FlashcardsMainPage.gd}) využíva \texttt{GameSelectionList} na zostavenie kariet tém z \texttt{GameThemeAccess}; preklik nastaví \texttt{Globals.GameTheme} a UI tak otvára priamo príslušnú scénu hry.
