@@ -9,6 +9,9 @@ var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 var menu: Control
 var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
 var score : String 
+var pvp_winner: int = 0 # 0 = tie, 1 = user, 2 = opponent
+var flash_known_count: int = 0
+var flash_total_questions: int = 0
 var greyscale_shader: Shader = preload("res://assets/shaders/greyscale.gdshader")
 var greyscale: ShaderMaterial
 

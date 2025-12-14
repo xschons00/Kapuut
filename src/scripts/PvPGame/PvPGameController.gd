@@ -26,6 +26,7 @@ $"Main/HFlowContainer4/9"
 ]
 
 func _on_ready():
+	Globals.pvp_winner = 0
 	$Question.hide()
 	Start()
 
@@ -46,7 +47,6 @@ func Start():
 	else:
 		RefreshMain()
 		if game_status[Question] == 0:
-			Curr_Player = 2
 			BallPressed(Question)
 		if game_status[Question] == 1:
 			Curr_Player = 2
@@ -74,6 +74,12 @@ func RefreshMain():
 		var prof1 = Globals.data_manager.profiles.get_profile(P1).user_name
 		var prof2 = Globals.data_manager.profiles.get_profile(P2).user_name
 		Globals.score = str(prof1,"   ",prof2,"\n",Player1Points,"    /    ",Player2Points,)
+		if Player1Points > Player2Points:
+			Globals.pvp_winner = 1
+		elif Player2Points > Player1Points:
+			Globals.pvp_winner = 2
+		else:
+			Globals.pvp_winner = 0
 		get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPEnd.tscn")
 
 	for i in game_status:
@@ -120,16 +126,20 @@ func RevealAnswer(button: Button):
 			add_point(P1)
 		else:
 			add_point(P2)
+		wrong = 0
 	else:
 		wrong +=1
 		if wrong == 2:
 			game_status[Question] = -1
 			wrong = 0
+		else:
+			# pass turn to the other player after a single wrong attempt
+			Curr_Player = 2 if Curr_Player == 1 else 1
 		stylebox_flat.bg_color = Color.RED
 	
 	button.add_theme_stylebox_override("normal", stylebox_flat)
 	button.add_theme_stylebox_override("hover", stylebox_flat)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	$Question.hide()
 	$Main.show()
 	button.remove_theme_stylebox_override("normal")
