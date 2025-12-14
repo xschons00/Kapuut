@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Handles unlocking avatar/background items with coins.
 
 extends Button

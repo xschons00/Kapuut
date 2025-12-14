@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Builds flashcard game selection page with theme filtering.
 
 extends Control

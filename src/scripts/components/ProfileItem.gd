@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Profile list item showing avatar, stats, and selection controls.
 
 extends Control

@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Global setup, default resources, and helper utilities.
 
 extends Node

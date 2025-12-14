@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Profile management page handling selection, edits, and unlocks.
 
 extends Control

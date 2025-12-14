@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Landing page wrapper that attaches the global menu.
 
 extends Control

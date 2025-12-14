@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: Global menu bar showing profile info and navigation actions.
 
 extends Control

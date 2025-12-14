@@ -1,4 +1,4 @@
-# Author:
+# Author: xschons00
 # Description: UI for selecting and unlocking avatar images.
 
 extends Control
