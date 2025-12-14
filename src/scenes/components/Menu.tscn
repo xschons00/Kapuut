@@ -115,7 +115,6 @@ offset_bottom = 106.0
 
 [node name="username_label" type="Label" parent="menu_panel/profile_area/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 theme = ExtResource("4_32nyv")
 theme_override_font_sizes/font_size = 16
 text = "user name"

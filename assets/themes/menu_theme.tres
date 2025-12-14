@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://8entfw1pqoh0"]
 
-[ext_resource type="FontFile" uid="uid://q4s5so6vuvvt" path="res://assets/fonts/Super Dream.ttf" id="1_tf8oi"]
+[ext_resource type="FontFile" uid="uid://csdb2j3st4jta" path="res://assets/fonts/old_school_united_stencil.ttf" id="1_3jc4x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf8oi"]
 bg_color = Color(0.6, 0.6, 0.6, 0.49803922)
@@ -28,6 +28,6 @@ Button/styles/normal = SubResource("StyleBoxFlat_hqjoi")
 Button/styles/pressed = SubResource("StyleBoxFlat_3jc4x")
 HBoxContainer/constants/separation = 69
 Label/colors/font_color = Color(0, 0, 0, 1)
-Label/font_sizes/font_size = 28
-Label/fonts/font = ExtResource("1_tf8oi")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_3jc4x")
 Panel/styles/panel = SubResource("StyleBoxFlat_vhblc")

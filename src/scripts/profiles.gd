@@ -16,12 +16,14 @@ signal user_changed_signal
 @onready var avatar_selection_scene = preload("res://src/scenes/components/AvatarSelection.tscn")
 @onready var background_selection_scene = preload("res://src/scenes/components/BackgroundSelection.tscn")
 #nodes
-@onready var profile_rect: TextureRect = $detail_area/ColorRect/profile_rect
-@onready var background_rect: TextureRect = $detail_area/ColorRect/background_rect
-@onready var user_label: Label = $detail_area/HBoxContainer/user_label
-@onready var profile_container: VBoxContainer = $profiles_area/all_profiles/VBoxContainer
-@onready var line_edit: LineEdit = $detail_area/LineEdit
-@onready var search_bar: LineEdit = $profiles_area/HBoxContainer/search_bar
+#detail area
+@onready var profile_rect: TextureRect = $HBoxContainer/detail_area/ColorRect/profile_rect
+@onready var background_rect: TextureRect = $HBoxContainer/detail_area/ColorRect/background_rect
+@onready var user_label: Label = $HBoxContainer/detail_area/HBoxContainer/user_label
+@onready var line_edit: LineEdit = $HBoxContainer/detail_area/LineEdit
+#profiles area
+@onready var profile_container: VBoxContainer = $HBoxContainer/profiles_area/all_profiles/VBoxContainer
+@onready var search_bar: LineEdit = $HBoxContainer/profiles_area/HBoxContainer/search_bar
 @onready var avatar_selection: Control
 @onready var background_selection: Control
 #@onready var menu: Control
@@ -126,7 +128,12 @@ func _on_new_button_pressed() -> void:
 	new_profile.user_name = "new player"
 	new_profile.profile_pic = Globals.default_profile_pic
 	new_profile.background_pic = Globals.default_profile_background
-	Globals.data_manager.profiles.save_profile(new_profile)
+
+	var new_id: String = Globals.data_manager.profiles.save_profile(new_profile)
+	config.user_id = new_id
+	Globals.data_manager.app_config.save_config(config)
+	Globals.emit_signal("refresh_menu_signal")
+	emit_signal("user_changed_signal")
 	_refresh_page_content()
 
 func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection

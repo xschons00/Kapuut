@@ -38,7 +38,7 @@ func get_all_profiles() -> Array[ProfileObject]:
 	return profile_arr
 
 # Saves profile and assigns id when missing
-func save_profile(profile: ProfileObject) -> void:
+func save_profile(profile: ProfileObject) -> String:
 	profiles = _get_section("profiles")
 	if profile.id == "NOT_SET": #new profile, set propper ID
 		profile.id = str(profile_cnt)
@@ -46,6 +46,7 @@ func save_profile(profile: ProfileObject) -> void:
 		
 	profiles[profile.id] = profile.to_dict()
 	_save_section("profiles", profiles)
+	return profile.id
 	
 # Deletes a profile by object and returns success flag
 func delete_profile(profile: ProfileObject) -> bool:

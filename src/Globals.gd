@@ -37,42 +37,62 @@ func _ready() -> void:
 	
 # Creates and attaches menu singleton if missing
 func _init_menu():
-	if menu == null:
-		var inst = menu_scene.instantiate()
-		inst.name = "Menu"
-		menu = inst
-		get_tree().root.add_child(menu)
-		menu.show()
+	if menu != null:
+		return
+	menu = menu_scene.instantiate()
+	menu.name = "Menu"
 
 
 func add_menu(target: Node) -> Node:
 	if menu == null:
 		_init_menu()
-	var current_parent = menu.get_parent()
-	if current_parent and current_parent != target:
-		current_parent.remove_child(menu)
-	if menu.get_parent() != target:
-		target.add_child(menu)
+	if menu.get_parent() == target:
+		return menu
+	var current_parent := menu.get_parent()
+	if current_parent:
+		current_parent.remove_child.call_deferred(menu)
+
+	target.add_child.call_deferred(menu)
+	menu.show.call_deferred()
 	return menu
 		
 # Shows a short-lived warning popup
 func show_warning(text: String):
-	var popup = PopupPanel.new()
+	var popup := PopupPanel.new()
 	popup.name = "WarningPopup"
 	popup.set_exclusive(true)
-	#popup.modulate = Color(1, 0, 0)
-	
-	var label = Label.new()
+
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.12, 0.12, 0.12, 1.0) # solid background
+	style.border_color = Color("ff8419")
+
+	style.border_width_left = 3
+	style.border_width_right = 3
+	style.border_width_top = 3
+	style.border_width_bottom = 3
+
+	style.corner_radius_top_left = 8
+	style.corner_radius_top_right = 8
+	style.corner_radius_bottom_left = 8
+	style.corner_radius_bottom_right = 8
+
+	popup.add_theme_stylebox_override("panel", style)
+
+	var label := Label.new()
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
 	popup.add_child(label)
 	get_tree().root.add_child(popup)
+
 	popup.popup_centered(Vector2(500, 100))
 	await get_tree().create_timer(1.0).timeout
 	popup.queue_free()
+
 	
 # Toggle greyscale material on texture rects
 func set_greyscale(rect: TextureRect, enabled: bool = true) -> void:
