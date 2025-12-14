@@ -170,7 +170,7 @@ func _award_winner_coin() -> void:
 	var winner_profile: ProfileObject = Globals.data_manager.profiles.get_profile(winner_id)
 	if winner_profile == null:
 		return
-	winner_profile.coins += 1
+	winner_profile.coins += 100
 	Globals.data_manager.profiles.save_profile(winner_profile)
 	winner_coin_awarded = true
 	
