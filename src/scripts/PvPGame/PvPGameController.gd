@@ -10,6 +10,7 @@ var P1 : String = Globals.data_manager.app_config.get_config().user_id
 var P2 : String =  Globals.data_manager.app_config.get_config().opponent
 var Player1Points: int = 0
 var Player2Points: int = 0
+var winner_coin_awarded: bool = false
 #buttons
 @onready
 var buttons:Array = [
@@ -80,6 +81,7 @@ func RefreshMain():
 			Globals.pvp_winner = 2
 		else:
 			Globals.pvp_winner = 0
+		_award_winner_coin()
 		get_tree().change_scene_to_file("res://src/scenes/PvPGame/PvPEnd.tscn")
 
 	for i in game_status:
@@ -154,6 +156,23 @@ func add_point(player:String ):
 	else :
 		Player2Points+=1
 	Globals.data_manager.profiles.save_profile(PlayerObject)
+	
+func _award_winner_coin() -> void:
+	if winner_coin_awarded:
+		return
+	var winner_id := ""
+	if Globals.pvp_winner == 1:
+		winner_id = P1
+	elif Globals.pvp_winner == 2:
+		winner_id = P2
+	else:
+		return
+	var winner_profile: ProfileObject = Globals.data_manager.profiles.get_profile(winner_id)
+	if winner_profile == null:
+		return
+	winner_profile.coins += 1
+	Globals.data_manager.profiles.save_profile(winner_profile)
+	winner_coin_awarded = true
 	
 
 func _on_answer_1_button_down() -> void:
