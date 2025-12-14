@@ -27,8 +27,12 @@ script = ExtResource("1_sfuya")
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 182.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 176.0
+offset_bottom = -6.3955994
 grow_vertical = 2
+theme = ExtResource("3_40bxp")
 color = Color(0.7108755, 0.37126333, 0, 1)
 
 [node name="background_rect" type="TextureRect" parent="ColorRect"]
