@@ -33,22 +33,23 @@ func _ready() -> void:
 	
 	
 func _init_menu():
-	if menu == null:
-		var inst = menu_scene.instantiate()
-		inst.name = "Menu"
-		menu = inst
-		get_tree().root.add_child(menu)
-		menu.show()
+	if menu != null:
+		return
+	menu = menu_scene.instantiate()
+	menu.name = "Menu"
 
 
 func add_menu(target: Node) -> Node:
 	if menu == null:
 		_init_menu()
-	var current_parent = menu.get_parent()
-	if current_parent and current_parent != target:
-		current_parent.remove_child(menu)
-	if menu.get_parent() != target:
-		target.add_child(menu)
+	if menu.get_parent() == target:
+		return menu
+	var current_parent := menu.get_parent()
+	if current_parent:
+		current_parent.remove_child.call_deferred(menu)
+
+	target.add_child.call_deferred(menu)
+	menu.show.call_deferred()
 	return menu
 		
 func show_warning(text: String):
