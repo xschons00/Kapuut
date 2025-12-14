@@ -30,7 +30,12 @@ $"Main/HFlowContainer4/9"
 ]
 
 func _on_ready():
+	randomize()
 	Globals.pvp_winner = 0
+	Globals.pvp_user_elo_gain = 0
+	Globals.pvp_opponent_elo_gain = 0
+	Globals.pvp_user_coins_gain = 0
+	Globals.pvp_opponent_coins_gain = 0
 	$Question.hide()
 	Start()
 
@@ -80,10 +85,16 @@ func RefreshMain():
 		var prof1 = Globals.data_manager.profiles.get_profile(P1).user_name
 		var prof2 = Globals.data_manager.profiles.get_profile(P2).user_name
 		Globals.score = str(prof1,"   ",prof2,"\n",Player1Points,"    /    ",Player2Points,)
+		Globals.pvp_user_elo_gain = Player1Points
+		Globals.pvp_opponent_elo_gain = Player2Points
+		Globals.pvp_user_coins_gain = 0
+		Globals.pvp_opponent_coins_gain = 0
 		if Player1Points > Player2Points:
 			Globals.pvp_winner = 1
+			Globals.pvp_user_coins_gain = 100
 		elif Player2Points > Player1Points:
 			Globals.pvp_winner = 2
+			Globals.pvp_opponent_coins_gain = 100
 		else:
 			Globals.pvp_winner = 0
 		_award_winner_coin()
@@ -111,13 +122,27 @@ func RefreshMain():
 func RefreshQuestion():
 	revelared = false
 	var questionData:Dictionary = data["Questions"][Question]
-	# add randomization to the answers
+	var answers := [
+		{"text": questionData["Correct"], "is_correct": true},
+		{"text": questionData["otherquestion1"], "is_correct": false},
+		{"text": questionData["otherquestion2"], "is_correct": false},
+		{"text": questionData["otherquestion3"], "is_correct": false},
+	]
+	answers.shuffle()
+	var answer_buttons := [
+		$Question/AnswerPanel/VBoxContainer/Answer1,
+		$Question/AnswerPanel/VBoxContainer/Answer2,
+		$Question/AnswerPanel/VBoxContainer/Answer3,
+		$Question/AnswerPanel/VBoxContainer/Answer4,
+	]
 	CorrectAnswer = 1
 	$Question/QuestionPanel/Question.text = questionData["Question"]
-	$Question/AnswerPanel/VBoxContainer/Answer1.text = questionData["Correct"]
-	$Question/AnswerPanel/VBoxContainer/Answer2.text = questionData["otherquestion1"]
-	$Question/AnswerPanel/VBoxContainer/Answer3.text = questionData["otherquestion2"]
-	$Question/AnswerPanel/VBoxContainer/Answer4.text = questionData["otherquestion3"]
+	for i in range(answers.size()):
+		var answer_button: Button = answer_buttons[i]
+		var answer_entry: Dictionary = answers[i]
+		answer_button.text = answer_entry["text"]
+		if answer_entry["is_correct"]:
+			CorrectAnswer = i + 1
 
 var revelared: bool = false
 
@@ -266,7 +291,7 @@ func _on_grid_container_ready() -> void:
 		if profile.id == config.user_id:
 			continue
 		var button := Button.new()
-		button.text = profile.user_name
+		button	.text = profile.user_name
 		button.toggle_mode = true
 		button.button_group = button_group
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -274,6 +299,7 @@ func _on_grid_container_ready() -> void:
 		container.add_child(button)
 		if profile.id == P2:
 			button.set_pressed_no_signal(true)
+	_update_opponent_buttons_style()
 	_update_start_button_state()
 
 func _on_opponent_selected(opponent_id: String) -> void:
@@ -281,9 +307,20 @@ func _on_opponent_selected(opponent_id: String) -> void:
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	config.opponent = opponent_id
 	Globals.data_manager.app_config.save_config(config)
+	_update_opponent_buttons_style()
 	_update_start_button_state()
 
 func _update_start_button_state() -> void:
 	var start_button: Button = get_node_or_null("Panel/Start")
 	if start_button:
 		start_button.disabled = P2 == ""
+
+func _update_opponent_buttons_style() -> void:
+	var container: GridContainer = get_node_or_null("Panel/ScrollContainer/GridContainer")
+	if container == null:
+		return
+	for child in container.get_children():
+		var button := child as Button
+		if button == null:
+			continue
+		button.modulate = Color(0.7, 0.7, 0.7) if button.button_pressed else Color(1, 1, 1)

@@ -10,7 +10,10 @@ extends Label
 
 
 func _ready() -> void:
-	text = str("SCORE\n", Globals.score)
+	var score_text := str("SCORE\n", Globals.score)
+	var elo_text := str("\nELO +", Globals.pvp_user_elo_gain, " / +", Globals.pvp_opponent_elo_gain)
+	var coin_text := str("\nCoins +", Globals.pvp_user_coins_gain, " / +", Globals.pvp_opponent_coins_gain)
+	text = score_text + elo_text + coin_text
 	_set_profile_pics()
 	_highlight_winner()
 

@@ -520,17 +520,69 @@ func _create_geography_theme() -> GameThemeObject:
 
 	return theme
 	
-# Creates test user and config for development
+# Creates test users and config for development
 func test_seed() -> void:
-	var user1 = ProfileObject.new()
-	user1.user_name = "John Doe"
-	user1.profile_pic = Globals.default_profile_pic
-	user1.background_pic = Globals.default_profile_background
-	user1.elo = 1024
-	user1.coins = 2000
-	Globals.data_manager.profiles.save_profile(user1)
-	
-	
+	var profile_seeds := [
+		{
+			"user_name": "John Doe",
+			"profile_pic": Globals.default_profile_pic,
+			"background_pic": Globals.default_profile_background,
+			"elo": 1024,
+			"coins": 2000
+		},
+		{
+			"user_name": "Ava Sparks",
+			"profile_pic": "res://assets/avatars/avatar2.png",
+			"background_pic": "res://assets/backgrounds/forest_bg.jpg",
+			"elo": 980,
+			"coins": 1500
+		},
+		{
+			"user_name": "Mila Rivers",
+			"profile_pic": "res://assets/avatars/avatar3.png",
+			"background_pic": "res://assets/backgrounds/space_bg.jpg",
+			"elo": 940,
+			"coins": 1200
+		},
+		{
+			"user_name": "Leo Stone",
+			"profile_pic": "res://assets/avatars/avatar4.png",
+			"background_pic": "res://assets/backgrounds/red_bg.png",
+			"elo": 910,
+			"coins": 900
+		},
+		{
+			"user_name": "Zara Quinn",
+			"profile_pic": "res://assets/avatars/avatar5.png",
+			"background_pic": "res://assets/backgrounds/mountain_bg.png",
+			"elo": 970,
+			"coins": 800
+		},
+		{
+			"user_name": "Finn Wilder",
+			"profile_pic": "res://assets/avatars/avatar6.png",
+			"background_pic": "res://assets/backgrounds/valley_bg.png",
+			"elo": 930,
+			"coins": 600
+		}
+	]
+
+	var primary_user_id := ""
+	for seed in profile_seeds:
+		var profile_id := _create_profile_from_seed(seed)
+		if primary_user_id == "":
+			primary_user_id = profile_id
+
 	var config = AppConfigObject.new()
-	config.user_id = user1.id
+	config.user_id = primary_user_id
 	Globals.data_manager.app_config.save_config(config)
+
+
+func _create_profile_from_seed(seed: Dictionary) -> String:
+	var profile := ProfileObject.new()
+	profile.user_name = seed.get("user_name", "player")
+	profile.profile_pic = seed.get("profile_pic", Globals.default_profile_pic)
+	profile.background_pic = seed.get("background_pic", Globals.default_profile_background)
+	profile.elo = seed.get("elo", 0)
+	profile.coins = seed.get("coins", 0)
+	return Globals.data_manager.profiles.save_profile(profile)
