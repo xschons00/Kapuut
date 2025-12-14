@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr4mhw04gii4p"]
+[gd_scene load_steps=11 format=3 uid="uid://cr4mhw04gii4p"]
 
 [ext_resource type="Script" uid="uid://cbklyavky3yw6" path="res://src/scripts/Profiles.gd" id="1_1rjmx"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_nqd4w"]
 [ext_resource type="Texture2D" uid="uid://c7iwdbw7g8mb8" path="res://assets/icons/edit-image.png" id="3_1rjmx"]
 [ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="3_frq67"]
 [ext_resource type="Texture2D" uid="uid://blnemh1ko4tkh" path="res://assets/icons/change_avatar.png" id="5_lpqd2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frq67"]
+bg_color = Color(0.92156863, 1, 0.92156863, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_1rjmx"]
 variation_embolden = 0.54
@@ -37,6 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_nqd4w")
+theme_override_styles/panel = SubResource("StyleBoxFlat_frq67")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
