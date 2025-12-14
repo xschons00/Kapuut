@@ -36,6 +36,7 @@ offset_right = -10.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_daily")
 
 [node name="Header" type="VBoxContainer" parent="."]
@@ -67,11 +68,10 @@ horizontal_alignment = 1
 
 [node name="CollapsedClickArea" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.78000003
+offset_bottom = 100.0
 grow_horizontal = 2
-grow_vertical = 2
 focus_mode = 0
 flat = true
 
@@ -173,7 +173,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="CollapsedClickArea" to="." method="_on_click_area_pressed"]
 [connection signal="pressed" from="ExpandedContent/ClaimButton" to="." method="_on_claim_button_pressed"]
-[connection signal="gui_input" from="ClickDetector" to="." method="_on_click_detector_input"]

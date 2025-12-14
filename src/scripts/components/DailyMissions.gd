@@ -91,11 +91,6 @@ func _on_click_area_pressed() -> void:
 	else:
 		_expand()
 
-func _on_click_detector_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			_collapse()
-
 func _expand() -> void:
 	if is_expanded:
 		return
