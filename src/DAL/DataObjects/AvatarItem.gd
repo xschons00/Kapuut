@@ -1,3 +1,6 @@
+# Author:
+# Description: Represents unlockable avatar or background item.
+
 class_name AvatarItem
 extends DataObject
 
@@ -6,12 +9,14 @@ var item_path: String
 var price: int
 var is_unlocked: bool
 
+# Serializes item metadata
 func to_dict() -> Dictionary:
 	return {"item_name" : item_name,
 			"item_path" : item_path,
 			"price" 	: price,
 			}
 
+# Rebuilds item object from saved dictionary
 static func from_dict(obj_id: String, dict: Dictionary) -> AvatarItem:
 	var obj = AvatarItem.new()
 	obj.id = obj_id

@@ -1,3 +1,6 @@
+# Author:
+# Description: Flashcard gameplay controller for navigating questions.
+
 class_name FlashCards
 extends GameController
 
@@ -8,6 +11,7 @@ var switch:bool = true
 var known_count: int = 0
 var known_questions: Array = []
 
+# Load deck data and initialize counters/UI
 func load_additional_data():
 	num_of_questions = Gtheme.Questions.size()
 	Globals.flash_total_questions = num_of_questions
@@ -39,6 +43,7 @@ func Next_question():
 		self.Refresh()
 		_update_back_button_visibility()
 
+# Allows stepping backwards when possible
 func Previous_question() -> void:
 	if curr_Question <= 0:
 		return
@@ -67,6 +72,7 @@ func _update_back_button_visibility() -> void:
 		back_button.visible = can_go_back
 		back_button.disabled = not can_go_back
 	
+# Refresh flashcard text for current question
 func Refresh():
 	var questions: Array = data["Questions"]
 	var flash_card: Button = get_node_or_null("Panel/FlashCard")

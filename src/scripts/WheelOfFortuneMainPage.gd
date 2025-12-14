@@ -1,3 +1,6 @@
+# Author:
+# Description: Wheel of Fortune game flow, UI wiring, and persistence.
+
 extends Control
 
 # Helper class for drawing circles

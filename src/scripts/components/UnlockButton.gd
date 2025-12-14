@@ -1,3 +1,6 @@
+# Author:
+# Description: Handles unlocking avatar/background items with coins.
+
 extends Button
 # Signals
 signal item_unlock_signal(item: AvatarItem)
@@ -18,6 +21,7 @@ func set_item_data(item_obj: AvatarItem) -> void:
 	self.text = "unlock for:\n%d coins" % item_obj.price
 
 
+# Deducts coins and unlocks the selected item
 func _on_pressed() -> void:
 	var config: AppConfigObject = Globals.data_manager.app_config.get_config()
 	if	config == null:

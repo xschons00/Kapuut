@@ -1,3 +1,6 @@
+# Author:
+# Description: Base class for data access objects handling JSON persistence.
+
 #base class for each data access
 
 class_name DataAccess
@@ -6,6 +9,7 @@ extends Node
 const SAVE_PATH := "res://src/DAL/data.json"
 var data: Dictionary = {}
 
+# Reads JSON from disk into the shared data dictionary
 func _load_data() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
 		var f = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -14,6 +18,7 @@ func _load_data() -> void:
 	if typeof(data) != TYPE_DICTIONARY:
 		data = {}
 
+# Saves the current dictionary to disk
 func _save_data() -> void:
 	var f = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	f.store_string(JSON.stringify(data, "\t"))

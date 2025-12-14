@@ -1,3 +1,6 @@
+# Author:
+# Description: Profile management page handling selection, edits, and unlocks.
+
 extends Control
 
 var config: AppConfigObject
@@ -46,6 +49,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+# Refreshes current data and UI elements
 func _refresh_page_content() -> void:
 	_refresh_models()
 	_refresh_profile_rect()
@@ -54,6 +58,7 @@ func _refresh_page_content() -> void:
 	_refresh_all_profiles()
 	
 	
+# Loads active user/config into memory
 func _refresh_models() -> void:
 	config = Globals.data_manager.app_config.get_config()
 	if config == null:
@@ -75,6 +80,7 @@ func _refresh_background_rect() -> void:
 func _refresh_user_label() -> void:
 	user_label.text = active_user.user_name
 	
+# Rebuilds profile list and applies search filter
 func _refresh_all_profiles() -> void:
 	var profiles: Array[ProfileObject] = Globals.data_manager.profiles.get_all_profiles()
 	for child in profile_container.get_children():

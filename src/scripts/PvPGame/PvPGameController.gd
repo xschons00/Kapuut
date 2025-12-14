@@ -1,3 +1,6 @@
+# Author:
+# Description: Controls PvP board flow, turn logic, and scoring.
+
 class_name PvPGame
 extends GameController
 
@@ -31,6 +34,7 @@ func _on_ready():
 	$Question.hide()
 	Start()
 
+# Initializes UI visibility or question depending on state
 func Start():
 	if Question == -1 : 
 		$Panel/Player1.visible = true
@@ -69,6 +73,7 @@ func BallPressed(index:int):
 	$Main.hide()
 	Start()
 
+# Updates board tiles, checks end-state, and colors selections
 func RefreshMain():
 	var index:int = 0
 	if not game_status.has(0):
@@ -102,6 +107,7 @@ func RefreshMain():
 			buttons[index].add_theme_stylebox_override("hover", stylebox_flat)
 		index+=1
 
+# Populates UI for the current question card
 func RefreshQuestion():
 	revelared = false
 	var questionData:Dictionary = data["Questions"][Question]
@@ -115,6 +121,7 @@ func RefreshQuestion():
 
 var revelared: bool = false
 
+# Processes chosen answer and updates score/turn
 func RevealAnswer(button: Button):
 	revelared = true
 	var stylebox_flat = StyleBoxFlat.new()

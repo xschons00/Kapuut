@@ -1,3 +1,6 @@
+# Author:
+# Description: Scrollable list for game selection cards with search and arrows.
+
 class_name GameSelectionList
 extends Control
 
@@ -15,10 +18,12 @@ var _all_items: Array = []
 func _ready() -> void:
 	_update_arrows()
 
+# Accepts items and renders cards
 func set_items(items: Array) -> void:
 	_all_items = items
 	_render_items(items)
 
+# Filters cards by name substring
 func filter_items(query: String) -> void:
 	if _all_items.is_empty():
 		return

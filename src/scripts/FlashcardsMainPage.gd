@@ -1,3 +1,6 @@
+# Author:
+# Description: Builds flashcard game selection page with theme filtering.
+
 extends Control
 
 
@@ -9,6 +12,7 @@ func _ready() -> void:
 	Globals.add_menu(self)
 	_populate_games()
 
+# Populate selection list with available themes
 func _populate_games() -> void:
 	if not selection_list:
 		return

@@ -1,3 +1,6 @@
+# Author:
+# Description: Player profile data and serialization helpers.
+
 class_name ProfileObject
 extends DataObject
 
@@ -13,6 +16,7 @@ func _init() -> void: #setting propper id is handled in data access
 	id = "NOT_SET"
 	unlocked_items = []
 
+# Serializes profile and unlocked items
 func to_dict() -> Dictionary:
 	var tmp_array: Array = []
 	for item in unlocked_items:
@@ -26,6 +30,7 @@ func to_dict() -> Dictionary:
 			"unlocked_items" : tmp_array
 			}
 
+# Builds profile object from saved dictionary
 static func from_dict(obj_id: String, dict: Dictionary) -> ProfileObject:
 	var obj = ProfileObject.new()
 	obj.id = obj_id

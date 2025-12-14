@@ -1,15 +1,21 @@
+# Author:
+# Description: Seeds default profiles, themes, and app config.
+
 class_name DataSeed
 extends Node
 
-static var _instance: DataSeed
+static var _instance: DataSeed	# Singleton instance reference
 
 
+# Returns the singleton instance of DataSeed
 static func get_instance() -> DataSeed:
 	if _instance == null:
 		_instance = DataSeed.new()
 	return _instance
 	
+# Creates default user, themes, and app configuration
 func seed() -> void:
+	# Create default user profile
 	var default_user = ProfileObject.new()
 	default_user.user_name = "player 1"
 	default_user.profile_pic = Globals.default_profile_pic
@@ -30,10 +36,12 @@ func seed() -> void:
 	var geography_theme := _create_geography_theme()
 	Globals.data_manager.themes.save_Theme("GEOGRAPHY", geography_theme)
 
+	# Save app configuration for the default user
 	var config = AppConfigObject.new()
 	config.user_id = default_user.id
 	Globals.data_manager.app_config.save_config(config)
 
+# Creates Harry Potter themed questions
 func _create_harry_potter_theme() -> GameThemeObject:
 	var hp_game_data := GameThemeObject.new()
 	hp_game_data.img = "res://assets/FlashCardBackgrounds/danodrevo.jpg"
@@ -123,6 +131,7 @@ func _create_harry_potter_theme() -> GameThemeObject:
 
 	return hp_game_data
 
+# Creates Science themed questions
 func _create_science_theme() -> GameThemeObject:
 	var theme := GameThemeObject.new()
 	theme.img = "res://assets/icons/icon.svg"
@@ -381,6 +390,7 @@ func _create_history_theme() -> GameThemeObject:
 
 	return theme
 
+# Creates Geography themed questions
 func _create_geography_theme() -> GameThemeObject:
 	var theme := GameThemeObject.new()
 	theme.img = "res://assets/icons/user.png"
@@ -510,6 +520,7 @@ func _create_geography_theme() -> GameThemeObject:
 
 	return theme
 	
+# Creates test user and config for development
 func test_seed() -> void:
 	var user1 = ProfileObject.new()
 	user1.user_name = "John Doe"

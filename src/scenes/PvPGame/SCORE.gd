@@ -1,3 +1,6 @@
+# Author:
+# Description: Shows PvP result text, avatars, and highlights winner.
+
 extends Label
 
 @onready var user_avatar: TextureRect = get_node_or_null("../UserProfilePic")

@@ -1,3 +1,6 @@
+# Author:
+# Description: Global setup, default resources, and helper utilities.
+
 extends Node
 # global constants and utilities 
 
@@ -32,6 +35,7 @@ func _ready() -> void:
 	greyscale.shader = greyscale_shader
 	
 	
+# Creates and attaches menu singleton if missing
 func _init_menu():
 	if menu == null:
 		var inst = menu_scene.instantiate()
@@ -51,6 +55,7 @@ func add_menu(target: Node) -> Node:
 		target.add_child(menu)
 	return menu
 		
+# Shows a short-lived warning popup
 func show_warning(text: String):
 	var popup = PopupPanel.new()
 	popup.name = "WarningPopup"
@@ -69,6 +74,7 @@ func show_warning(text: String):
 	await get_tree().create_timer(1.0).timeout
 	popup.queue_free()
 	
+# Toggle greyscale material on texture rects
 func set_greyscale(rect: TextureRect, enabled: bool = true) -> void:
 	if enabled:
 		rect.material = greyscale

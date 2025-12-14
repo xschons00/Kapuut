@@ -1,12 +1,17 @@
+# Author:
+# Description: Stores current user and opponent references for the app.
+
 class_name AppConfigObject
 extends DataObject
 
 var user_id: String
 var opponent: String = ""
 
+# Converts config to savable dictionary
 func to_dict() -> Dictionary:
 	return {"user_id": user_id,"opponent": opponent}
 
+# Rehydrates config from dictionary
 static func from_dict(obj_id: String, dict: Dictionary) -> AppConfigObject:
 	var obj = AppConfigObject.new()
 	obj.id = obj_id

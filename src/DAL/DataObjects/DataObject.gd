@@ -1,3 +1,6 @@
+# Author:
+# Description: Generic parent class for all data objects.
+
 # generic parent class for all data objects
 
 class_name DataObject
@@ -5,6 +8,7 @@ extends RefCounted
 
 var id: String
 
+# Override to serialize child properties
 func to_dict() -> Dictionary:
 	return {}
 

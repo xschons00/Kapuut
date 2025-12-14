@@ -1,3 +1,6 @@
+# Author:
+# Description: Holds quiz question text with correct and alternate answers.
+
 class_name QuestionObject
 extends DataObject
 
@@ -12,6 +15,7 @@ var otherquestion3:String
 func _init() -> void: #setting propper id is handled in data access
 	id = "NOT_SET"
 
+# Serializes question content
 func to_dict() -> Dictionary:
 	return {"Question" : Question,
 			"Correct" : Correct,
@@ -20,6 +24,7 @@ func to_dict() -> Dictionary:
 			"otherquestion3" : otherquestion3
 			}
 
+# Creates question object from dictionary values
 static func from_dict(obj_id: String, dict: Dictionary) -> QuestionObject:
 	var obj = QuestionObject.new()
 	obj.id = obj_id

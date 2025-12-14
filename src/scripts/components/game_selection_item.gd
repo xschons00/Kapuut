@@ -1,3 +1,6 @@
+# Author:
+# Description: Game selection card controlling navigation and appearance.
+
 class_name GameSelectionItem
 extends Control
 
@@ -30,6 +33,7 @@ func Configure(name: String, image_path: String, scene_path: String, theme: Stri
 	if theme != "":
 		SetThemeName(theme)
 
+# Switches theme and loads game scene
 func _on_button_button_down() -> void:
 	if ThemeName != "":
 		Globals.GameTheme = ThemeName

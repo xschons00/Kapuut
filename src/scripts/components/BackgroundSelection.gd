@@ -1,3 +1,6 @@
+# Author:
+# Description: UI for selecting and unlocking background images.
+
 extends Control
 
 # Signals
