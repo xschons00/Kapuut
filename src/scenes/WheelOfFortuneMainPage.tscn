@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5wqp7hk8n3jm"]
 
 [ext_resource type="Script" uid="uid://bw5qp7hk8n3jl" path="res://src/scripts/WheelOfFortuneMainPage.gd" id="1_wheel"]
+[ext_resource type="PackedScene" uid="uid://co0c6xjluuvp1" path="res://src/scenes/components/Menu.tscn" id="2_menu"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_wheel"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="4_wheel"]
 
@@ -18,11 +19,6 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wheel3"]
-bg_color = Color(0.10196078, 0.10196078, 0.10196078, 1)
-border_width_top = 3
-border_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
 
 [node name="WheelOfFortuneMainPage" type="Control"]
 layout_mode = 3
@@ -48,9 +44,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 31.0
-offset_top = 24.0
+offset_top = 117.0
 offset_right = -31.0
-offset_bottom = -124.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 30
@@ -131,25 +127,25 @@ horizontal_alignment = 1
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "50 kreditov"
+text = "50 coinov"
 
 [node name="Option100" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "100 kreditov"
+text = "100 coinov"
 
 [node name="Option250" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "250 kreditov"
+text = "250 coinov"
 
 [node name="Option1000" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "1000 kreditov"
+text = "1000 coinov"
 
 [node name="CenterPanel" type="CenterContainer" parent="MainContainer"]
 layout_mode = 2
@@ -257,6 +253,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
+[node name="EmptyHistoryLabel" type="Label" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 16
+text = "Zatiaľ si netočil kolesom.
+Skús svoje šťastie!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HistoryItem1" type="Panel" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer"]
 self_modulate = Color(0.1764706, 0.2901961, 0.2901961, 1)
 custom_minimum_size = Vector2(0, 60)
@@ -278,7 +285,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7)
 theme_override_font_sizes/font_size = 12
-text = "(100 kreditov)"
+text = "(100 coinov)"
 
 [node name="Result" type="HBoxContainer" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox"]
 layout_mode = 2
@@ -288,7 +295,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
 theme_override_font_sizes/font_size = 13
-text = "4x → 400 kreditov"
+text = "4x → 400 coinov"
 
 [node name="Profit" type="Label" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox/Result"]
 layout_mode = 2
@@ -296,74 +303,26 @@ theme_override_colors/font_color = Color(0.18039216, 0.8, 0.44313726, 1)
 theme_override_font_sizes/font_size = 13
 text = "+300"
 
-[node name="BottomBar" type="Panel" parent="."]
+[node name="ErrorLabel" type="Label" parent="."]
+visible = false
+z_index = 100
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -100.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wheel3")
-
-[node name="BackButton" type="Button" parent="BottomBar"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 35.0
-offset_right = 140.0
-offset_bottom = 65.0
-theme = ExtResource("4_wheel")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "← Back"
-flat = true
-
-[node name="StatsContainer" type="HBoxContainer" parent="BottomBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -20.0
-offset_right = -40.0
-offset_bottom = 20.0
-grow_horizontal = 0
+offset_left = -150.0
+offset_top = 286.0
+offset_right = 150.0
+offset_bottom = 316.0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 100
-alignment = 2
-
-[node name="WinContainer" type="HBoxContainer" parent="BottomBar/StatsContainer"]
-layout_mode = 2
-
-[node name="WinLabel" type="Label" parent="BottomBar/StatsContainer/WinContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.7)
-theme_override_font_sizes/font_size = 18
-text = "Win:"
-
-[node name="WinValue" type="Label" parent="BottomBar/StatsContainer/WinContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
-theme_override_font_sizes/font_size = 18
-text = "100 credits"
-
-[node name="BalanceContainer" type="HBoxContainer" parent="BottomBar/StatsContainer"]
-layout_mode = 2
-
-[node name="BalanceLabel" type="Label" parent="BottomBar/StatsContainer/BalanceContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0.7)
-theme_override_font_sizes/font_size = 18
-text = "Balance:"
-
-[node name="BalanceValue" type="Label" parent="BottomBar/StatsContainer/BalanceContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
-theme_override_font_sizes/font_size = 18
-text = "12500 credits"
+theme_override_colors/font_color = Color(0.8, 0.18, 0.18, 1)
+theme_override_font_sizes/font_size = 16
+text = "Nemáš dostatok coinov!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="QuestionPopup" type="Panel" parent="."]
 visible = false
@@ -448,4 +407,5 @@ theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 18
 text = "Answer 4"
 
-[connection signal="pressed" from="BottomBar/BackButton" to="." method="_on_back_button_pressed"]
+[node name="Menu" parent="." instance=ExtResource("2_menu")]
+layout_mode = 1

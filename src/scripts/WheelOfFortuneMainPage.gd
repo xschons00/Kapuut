@@ -12,16 +12,15 @@ class CircleDrawer extends Node2D:
 	func _draw():
 		draw_circle(Vector2.ZERO, radius, color)
 
-# scene paths
-var main_page_path: String = "res://src/scenes/MainPage.tscn"
-
 # nodes
+@onready var menu: Control = $Menu
+@onready var coins_label: Label = $Menu/profile_area/HBoxContainer/coins_label
 @onready var price_selector_container: VBoxContainer = $MainContainer/LeftPanel/PriceSelector/VBoxContainer
 @onready var wheel_container: CenterContainer = $MainContainer/CenterPanel/VBox/WheelContainer
 @onready var history_container: VBoxContainer = $MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer
-@onready var balance_label: Label = $BottomBar/StatsContainer/BalanceContainer/BalanceValue
-@onready var win_label: Label = $BottomBar/StatsContainer/WinContainer/WinValue
+@onready var empty_history_label: Label = $MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/EmptyHistoryLabel
 @onready var spin_button: Button = $MainContainer/CenterPanel/VBox/SpinButton
+@onready var error_label: Label = $ErrorLabel
 @onready var placeholder_wheel: Node2D = $MainContainer/CenterPanel/VBox/WheelContainer/PlaceholderWheel
 @onready var center_skull_label: Label = $MainContainer/CenterPanel/VBox/WheelContainer/CenterSkull
 @onready var question_popup: Panel = $QuestionPopup
@@ -46,10 +45,19 @@ var wheel_segments: Array = []		# Multipliers or "?"
 var segment_colors: Array = []		# Colors for each segment
 var segment_angle: float = 30.0		# 360 / 12 segments = 30
 var wheel_node: Node2D = null
-var question_color: Color = Color(0.17254902, 0.24313726, 0.3137255, 1)
-var container_fill_color: Color = Color(0.10196078, 0.10196078, 0.10196078, 1)
-var neon_color: Color = Color(0.30588236, 0.8039216, 0.77254903, 1)
 var is_spinning: bool = false
+
+# color constants (rounded to 3 decimal places)
+var neon_color: Color = Color(0.306, 0.804, 0.773, 1.0)
+var container_fill_color: Color = Color(0.102, 0.102, 0.102, 1.0)
+var question_color: Color = Color(0.173, 0.243, 0.314, 1.0)
+var history_panel_color: Color = Color(0.176, 0.290, 0.290, 1.0)
+var correct_answer_color: Color = Color(0.180, 0.800, 0.443, 1.0)
+var incorrect_answer_color: Color = Color(0.800, 0.180, 0.180, 1.0)
+var text_secondary_color: Color = Color(1.0, 1.0, 1.0, 0.7)
+var text_tertiary_color: Color = Color(1.0, 1.0, 1.0, 0.6)
+var dark_blue_color: Color = Color(0.200, 0.300, 0.400, 1.0)
+var light_blue_color: Color = Color(0.310, 0.800, 0.770, 1.0)
 
 # question vars
 var current_question_correct_answer: String = ""
@@ -111,24 +119,19 @@ func _load_user_data() -> void:
 		last_win = 0
 
 func _save_user_data() -> void:
-	# Load current profile
-	var profile = data_manager.profiles.get_profile(current_user_id)
-	if profile == null:
-		print("Error: Cannot save, profile not found")
+	# Get profiles dictionary
+	var profiles_dict = data_manager.profiles._get_section("profiles")
+	if not profiles_dict.has(current_user_id):
+		print("Error: Cannot save, profile not found in dictionary")
 		return
 
-	# Update balance
-	profile.coins = user_balance
+	# Update all data in one place
+	profiles_dict[current_user_id]["coins"] = user_balance
+	profiles_dict[current_user_id]["spin_history"] = spin_history
+	profiles_dict[current_user_id]["selected_price"] = selected_price
 
-	# Save profile
-	data_manager.profiles.save_profile(profile)
-
-	# Save spin history and selected price
-	var profiles_dict = data_manager.profiles._get_section("profiles")
-	if profiles_dict.has(current_user_id):
-		profiles_dict[current_user_id]["spin_history"] = spin_history
-		profiles_dict[current_user_id]["selected_price"] = selected_price
-		data_manager.profiles._save_section("profiles", profiles_dict)
+	# Save everything at once
+	data_manager.profiles._save_section("profiles", profiles_dict)
 
 func _setup_price_options() -> void:
 	# Setup price option buttons - skip the label (first child)
@@ -185,27 +188,21 @@ func _on_price_option_pressed(button: Button) -> void:
 	print("Selected price: ", selected_price)
 
 func _update_stats_display() -> void:
-	balance_label.text = str(user_balance) + " credits"
-	win_label.text = str(last_win) + " credits"
+	coins_label.text = str(user_balance)
 
 func _update_history_display() -> void:
-	# Clear existing history items (keep first child - label)
+	# Clear existing history items (except EmptyHistoryLabel)
 	for child in history_container.get_children():
-		child.queue_free()
+		if child != empty_history_label:
+			child.queue_free()
 
-	# If no spins yet, show message
+	# If no spins yet, show empty message
 	if spin_history.size() == 0:
-		var empty_label = Label.new()
-		empty_label.text = "Zatiaľ si netočil kolesom.\nSkús svoje šťastie!"
-		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		empty_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		empty_label.add_theme_font_size_override("font_size", 16)
-		empty_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.6))
-		empty_label.custom_minimum_size = Vector2(0, 200)
-		history_container.add_child(empty_label)
+		empty_history_label.visible = true
 		return
 
-	# Display all history
+	# Hide empty message and display history
+	empty_history_label.visible = false
 	for i in range(spin_history.size()):
 		var spin_data = spin_history[i]
 		var history_item = _create_history_item(spin_data)
@@ -213,7 +210,7 @@ func _update_history_display() -> void:
 
 func _create_history_item(spin_data: Dictionary) -> Panel:
 	var panel = Panel.new()
-	panel.self_modulate = Color(0.1764706, 0.2901961, 0.2901961, 1)
+	panel.self_modulate = history_panel_color
 	panel.custom_minimum_size = Vector2(0, 60)
 
 	var vbox = VBoxContainer.new()
@@ -226,8 +223,8 @@ func _create_history_item(spin_data: Dictionary) -> Panel:
 
 	# Cost label
 	var cost_label = Label.new()
-	cost_label.text = "(" + str(spin_data.cost) + " kreditov)"
-	cost_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.7))
+	cost_label.text = "(" + str(int(spin_data.cost)) + " coinov)"
+	cost_label.add_theme_color_override("font_color", text_secondary_color)
 	cost_label.add_theme_font_size_override("font_size", 12)
 	vbox.add_child(cost_label)
 
@@ -239,9 +236,9 @@ func _create_history_item(spin_data: Dictionary) -> Panel:
 	var result_label = Label.new()
 	var multiplier = spin_data.multiplier
 	if typeof(multiplier) == TYPE_STRING:
-		result_label.text = "? → %d kreditov" % spin_data.win
+		result_label.text = "? → %d coinov" % spin_data.win
 	else:
-		result_label.text = "%.1fx → %d kreditov" % [multiplier, spin_data.win]
+		result_label.text = "%.1fx → %d coinov" % [multiplier, spin_data.win]
 	result_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	result_label.add_theme_color_override("font_color", neon_color)
 	result_label.add_theme_font_size_override("font_size", 13)
@@ -251,21 +248,18 @@ func _create_history_item(spin_data: Dictionary) -> Panel:
 	var profit_label = Label.new()
 	var profit = spin_data.profit
 	if profit > 0:
-		profit_label.text = "+" + str(profit)
-		profit_label.add_theme_color_override("font_color", Color(0.18039216, 0.8, 0.44313726, 1))
+		profit_label.text = "+" + str(int(profit))
+		profit_label.add_theme_color_override("font_color", correct_answer_color)
 	elif profit < 0:
-		profit_label.text = str(profit)
-		profit_label.add_theme_color_override("font_color", Color(0.8, 0.18039216, 0.18039216, 1))
+		profit_label.text = str(int(profit))
+		profit_label.add_theme_color_override("font_color", incorrect_answer_color)
 	else:
 		profit_label.text = "0"
-		profit_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.7))
+		profit_label.add_theme_color_override("font_color", text_secondary_color)
 	profit_label.add_theme_font_size_override("font_size", 13)
 	hbox.add_child(profit_label)
 
 	return panel
-
-func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file(main_page_path)
 
 func _on_spin_button_pressed() -> void:
 	print("Spin wheel with price: ", selected_price)
@@ -310,12 +304,8 @@ func _generate_random_wheel() -> void:
 
 func _get_multiplier_color(multiplier: float) -> Color:
 	# Higher multiplier - lighter blue
-	var t: float = multiplier / 2.0  # Normalize to 0.0-1.0
-
-	var dark_blue: Color = Color(0.2, 0.3, 0.4)
-	var light_blue: Color = Color(0.31, 0.8, 0.77)
-
-	return dark_blue.lerp(light_blue, t)
+	var weight: float = multiplier / 2.0  # Normalize to 0.0-1.0
+	return dark_blue_color.lerp(light_blue_color, weight)
 
 func _create_wheel() -> void:
 	wheel_node = Node2D.new()
@@ -368,8 +358,8 @@ func _create_segment(index: int, radius: float, color: Color) -> Node2D:
 	# Add points along the arc
 	var segments_per_arc: int = 10
 	for j in range(segments_per_arc + 1):
-		var t: float = float(j) / float(segments_per_arc)
-		var angle: float = lerp(start_angle, end_angle, t)
+		var weight: float = float(j) / float(segments_per_arc)
+		var angle: float = lerp(start_angle, end_angle, weight)
 		var point: Vector2 = Vector2(cos(angle), sin(angle)) * radius
 		points.append(point)
 
@@ -395,13 +385,12 @@ func _create_label(index: int, radius: float) -> Label:
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
-	var label_angle_deg: float = -96.0 + (index * 30.0) + 15.0
-	var label_angle_rad: float = deg_to_rad(label_angle_deg)
+	var label_angle: float = deg_to_rad(-96.0 + (index * 30.0) + 15.0)
 
 	var label_distance: float = radius * 0.9
-	label.position = Vector2(cos(label_angle_rad), sin(label_angle_rad)) * label_distance
+	label.position = Vector2(cos(label_angle), sin(label_angle)) * label_distance
 
-	label.rotation = label_angle_rad + deg_to_rad(96.0)
+	label.rotation = label_angle + deg_to_rad(96.0)
 
 	return label
 
@@ -509,12 +498,12 @@ func _on_answer_selected(selected_answer: String) -> void:
 	for button in answer_buttons:
 		if button.text == selected_answer:
 			if is_correct:
-				button.modulate = Color(0.18039216, 0.8, 0.44313726, 1)  # Green
+				button.modulate = correct_answer_color  # Green
 			else:
-				button.modulate = Color(0.8, 0.18039216, 0.18039216, 1)  # Red
+				button.modulate = incorrect_answer_color  # Red
 		# Show correct answer
 		if button.text == current_question_correct_answer:
-			button.modulate = Color(0.18039216, 0.8, 0.44313726, 1)  # Green
+			button.modulate = correct_answer_color  # Green
 
 	# Wait a moment then process result
 	await get_tree().create_timer(2.0).timeout
@@ -547,7 +536,11 @@ func _spin_wheel() -> void:
 		return
 
 	if user_balance < selected_price:
-		print("Not enough credits!")
+		print("Not enough coins!")
+		# Show error message for 2 seconds
+		error_label.visible = true
+		await get_tree().create_timer(2.0).timeout
+		error_label.visible = false
 		return
 
 	# Lock the price at spin time
@@ -582,7 +575,7 @@ func _spin_wheel() -> void:
 	var profit: int = win_amount - current_spin_price
 
 	# Visually deduct the selected price from balance
-	balance_label.text = str(user_balance - current_spin_price) + " credits"
+	coins_label.text = str(user_balance - current_spin_price)
 
 	# Update balance
 	user_balance = user_balance - current_spin_price + win_amount
