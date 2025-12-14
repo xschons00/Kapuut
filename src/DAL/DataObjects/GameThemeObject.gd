@@ -1,4 +1,4 @@
-# Author:
+# Author: xjakubk00
 # Description: Data container for game theme metadata and questions.
 
 class_name GameThemeObject

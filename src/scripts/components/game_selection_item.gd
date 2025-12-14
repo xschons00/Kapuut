@@ -1,4 +1,4 @@
-# Author:
+# Author: xjakubk00
 # Description: Game selection card controlling navigation and appearance.
 
 class_name GameSelectionItem

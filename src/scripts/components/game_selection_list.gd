@@ -1,4 +1,4 @@
-# Author:
+# Author: xjakubk00
 # Description: Scrollable list for game selection cards with search and arrows.
 
 class_name GameSelectionList

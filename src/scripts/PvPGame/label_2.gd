@@ -1,4 +1,4 @@
-# Author:
+# Author:xjakubk00
 # Description: Displays current user name in PvP screens.
 
 extends Label

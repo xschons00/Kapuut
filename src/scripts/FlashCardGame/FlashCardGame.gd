@@ -1,4 +1,4 @@
-# Author:
+# Author:xjakubk00
 # Description: Flashcard gameplay controller for navigating questions.
 
 class_name FlashCards

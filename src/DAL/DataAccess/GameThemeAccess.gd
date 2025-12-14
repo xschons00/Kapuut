@@ -1,4 +1,4 @@
-# Author:
+# Author: xjakubk00
 # Description: Handles persistence for game themes and their questions.
 
 class_name GameThemeAccess
