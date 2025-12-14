@@ -151,12 +151,22 @@ func _on_claim_button_pressed() -> void:
 
 # Public function to increment mission progress
 func increment_mission(mission_type: String) -> void:
-	var profiles_dict = Globals.data_manager.profiles._get_section("profiles")
-	if not profiles_dict.has(current_user_id):
+	# Get fresh user ID from config
+	var cfg: AppConfigObject = Globals.data_manager.app_config.get_config()
+	if cfg == null:
+		print("ERROR: Cannot increment mission, config not found")
 		return
 
-	var profile_data = profiles_dict[current_user_id]
+	var user_id: String = cfg.user_id
 
+	var profiles_dict = Globals.data_manager.profiles._get_section("profiles")
+	if not profiles_dict.has(user_id):
+		print("ERROR: Cannot increment mission, user not found: ", user_id)
+		return
+
+	var profile_data = profiles_dict[user_id]
+
+	# Ensure daily_missions exists with all keys
 	if not profile_data.has("daily_missions"):
 		profile_data["daily_missions"] = {
 			"flashcards": 0,
@@ -164,7 +174,14 @@ func increment_mission(mission_type: String) -> void:
 			"lucky_mode": 0
 		}
 
+	# Ensure all keys exist (in case of partial data)
 	var missions = profile_data["daily_missions"]
+	if not missions.has("flashcards"):
+		missions["flashcards"] = 0
+	if not missions.has("pvp"):
+		missions["pvp"] = 0
+	if not missions.has("lucky_mode"):
+		missions["lucky_mode"] = 0
 
 	# Increment the specified mission
 	match mission_type:
@@ -178,6 +195,7 @@ func increment_mission(mission_type: String) -> void:
 			if missions["lucky_mode"] < LUCKY_MODE_TARGET:
 				missions["lucky_mode"] += 1
 
+	# Save back to profile
 	profile_data["daily_missions"] = missions
 	Globals.data_manager.profiles._save_section("profiles", profiles_dict)
 

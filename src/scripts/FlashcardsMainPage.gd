@@ -10,6 +10,7 @@ const GAME_SCENE_PATH := "res://src/scenes/FlashCardGame/FlashGameStart.tscn"
 
 func _ready() -> void:
 	Globals.add_menu(self)
+	Globals.add_daily_missions(self)
 	_populate_games()
 
 # Populate selection list with available themes

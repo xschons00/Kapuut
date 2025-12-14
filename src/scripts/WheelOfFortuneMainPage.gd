@@ -16,9 +16,7 @@ class CircleDrawer extends Node2D:
 		draw_circle(Vector2.ZERO, radius, color)
 
 # nodes
-@onready var menu: Control = $Menu
-@onready var daily_missions: Control = $DailyMissions
-@onready var coins_label: Label = $Menu/menu_panel/profile_area/VBoxContainer/HBoxContainer/coins_label
+var coins_label: Label
 @onready var price_selector_container: VBoxContainer = $MainContainer/LeftPanel/PriceSelector/VBoxContainer
 @onready var wheel_container: CenterContainer = $MainContainer/CenterPanel/VBox/WheelContainer
 @onready var history_container: VBoxContainer = $MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer
@@ -70,6 +68,11 @@ var current_spin_price: int = 0  # Price locked at spin time
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Globals.add_menu(self)
+	Globals.add_daily_missions(self)
+	# Get coins_label from global menu
+	await get_tree().process_frame  # Wait for menu to be added
+	coins_label = Globals.menu.get_node("menu_panel/profile_area/VBoxContainer/HBoxContainer/coins_label")
 	_load_data_manager()
 	_load_user_data()
 	_setup_price_options()
@@ -598,7 +601,7 @@ func _spin_wheel() -> void:
 	_save_user_data()
 
 	# Increment lucky mode mission
-	daily_missions.increment_mission("lucky_mode")
+	Globals.daily_missions.increment_mission("lucky_mode")
 
 	print("Random angle: ", random_angle)
 	print("Winning segment index: ", winning_index)
