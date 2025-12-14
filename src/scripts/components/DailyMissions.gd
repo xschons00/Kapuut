@@ -1,3 +1,6 @@
+# Author: xpitkaa00
+# Description: Daily missions tracker with expandable UI showing progress and rewards.
+
 extends Control
 
 # Nodes
