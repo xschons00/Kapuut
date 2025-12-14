@@ -122,7 +122,12 @@ func _on_new_button_pressed() -> void:
 	new_profile.user_name = "new player"
 	new_profile.profile_pic = Globals.default_profile_pic
 	new_profile.background_pic = Globals.default_profile_background
-	Globals.data_manager.profiles.save_profile(new_profile)
+
+	var new_id: String = Globals.data_manager.profiles.save_profile(new_profile)
+	config.user_id = new_id
+	Globals.data_manager.app_config.save_config(config)
+	Globals.emit_signal("refresh_menu_signal")
+	emit_signal("user_changed_signal")
 	_refresh_page_content()
 
 func _on_profile_pic_button_pressed() -> void: #shows or hides profile picture selection

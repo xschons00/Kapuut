@@ -30,7 +30,7 @@ func get_all_profiles() -> Array[ProfileObject]:
 		profile_arr.append(ProfileObject.from_dict(id, profiles[id]))
 	return profile_arr
 
-func save_profile(profile: ProfileObject) -> void:
+func save_profile(profile: ProfileObject) -> String:
 	profiles = _get_section("profiles")
 	if profile.id == "NOT_SET": #new profile, set propper ID
 		profile.id = str(profile_cnt)
@@ -38,6 +38,7 @@ func save_profile(profile: ProfileObject) -> void:
 		
 	profiles[profile.id] = profile.to_dict()
 	_save_section("profiles", profiles)
+	return profile.id
 	
 func delete_profile(profile: ProfileObject) -> bool:
 	profiles = _get_section("profiles")
