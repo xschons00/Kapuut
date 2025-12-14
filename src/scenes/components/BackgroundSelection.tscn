@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c87u1oyj3lyr4"]
+[gd_scene load_steps=15 format=3 uid="uid://c87u1oyj3lyr4"]
 
 [ext_resource type="Script" uid="uid://cwg1uoqs88exn" path="res://src/scripts/components/BackgroundSelection.gd" id="1_cwrt5"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="2_0ow5e"]
@@ -12,6 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://bvm7u6fmb0y4p" path="res://assets/backgrounds/forest_bg.jpg" id="9_ng7q8"]
 [ext_resource type="Theme" uid="uid://4dbq6yiux1mx" path="res://assets/themes/icon_buttons.tres" id="12_1x2ng"]
 [ext_resource type="Texture2D" uid="uid://dymwwos3wvsc0" path="res://assets/icons/close.png" id="13_i5q8w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwrt5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.5176471, 0.09803922, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da30h"]
 bg_color = Color(0, 0, 0, 0)
@@ -62,6 +70,16 @@ grow_vertical = 2
 texture = ExtResource("2_vhde7")
 expand_mode = 1
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg1_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
+
 [node name="bg2_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -76,6 +94,16 @@ grow_vertical = 2
 texture = ExtResource("3_cwrt5")
 expand_mode = 1
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg2_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
+
 [node name="bg3_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -89,6 +117,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_drvum")
 expand_mode = 1
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg3_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
 
 [node name="bg4_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
@@ -105,6 +143,16 @@ texture = ExtResource("5_0ow5e")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg4_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
+
 [node name="bg5_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -119,6 +167,16 @@ grow_vertical = 2
 texture = ExtResource("6_8c01g")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg5_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
 
 [node name="bg6_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
@@ -135,6 +193,16 @@ texture = ExtResource("7_ka42q")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg6_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
+
 [node name="bg7_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -150,6 +218,16 @@ texture = ExtResource("8_ui4go")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg7_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
+
 [node name="bg8_button" type="Button" parent="ColorRect/GridContainer"]
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
@@ -164,6 +242,16 @@ grow_vertical = 2
 texture = ExtResource("9_ng7q8")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="select_panel" type="Panel" parent="ColorRect/GridContainer/bg8_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwrt5")
 
 [node name="avatar_button" type="Button" parent="ColorRect"]
 layout_mode = 0
