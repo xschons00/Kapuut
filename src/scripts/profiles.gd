@@ -13,12 +13,14 @@ signal user_changed_signal
 @onready var avatar_selection_scene = preload("res://src/scenes/components/AvatarSelection.tscn")
 @onready var background_selection_scene = preload("res://src/scenes/components/BackgroundSelection.tscn")
 #nodes
-@onready var profile_rect: TextureRect = $detail_area/ColorRect/profile_rect
-@onready var background_rect: TextureRect = $detail_area/ColorRect/background_rect
-@onready var user_label: Label = $detail_area/HBoxContainer/user_label
-@onready var profile_container: VBoxContainer = $profiles_area/all_profiles/VBoxContainer
-@onready var line_edit: LineEdit = $detail_area/LineEdit
-@onready var search_bar: LineEdit = $profiles_area/HBoxContainer/search_bar
+#detail area
+@onready var profile_rect: TextureRect = $HBoxContainer/detail_area/ColorRect/profile_rect
+@onready var background_rect: TextureRect = $HBoxContainer/detail_area/ColorRect/background_rect
+@onready var user_label: Label = $HBoxContainer/detail_area/HBoxContainer/user_label
+@onready var line_edit: LineEdit = $HBoxContainer/detail_area/LineEdit
+#profiles area
+@onready var profile_container: VBoxContainer = $HBoxContainer/profiles_area/all_profiles/VBoxContainer
+@onready var search_bar: LineEdit = $HBoxContainer/profiles_area/HBoxContainer/search_bar
 @onready var avatar_selection: Control
 @onready var background_selection: Control
 #@onready var menu: Control

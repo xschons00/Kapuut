@@ -52,22 +52,41 @@ func add_menu(target: Node) -> Node:
 	return menu
 		
 func show_warning(text: String):
-	var popup = PopupPanel.new()
+	var popup := PopupPanel.new()
 	popup.name = "WarningPopup"
 	popup.set_exclusive(true)
-	#popup.modulate = Color(1, 0, 0)
-	
-	var label = Label.new()
+
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.12, 0.12, 0.12, 1.0) # solid background
+	style.border_color = Color("ff8419")
+
+	style.border_width_left = 3
+	style.border_width_right = 3
+	style.border_width_top = 3
+	style.border_width_bottom = 3
+
+	style.corner_radius_top_left = 8
+	style.corner_radius_top_right = 8
+	style.corner_radius_bottom_left = 8
+	style.corner_radius_bottom_right = 8
+
+	popup.add_theme_stylebox_override("panel", style)
+
+	var label := Label.new()
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
 	popup.add_child(label)
 	get_tree().root.add_child(popup)
+
 	popup.popup_centered(Vector2(500, 100))
 	await get_tree().create_timer(1.0).timeout
 	popup.queue_free()
+
 	
 func set_greyscale(rect: TextureRect, enabled: bool = true) -> void:
 	if enabled:
