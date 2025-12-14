@@ -114,7 +114,7 @@ func _on_leave_button_down() -> void:
 	Switch_Scene("res://src/scenes/FlashcardsMainPage.tscn")
 
 func _on_Know_button_down() -> void:
-increment_mission("flashcards")
+	increment_mission("flashcards")
 	if curr_Question >= 0 and curr_Question < num_of_questions:
 		if known_questions.size() != num_of_questions:
 			known_questions.clear()
