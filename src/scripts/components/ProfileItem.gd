@@ -10,9 +10,15 @@ signal profile_delete_signal(user: ProfileObject)
 @onready var user_label: Label = $VBoxContainer/user_label
 @onready var elo_label: Label = $VBoxContainer/HBoxContainer/elo_label
 @onready var coins_label: Label = $VBoxContainer/HBoxContainer2/coins_label
-
+@onready var select_button: Button = $VBoxContainer2/select_button
+@onready var delete_button: Button = $VBoxContainer2/delete_button
 #vars
 var user: ProfileObject
+var config: AppConfigObject
+var active_user: ProfileObject
+
+const SELECTED_COLOR: Color = "ff5c5c"
+const NORMAL_COLOR: Color = "ff8419"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,6 +40,24 @@ func set_profile_data(user_obj: ProfileObject) -> void:
 	user_label.text = user.user_name
 	elo_label.text = str(user.elo)
 	coins_label.text = str(user.coins)
+	
+	_get_app_config()
+	if user.id == active_user.id:
+		self.color = SELECTED_COLOR
+		select_button.disabled = true
+		delete_button.disabled = true
+	
+func _get_app_config() -> void:
+	config = Globals.data_manager.app_config.get_config()
+	if config == null:
+		print("ERROR: config not found")
+		return
+	active_user = Globals.data_manager.profiles.get_profile(config.user_id)
+	if active_user == null:
+		print("Warning: no user set")
+		return
+	if not ResourceLoader.exists(active_user.profile_pic):
+		print("Error: Invalid path: ", active_user.profile_pic)
 
 
 func _on_select_button_pressed() -> void:

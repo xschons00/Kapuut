@@ -57,7 +57,12 @@ func _load_item_or_default(button: Button) -> AvatarItem: #checks if item alread
 		if unlocked.item_name == item_name:
 			print("item already owned: ", item_name)
 			unlocked.is_unlocked = true
+			print("this: ",unlocked.item_path, " selected: ", user.profile_pic)
+			#if unlocked.item_path == user.profile_pic: #in case its selected
+			#	button.disabled = true
+					
 			return unlocked
+
 	return _init_new_item(button)
 				
 func _init_new_item(button: Button) -> AvatarItem:

@@ -8,10 +8,10 @@ var wheel_of_fortune_path: String = "res://src/scenes/WheelOfFortuneMainPage.tsc
 var pvp_path:String = "res://src/scenes/PvPMainPageTmp.tscn"
 
 #nodes
-@onready var background_rect: TextureRect = $profile_area/profiles_button/background_rect
-@onready var avatar_rect: TextureRect = $profile_area/profiles_button/avatar_rect
-@onready var username_label: Label = $profile_area/username_label
-@onready var coins_label: Label = $profile_area/HBoxContainer/coins_label
+@onready var background_rect: TextureRect = $menu_panel/profile_area/profiles_button/background_rect
+@onready var avatar_rect: TextureRect = $menu_panel/profile_area/profiles_button/avatar_rect
+@onready var username_label: Label = $menu_panel/profile_area/username_label
+@onready var coins_label: Label = $menu_panel/profile_area/coins_label
 
 #vars
 var config: AppConfigObject
