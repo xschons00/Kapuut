@@ -57,13 +57,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bgfy3")
 
+[node name="SearchBar" type="LineEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 60.0
+offset_top = 12.0
+offset_right = -60.0
+offset_bottom = 44.0
+grow_horizontal = 2
+placeholder_text = "Search games"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 60.0
-offset_top = 12.0
+offset_top = 60.0
 offset_right = -60.0
 offset_bottom = -12.0
 grow_horizontal = 2
@@ -111,3 +122,4 @@ text = ">"
 
 [connection signal="pressed" from="Panel/PrevButton" to="." method="_on_prev_button_pressed"]
 [connection signal="pressed" from="Panel/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="text_changed" from="Panel/SearchBar" to="." method="_on_search_bar_text_changed"]

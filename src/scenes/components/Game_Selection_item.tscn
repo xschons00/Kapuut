@@ -16,7 +16,7 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 
 [node name="GameSelectionItem" type="Control"]
-custom_minimum_size = Vector2(260, 320)
+custom_minimum_size = Vector2(240, 260)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 260.0

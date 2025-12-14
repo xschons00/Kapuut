@@ -6,11 +6,18 @@ var curr_Question: int = 0
 var EndingPath :String = "res://src/scenes/FlashCardGame/FlashGameEnd.tscn"
 var switch:bool = true
 var known_count: int = 0
+var known_questions: Array = []
 
 func load_additional_data():
 	num_of_questions = Gtheme.Questions.size()
 	Globals.flash_total_questions = num_of_questions
 	known_count = Globals.flash_known_count
+
+	known_questions.clear()
+	if num_of_questions > 0:
+		known_questions.resize(num_of_questions)
+		for i in range(num_of_questions):
+			known_questions[i] = false
 
 	if num_of_questions == 0:
 		return
@@ -19,6 +26,7 @@ func load_additional_data():
 	if progress_label:
 		progress_label.text = str("\n", curr_Question + 1, "/", num_of_questions)
 		Refresh()
+		_update_back_button_visibility()
 
 	_update_score_label()
 	_show_end_summary()
@@ -29,6 +37,15 @@ func Next_question():
 		Switch_Scene(EndingPath)
 	else:
 		self.Refresh()
+		_update_back_button_visibility()
+
+func Previous_question() -> void:
+	if curr_Question <= 0:
+		return
+
+	curr_Question -= 1
+	self.Refresh()
+	_update_back_button_visibility()
 		
 func UpdateProgress():
 	if num_of_questions <= 0:
@@ -42,6 +59,13 @@ func UpdateProgress():
 	var progress_background: Control = get_node_or_null("ProgressBackground")
 	if progress_bar and progress_background:
 		progress_bar.size.x = ((curr_Question + 1) / float(num_of_questions)) * progress_background.size.x
+
+func _update_back_button_visibility() -> void:
+	var back_button: Button = get_node_or_null("Panel/back")
+	if back_button:
+		var can_go_back := num_of_questions > 0 and curr_Question > 0
+		back_button.visible = can_go_back
+		back_button.disabled = not can_go_back
 	
 func Refresh():
 	var questions: Array = data["Questions"]
@@ -56,6 +80,10 @@ func _on_next_button_down() -> void:
 	Next_question()
 	if curr_Question < num_of_questions:
 		UpdateProgress()
+
+func _on_back_button_down() -> void:
+	Previous_question()
+	UpdateProgress()
 
 func _on_FlashCard_button_down() -> void:
 
@@ -78,7 +106,17 @@ func _on_leave_button_down() -> void:
 	Switch_Scene("res://src/scenes/FlashcardsMainPage.tscn")
 
 func _on_Know_button_down() -> void:
-	Globals.flash_known_count += 1
+	if curr_Question >= 0 and curr_Question < num_of_questions:
+		if known_questions.size() != num_of_questions:
+			known_questions.clear()
+			known_questions.resize(num_of_questions)
+			for i in range(num_of_questions):
+				if typeof(known_questions[i]) != TYPE_BOOL:
+					known_questions[i] = false
+		if not known_questions[curr_Question]:
+			Globals.flash_known_count += 1
+			known_questions[curr_Question] = true
+
 	known_count = Globals.flash_known_count
 	_update_score_label()
 	Next_question()

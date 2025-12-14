@@ -91,6 +91,20 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "NEXT"
 
+[node name="back" type="Button" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.015015
+offset_top = -134.07599
+offset_right = 208.01501
+offset_bottom = -24.194519
+grow_horizontal = 0
+grow_vertical = 0
+text = "BACK"
+
 [node name="ProgressBackground" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -154,8 +168,11 @@ offset_right = -21.0
 offset_bottom = -150.11853
 grow_horizontal = 0
 grow_vertical = 0
-theme = ExtResource("1_8wpbs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_onksy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_onksy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_onksy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_onksy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_onksy")
 text = "Viem"
 
 [node name="Label" type="Label" parent="."]
@@ -172,5 +189,6 @@ vertical_alignment = 1
 [connection signal="button_down" from="Panel/FlashCard" to="Panel/FlashCard" method="_on_button_down"]
 [connection signal="button_down" from="Panel/next" to="." method="_on_next_button_down"]
 [connection signal="button_down" from="Panel/next" to="Panel/next" method="_on_button_down"]
+[connection signal="button_down" from="Panel/back" to="." method="_on_back_button_down"]
 [connection signal="button_down" from="Leave" to="." method="_on_leave_button_down"]
 [connection signal="button_down" from="Know" to="." method="_on_Know_button_down"]

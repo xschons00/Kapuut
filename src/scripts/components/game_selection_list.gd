@@ -6,6 +6,7 @@ extends Control
 
 @onready var scroll_container: ScrollContainer = $Panel/ScrollContainer
 @onready var items_container: HBoxContainer = $Panel/ScrollContainer/HBoxContainer
+@onready var search_bar: LineEdit = $Panel/SearchBar
 @onready var prev_button: Button = $Panel/PrevButton
 @onready var next_button: Button = $Panel/NextButton
 
@@ -19,6 +20,9 @@ func set_items(items: Array) -> void:
 	_render_items(items)
 
 func filter_items(query: String) -> void:
+	if _all_items.is_empty():
+		return
+
 	var trimmed_query := query.strip_edges().to_lower()
 	if trimmed_query == "":
 		_render_items(_all_items)
@@ -31,6 +35,9 @@ func filter_items(query: String) -> void:
 			filtered.append(item)
 
 	_render_items(filtered)
+
+func _on_search_bar_text_changed(new_text: String) -> void:
+	filter_items(new_text)
 
 func _render_items(items: Array) -> void:
 	for child in items_container.get_children():
