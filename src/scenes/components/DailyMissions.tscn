@@ -1,0 +1,179 @@
+[gd_scene load_steps=3 format=3 uid="uid://bymxquo8ykrm8"]
+
+[ext_resource type="Script" uid="uid://buv0l0t57e1qm" path="res://src/scripts/components/DailyMissions.gd" id="1_daily"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_daily"]
+bg_color = Color(0.102, 0.102, 0.102, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.306, 0.804, 0.773, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="DailyMissions" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -321.0
+offset_top = 113.0
+offset_right = -21.0
+offset_bottom = 213.0
+grow_horizontal = 0
+script = ExtResource("1_daily")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_daily")
+
+[node name="Header" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = 63.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Daily Missions"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 12
+text = "0/3 completed"
+horizontal_alignment = 1
+
+[node name="CollapsedClickArea" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.78000003
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+
+[node name="ExpandedContent" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 49.0
+offset_top = 106.0
+offset_right = -45.0
+offset_bottom = 471.0
+grow_horizontal = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Mission1" type="VBoxContainer" parent="ExpandedContent"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="ExpandedContent/Mission1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Flashcards"
+
+[node name="Progress" type="Label" parent="ExpandedContent/Mission1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.306, 0.804, 0.773, 1)
+theme_override_font_sizes/font_size = 16
+text = "0/10"
+
+[node name="Description" type="Label" parent="ExpandedContent/Mission1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+theme_override_font_sizes/font_size = 11
+text = "Answer 10 questions correctly"
+
+[node name="Mission2" type="VBoxContainer" parent="ExpandedContent"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="ExpandedContent/Mission2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "PvP Mode"
+
+[node name="Progress" type="Label" parent="ExpandedContent/Mission2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.306, 0.804, 0.773, 1)
+theme_override_font_sizes/font_size = 16
+text = "0/3"
+
+[node name="Description" type="Label" parent="ExpandedContent/Mission2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+theme_override_font_sizes/font_size = 11
+text = "Win 3 PvP matches"
+
+[node name="Mission3" type="VBoxContainer" parent="ExpandedContent"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="ExpandedContent/Mission3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Lucky Mode"
+
+[node name="Progress" type="Label" parent="ExpandedContent/Mission3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.306, 0.804, 0.773, 1)
+theme_override_font_sizes/font_size = 16
+text = "0/20"
+
+[node name="Description" type="Label" parent="ExpandedContent/Mission3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+theme_override_font_sizes/font_size = 11
+text = "Spin the wheel 20 times"
+
+[node name="Spacer" type="Control" parent="ExpandedContent"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ClaimButton" type="Button" parent="ExpandedContent"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+disabled = true
+text = "Claim 500 coins"
+
+[node name="ClickDetector" type="Control" parent="."]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="CollapsedClickArea" to="." method="_on_click_area_pressed"]
+[connection signal="pressed" from="ExpandedContent/ClaimButton" to="." method="_on_claim_button_pressed"]
+[connection signal="gui_input" from="ClickDetector" to="." method="_on_click_detector_input"]

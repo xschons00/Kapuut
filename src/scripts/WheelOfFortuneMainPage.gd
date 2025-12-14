@@ -14,7 +14,8 @@ class CircleDrawer extends Node2D:
 
 # nodes
 @onready var menu: Control = $Menu
-@onready var coins_label: Label = $Menu/profile_area/HBoxContainer/coins_label
+@onready var daily_missions: Control = $DailyMissions
+@onready var coins_label: Label = $Menu/menu_panel/profile_area/coins_label
 @onready var price_selector_container: VBoxContainer = $MainContainer/LeftPanel/PriceSelector/VBoxContainer
 @onready var wheel_container: CenterContainer = $MainContainer/CenterPanel/VBox/WheelContainer
 @onready var history_container: VBoxContainer = $MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer
@@ -223,7 +224,7 @@ func _create_history_item(spin_data: Dictionary) -> Panel:
 
 	# Cost label
 	var cost_label = Label.new()
-	cost_label.text = "(" + str(int(spin_data.cost)) + " coinov)"
+	cost_label.text = "(" + str(int(spin_data.cost)) + " coins)"
 	cost_label.add_theme_color_override("font_color", text_secondary_color)
 	cost_label.add_theme_font_size_override("font_size", 12)
 	vbox.add_child(cost_label)
@@ -236,9 +237,9 @@ func _create_history_item(spin_data: Dictionary) -> Panel:
 	var result_label = Label.new()
 	var multiplier = spin_data.multiplier
 	if typeof(multiplier) == TYPE_STRING:
-		result_label.text = "? → %d coinov" % spin_data.win
+		result_label.text = "? → %d coins" % spin_data.win
 	else:
-		result_label.text = "%.1fx → %d coinov" % [multiplier, spin_data.win]
+		result_label.text = "%.1fx → %d coins" % [multiplier, spin_data.win]
 	result_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	result_label.add_theme_color_override("font_color", neon_color)
 	result_label.add_theme_font_size_override("font_size", 13)
@@ -592,6 +593,9 @@ func _spin_wheel() -> void:
 
 	# Save data
 	_save_user_data()
+
+	# Increment lucky mode mission
+	daily_missions.increment_mission("lucky_mode")
 
 	print("Random angle: ", random_angle)
 	print("Winning segment index: ", winning_index)

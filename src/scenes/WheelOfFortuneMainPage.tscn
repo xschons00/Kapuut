@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5wqp7hk8n3jm"]
+[gd_scene load_steps=8 format=3 uid="uid://b5wqp7hk8n3jm"]
 
 [ext_resource type="Script" uid="uid://bw5qp7hk8n3jl" path="res://src/scripts/WheelOfFortuneMainPage.gd" id="1_wheel"]
 [ext_resource type="PackedScene" uid="uid://co0c6xjluuvp1" path="res://src/scenes/components/Menu.tscn" id="2_menu"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_wheel"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="4_wheel"]
+[ext_resource type="PackedScene" uid="uid://bymxquo8ykrm8" path="res://src/scenes/components/DailyMissions.tscn" id="5_daily"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wheel1"]
 bg_color = Color(0.17254902, 0.24313726, 0.3137255, 1)
@@ -90,8 +91,8 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.8)
 theme_override_font_sizes/font_size = 14
-text = "Vyber si cenu točenia a riskuj. Čím viac zaplatíš, tým väčšie výhry ťa čakajú... 
-Dokážeš zostať v profite?"
+text = "Choose your bet and take a risk. The more you pay, the bigger wins await you...
+Can you stay profitable?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -120,32 +121,32 @@ layout_mode = 2
 size_flags_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
-text = "Vyber cenu točenia"
+text = "Choose bet amount"
 horizontal_alignment = 1
 
 [node name="Option50" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "50 coinov"
+text = "50 coins"
 
 [node name="Option100" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "100 coinov"
+text = "100 coins"
 
 [node name="Option250" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "250 coinov"
+text = "250 coins"
 
 [node name="Option1000" type="Button" parent="MainContainer/LeftPanel/PriceSelector/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 16
-text = "1000 coinov"
+text = "1000 coins"
 
 [node name="CenterPanel" type="CenterContainer" parent="MainContainer"]
 layout_mode = 2
@@ -209,10 +210,10 @@ text = "   ¿ Spin ?   "
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-alignment = 1
+alignment = 2
 
 [node name="HistoryPanel" type="Panel" parent="MainContainer/RightPanel"]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(0, 395)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wheel2")
 
@@ -232,7 +233,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
-text = "História točení"
+text = "Spin History"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainContainer/RightPanel/HistoryPanel"]
@@ -259,8 +260,8 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.6)
 theme_override_font_sizes/font_size = 16
-text = "Zatiaľ si netočil kolesom.
-Skús svoje šťastie!"
+text = "You haven't spun yet.
+Try your luck!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -285,7 +286,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.7)
 theme_override_font_sizes/font_size = 12
-text = "(100 coinov)"
+text = "(100 coins)"
 
 [node name="Result" type="HBoxContainer" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox"]
 layout_mode = 2
@@ -295,7 +296,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.30588236, 0.8039216, 0.77254903, 1)
 theme_override_font_sizes/font_size = 13
-text = "4x → 400 coinov"
+text = "4x → 400 coins"
 
 [node name="Profit" type="Label" parent="MainContainer/RightPanel/HistoryPanel/ScrollContainer/VBoxContainer/HistoryItem1/VBox/Result"]
 layout_mode = 2
@@ -320,7 +321,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8, 0.18, 0.18, 1)
 theme_override_font_sizes/font_size = 16
-text = "Nemáš dostatok coinov!"
+text = "Not enough coins!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -408,4 +409,7 @@ theme_override_font_sizes/font_size = 18
 text = "Answer 4"
 
 [node name="Menu" parent="." instance=ExtResource("2_menu")]
+layout_mode = 1
+
+[node name="DailyMissions" parent="." instance=ExtResource("5_daily")]
 layout_mode = 1
