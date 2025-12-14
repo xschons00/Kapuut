@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0cmy7jvn61s5"]
 
-[ext_resource type="Script" uid="uid://cr2hbpbspfqr3" path="res://src/scripts/pvp_main_page_tmp.gd" id="1_56rtd"]
+[ext_resource type="Script" uid="uid://ftohseus7x0h" path="res://src/scripts/pvp_main_page_tmp.gd" id="1_56rtd"]
 [ext_resource type="Theme" uid="uid://c2jd4rh8tl154" path="res://assets/themes/MainPage_theme.tres" id="1_odapm"]
 [ext_resource type="PackedScene" uid="uid://dw8i61om15lht" path="res://src/scenes/components/GameSelectionList.tscn" id="3_9hqqh"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="3_a3awe"]
@@ -48,7 +48,10 @@ grow_vertical = 2
 theme = ExtResource("3_a3awe")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-text = "		Challenge other players in real-time PvP battles. Answer questions faster and more accurately than your opponent to earn points, climb the leaderboard, and prove your knowledge. Perfect when you want a high‑energy, competitive way to learn.	"
+text = "		Challenge other players in real-time PvP battles. Answer questions faster
+and more accurately than your opponent to earn points, 
+climb the leaderboard, and prove your knowledge. 
+Perfect when you want a high‑energy, competitive way to learn.	"
 autowrap_mode = 3
 autowrap_trim_flags = 0
 justification_flags = 160

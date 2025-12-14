@@ -10,6 +10,8 @@ var data_manager: DataManager
 var data_seed: DataSeed
 var menu_scene = preload("res://src/scenes/components/Menu.tscn")
 var menu: Control
+var daily_missions_scene = preload("res://src/scenes/components/DailyMissions.tscn")
+var daily_missions: Control
 var GameTheme: String = "DANODREVO" # default je None, ale pre testovanie to bude toto
 var score : String 
 var pvp_winner: int = 0 # 0 = tie, 1 = user, 2 = opponent
@@ -35,6 +37,7 @@ func _ready() -> void:
 	data_seed.test_seed()
 	#menu setup
 	_init_menu()
+	_init_daily_missions()
 	greyscale = ShaderMaterial.new()
 	greyscale.shader = greyscale_shader
 	
@@ -59,7 +62,27 @@ func add_menu(target: Node) -> Node:
 	target.add_child.call_deferred(menu)
 	menu.show.call_deferred()
 	return menu
-		
+
+# Creates and attaches daily missions singleton if missing
+func _init_daily_missions():
+	if daily_missions != null:
+		return
+	daily_missions = daily_missions_scene.instantiate()
+	daily_missions.name = "DailyMissions"
+
+func add_daily_missions(target: Node) -> Node:
+	if daily_missions == null:
+		_init_daily_missions()
+	if daily_missions.get_parent() == target:
+		return daily_missions
+	var current_parent := daily_missions.get_parent()
+	if current_parent:
+		current_parent.remove_child.call_deferred(daily_missions)
+
+	target.add_child.call_deferred(daily_missions)
+	daily_missions.show.call_deferred()
+	return daily_missions
+
 # Shows a short-lived warning popup
 func show_warning(text: String):
 	var popup := PopupPanel.new()

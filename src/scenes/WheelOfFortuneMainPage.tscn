@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5wqp7hk8n3jm"]
+[gd_scene load_steps=6 format=3 uid="uid://b5wqp7hk8n3jm"]
 
 [ext_resource type="Script" uid="uid://bw5qp7hk8n3jl" path="res://src/scripts/WheelOfFortuneMainPage.gd" id="1_wheel"]
-[ext_resource type="PackedScene" uid="uid://co0c6xjluuvp1" path="res://src/scenes/components/Menu.tscn" id="2_menu"]
 [ext_resource type="Theme" uid="uid://8entfw1pqoh0" path="res://assets/themes/menu_theme.tres" id="3_wheel"]
 [ext_resource type="Theme" uid="uid://dvxoal5iebrxx" path="res://assets/themes/profile_edit.tres" id="4_wheel"]
-[ext_resource type="PackedScene" uid="uid://bymxquo8ykrm8" path="res://src/scenes/components/DailyMissions.tscn" id="5_daily"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wheel1"]
 bg_color = Color(0.17254902, 0.24313726, 0.3137255, 1)
@@ -407,9 +405,3 @@ layout_mode = 2
 theme = ExtResource("4_wheel")
 theme_override_font_sizes/font_size = 18
 text = "Answer 4"
-
-[node name="Menu" parent="." instance=ExtResource("2_menu")]
-layout_mode = 1
-
-[node name="DailyMissions" parent="." instance=ExtResource("5_daily")]
-layout_mode = 1

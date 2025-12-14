@@ -9,6 +9,7 @@ const GAME_SCENE_PATH := "res://src/scenes/PvPGame/PvPStart.tscn"
 
 func _ready() -> void:
 	Globals.add_menu(self)
+	Globals.add_daily_missions(self)
 	_populate_games()
 
 # Build card list for available themes
