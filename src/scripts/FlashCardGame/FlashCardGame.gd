@@ -11,6 +11,10 @@ var switch:bool = true
 var known_count: int = 0
 var known_questions: Array = []
 
+# Mission targets
+const FLASHCARDS_TARGET: int = 10
+const PVP_TARGET: int = 3
+const LUCKY_MODE_TARGET: int = 20
 # Load deck data and initialize counters/UI
 func load_additional_data():
 	num_of_questions = Gtheme.Questions.size()
@@ -78,9 +82,7 @@ func Refresh():
 	var flash_card: Button = get_node_or_null("Panel/FlashCard")
 	if flash_card and curr_Question < questions.size():
 		flash_card.text = questions[curr_Question]["Question"]
-		
 
-	
 func _on_next_button_down() -> void:
 
 	Next_question()
@@ -112,6 +114,7 @@ func _on_leave_button_down() -> void:
 	Switch_Scene("res://src/scenes/FlashcardsMainPage.tscn")
 
 func _on_Know_button_down() -> void:
+increment_mission("flashcards")
 	if curr_Question >= 0 and curr_Question < num_of_questions:
 		if known_questions.size() != num_of_questions:
 			known_questions.clear()
@@ -146,3 +149,36 @@ func _update_score_label() -> void:
 		if total <= 0:
 			total = num_of_questions
 		score_label.text = str("Score: \n", Globals.flash_known_count, " / ", total)
+
+
+func increment_mission(mission_type: String) -> void:
+	var current_user_id = Globals.data_manager.app_config.get_config().user_id
+	var profiles_dict = Globals.data_manager.profiles._get_section("profiles")
+	if not profiles_dict.has(current_user_id):
+		return
+
+	var profile_data = profiles_dict[current_user_id]
+
+	if not profile_data.has("daily_missions"):
+		profile_data["daily_missions"] = {
+			"flashcards": 0,
+			"pvp": 0,
+			"lucky_mode": 0
+		}
+
+	var missions = profile_data["daily_missions"]
+
+	# Increment the specified mission
+	match mission_type:
+		"flashcards":
+			if missions["flashcards"] < FLASHCARDS_TARGET:
+				missions["flashcards"] += 1
+		"pvp":
+			if missions["pvp"] < PVP_TARGET:
+				missions["pvp"] += 1
+		"lucky_mode":
+			if missions["lucky_mode"] < LUCKY_MODE_TARGET:
+				missions["lucky_mode"] += 1
+
+	profile_data["daily_missions"] = missions
+	Globals.data_manager.profiles._save_section("profiles", profiles_dict)
