@@ -355,109 +355,7 @@
         \item \textbf{xpitkaa00} – Herný režim koleso štastia, Okno "Daily Tasks" pre odmeňovanie pravideľného hrania.
     \end{itemize}
     
-    \section{Návrh GUI s ohľadom na užívateľské potreby}
-    \subsection{Návrh časti UI [xschons00]}
-    \includegraphics[width=0.75\textwidth]{design/main.png}
-    \begin{itemize}
-        \item\textbf{Popis:}
-        Úvodná obrazovka umožňuje používateľovi výber medzi hernými režimami a správou profilov, taktiež bude obsahovať okno "Daily Tasks"
-        \item\textbf{Interaktívne prvky:}
-        Tlačidlá s animáciou po prechode myšou, rozbalovacie okno
-    \end{itemize}
-    \includegraphics[width=0.75\textwidth]{design/flashcards_main.png}
-    \begin{itemize}
-        \item\textbf{Popis:}
-        Úvodná obrazovka jednotlivých herných režimov zobrazuje popis hry, umožňuje používateľovi výber konkrétnych hrier pomocou náhľadu alebo vyhľadávacieho políčka.
-        \item\textbf{Interaktívne prvky:}
-        Tlačidlá s animáciou po prechode myšou, vyhľadávacie políčko, objekty konkrétnych hrier s tlčidlom pre začiatok hry.
-    \end{itemize}
-    
-    
-    \includegraphics[width=0.75\textwidth]{design/profiles.png}
-    \begin{itemize}
-        \item\textbf{Popis:}
-        Editor profilov slúži na upravovanie alebo zmenu aktuálneho profilu a správu všetkých uložených profilov.
-        \item\textbf{Interaktívne prvky:}
-        Tlačidlá s animáciou po prechode myšou, dynamické skrolovacie okno s uloženými profilmi, náhľad profilového obrázku aktuálneho užívateľa, vstupné textové okno pre zmenu mena užívateľa, tlačidlá pre zmenu a úpravu profilového avatara.
-    \end{itemize}
-    
-    \includegraphics[width=0.75\textwidth]{design/create_profile.png}
-    \begin{itemize}
-        \item\textbf{Popis:}
-        Okno pre vytvorenie nového profilu pridá nový profil do zoznamu a presmeruje naspäť na editor profilov
-        \item\textbf{Interaktívne prvky:}
-        Tlačidlá s animáciou po prechode myšou, náhľad profilového obrázku nového užívateľa, vstupné textové okno pre nastavenie mena užívateľa, tlačidlá pre potvrdenie, či zrušenie.
-    \end{itemize}
-    	Každý člen vloží návrh svojej časti GUI s popismi.
-    	\subsection{Návrh časti UI  [xjakubk00]}
-    	
-    	\begin{itemize}
-    		
-    		
-    		\item \textbf{Obrázok:} \newline 
-    		      \includegraphics[width=\textwidth]{design/pvpgame.png}\newline
-    		      
-    		\item \textbf{Popis:} 
-    		      Návrh obrazovky hry typu \textit{PvP Quiz}. Otázky sú usporiadané do tvaru pyramídy, pričom pozadie ostáva jednotné počas celej hry, aby sa zachovala vizuálna konzistentnosť a sústredenie hráča na interaktívne prvky.\newline
-    		      
-    		\item \textbf{Interaktívne prvky:} 
-    		      Používateľ si môže vybrať ktorúkoľvek sivú guľôčku predstavujúcu otázku. Po výbere sa zobrazí otázka so štyrmi možnosťami odpovede. 
-    		      Po správnej odpovedi sa guľôčka zafarbí farbou hráča, čím sa vizuálne označí jeho pokrok. 
-    		      Ak hráč odpovie nesprávne, na kolo príde protihráč. 
-    		      V prípade, že protihrač otázku zodpovie správne, guľôčka sa zmení na jeho farbu. 
-    		      Tento systém poskytuje okamžitú vizuálnu spätnú väzbu a zároveň podporuje súťaživosť medzi hráčmi.\newline
-    		      
-    		\item \textbf{Obrázok:} \newline 
-    		      \includegraphics[width=\textwidth]{design/Flashcardgame.png}\newline
-    		      
-    		\item \textbf{Popis:} 
-    		      Návrh obrazovky režimu \textit{FlashCards}, ktorý slúži na precvičovanie otázok. Používateľ vidí vždy jednu kartičku s otázkou a možnosťou posunu na ďalšiu. V hornej časti obrazovky sa nachádza \textit{progress bar}, ktorý vizuálne indikuje postup medzi otázkami.\newline
-    		      
-    		\item \textbf{Interaktívne prvky:} 
-    		      Po kliknutí na kartičku s otázkou sa táto otočí a zobrazí správnu odpoveď. Používateľ následne môže kliknúť na tlačidlo \textit{Next}, čím sa presunie na ďalšiu kartičku. 
-    		      Tento mechanizmus podporuje efektívne samoštúdium, pretože kombinuje okamžitú spätnú väzbu s plynulým prechodom medzi otázkami.
-    		      
-    		      
-    		        
-    	\end{itemize}
-    	
-    	\subsection{Návrh časti UI [xpitkaa00]}
-    	\includegraphics[width=\textwidth]{design/wheel_of_kapuut.png}
-    	\begin{itemize}
-    	    \item\textbf{Popis:}
-    	    Návrh obrazovky herného režimu \textit{Wheel of Kapuut}, ktorý kombinuje prvky náhody a vedomostnej hry. Obrazovka je rozdelená do troch vertikálnych panelov pre maximálnu prehľadnosť. Ľavý panel obsahuje popis režimu a výber ceny točenia, centrálna časť zobrazuje rotujúce koleso s ôsmimi sekciami (4x násobitele: 1x, 2x, 3x, 4x a 4x otázky označené "?"), pravý panel zobrazuje históriu posledných točení s profit/loss analýzou. Spodná lišta obsahuje navigačné tlačidlo a štatistiky používateľa (celkový zisk v session a aktuálny zostatok kreditov).
-    	    
-    	    \item\textbf{Interaktívne prvky:}
-    	    \begin{itemize}
-    	        \item \textbf{Výber ceny točenia:} Štyri tlačidlá (25, 100, 250, 1000 kreditov) s hover animáciou a vizuálnym zvýraznením vybranej možnosti
-    	        \item \textbf{Tlačidlo "Spin":} Spúšťa animáciu točenia kolesa, ktorá trvá 3-5 sekúnd s postupným spomaľovaním
-    	        \item \textbf{Koleso:} Rotačná animácia s 8 farebnými sekciami, šípka (pointer) v hornej časti označuje finálny výsledok
-    	        \item \textbf{História točení:} Dynamicky aktualizovaný zoznam zobrazujúci poslednú cenu točenia, výsledok a farebne odlíšený profit (zelená = zisk, červená = strata, šedá = ±0)
-    	        \item \textbf{Modálne okno s otázkou:} Pri padnutí na "?" sa zobrazí overlay s kvízovou otázkou a štyrmi možnosťami odpovede
-    	        \item \textbf{Spodná lišta:} Tlačidlo "Back" pre návrat do hlavného menu, zobrazenie aktuálneho zostatku a zisku v session
-    	    \end{itemize}
-    	    
-    	    \item\textbf{Herná mechanika:}
-    	    Pri padnutí na násobiteľ (1x-4x) používateľ automaticky získava príslušný násobok vloženej sumy. Pri padnutí na otázku ("?") sa zobrazí kvízová otázka – správna odpoveď prináša bonus (napríklad 1.5x vloženej sumy), nesprávna odpoveď znamená stratu vsadenej čiastky. Tento režim pridáva prvok napätia a umožňuje používateľom ovplyvniť výsledok svojimi vedomosťami.
-    	\end{itemize}
-    	
-    	\includegraphics[width=0.75\textwidth]{design/daily_tasks.png}
-    	\begin{itemize}
-    	    \item\textbf{Popis:}
-    	    Návrh rozbaľovacieho panelu \textit{Daily Tasks}, ktorý sa nachádza ako sidebar na pravej strane hlavnej obrazovky. V zbalenom stave je viditeľná len úzka lišta so šípkou smerujúcou doľava "<". Po kliknutí na šípku sa panel plynulo rozšíri a zobrazí zoznam denných úloh s progress barmi, odmenami a tlačidlami na claim. Každá úloha má indikátor dokončenia a možnosť získať odmenu (kredity, body). Pri splnení všetkých denných úloh sa používateľovi odomkne špeciálny bonus segment v režime Wheel of Kapuut, ktorý je dostupný len do konca dňa.
-    	    
-    	    \item\textbf{Interaktívne prvky:}
-    	    \begin{itemize}
-    	        \item \textbf{Šípka "<":} Rozbaľovacia šípka na okraji obrazovky, po kliknutí sa panel animovane rozšíri z pravej strany
-    	        \item \textbf{Progress bary úloh:} Každá denná úloha má vizuálny indikátor pokroku (napr. "Odohraj 5 hier: 3/5")
-    	        \item \textbf{Tlačidlá "Claim Reward":} Pri splnení úlohy sa aktivuje tlačidlo, ktorým používateľ získa odmenu (kredity, body)
-    	        \item \textbf{Špeciálna odmena:} Pri dokončení všetkých úloh sa zobrazí špeciálne zvýraznený box s informáciou o odomknutí bonus segmentu v Wheel of Kapuut (časový odpočet do konca dňa)
-    	        \item \textbf{Automatické obnovenie:} Panel zobrazuje čas do resetu úloh (napr. "Reset za: 8h 23m")
-    	    \end{itemize}
-    	    
-    	    \item\textbf{Účel a motivácia:}
-    	    Daily Tasks systém motivuje používateľov k pravidelnému návratu do aplikácie a odmeňuje ich za aktívne hranie. Časovo limitovaný bonus segment v Wheel of Kapuut vytvára pocit urgentnosti a zvyšuje hodnotu dokončenia všetkých úloh. Sidebar dizajn nezasahuje do herného zážitku a používateľ si môže kedykoľvek skontrolovať svoj pokrok.
-    	\end{itemize}
+
     	
     	\section{Výber technológií}
     	Pre vývoj aplikácie sme zvolili \textbf{Godot Engine} – open-source herný engine vhodný na 2D hry s možnosťou multiplatformového exportu. Hlavné dôvody tohto výberu sú:
@@ -517,5 +415,82 @@
         Vstupným bodom je singleton \texttt{DataManager}, ktorý poskytuje prístupy \texttt{profiles} a \texttt{app\_config}. Profily spravuje \texttt{ProfileAccess}, aplikáčnu konfiguráciu \texttt{AppConfigAccess}  a témy s otázkami \texttt{GameThemeAccess}.
     
         Dátové objekty mapujú údaje medzi GDScript a JSON pomocou \texttt{to\_dict()} a \texttt{from\_dict()}. Dátový model je rozdelený do sekcií \texttt{profiles}, \texttt{app\_config} a \texttt{themes}; pole \texttt{app\_config.user\_id} ukazuje na aktívny profil. 
+
+
+
+
+
+\section{Realizácia návrhu GUI s ohľadom na užívateľské potreby}
+
+    \subsection{realizácia časti UI [xschons00]}
+    \includegraphics[width=0.75\textwidth]{design/profiles.png}
+    \begin{itemize}
+        \item\textbf{Popis:}
+        Prvok menu je spoločný pre všetky hlavné stránky, umožňuje navigáciu v aplikácií a zobrazuje aktuálneho užívateľa s jeho scóre a zostávajúcou hernou menou.
+        Stránka profily zobrazuje zoznam užívateľov, aktuálneho užívateľa a jeho detail. Umožnuje vyhľadávanie a správu profilov, odomikanie nových položiek za hernú menu a upravovanie profilového avatara.
+        \item\textbf{Interaktívne prvky:}
+        ovládacie tlačídlá, vyhľadávacie pole, skrolovateľný zoznam, textové pole pre zmenu mena.
+        \item\textbf{Zapracované zmeny:}
+        Odsránenie dialógu pre vytvorenie užívateľa, zjedodušenie rozloženia a pridanie viacerých interaktívnych prvkov.
+    \end{itemize}
+    \includegraphics[width=0.75\textwidth]{design/selection.png}
+    \begin{itemize}
+        \item\textbf{Popis:}
+        Ponuka sa zobrazí pri stačení ikony edit pri profile. Umožnuje výber a nákup nových položiek. Aktuálne zvolená poločka sa zvýrazní a odomknuté sa vždy zobrazujú pre konkrétneho používateľa.
+        \item\textbf{Interaktívne prvky:}
+        Tlačidlá jednotlivých položiek. Tlačidlá pre odomknutie, Prepínaie medzi výberom pozatia a avatara profilu.
+    \end{itemize}
+
+
+
+
+
+
+
+
+\section{Testovanie výslednej aplikácie}
+\subsection{Testovanie [xschons00]}
+
+Testovanie aplikácie prebiehalo formou používateľského testovania s respondentom z prvej časti používateľského prieskumu (študent vysokej školy, aktívny používateľ edukačných hier). Cieľom testovania bolo overiť zrozumiteľnosť používateľského rozhrania, intuitívnosť ovládania a celkový dojem z herných mechaník.
+
+\textbf{Priebeh testovania:}
+\\
+Používateľ dostal krátke vysvetlenie účelu aplikácie bez detailného návodu.
+Následne mal vykonať sériu úloh:
+    \begin{itemize}
+        \item vytvoriť nový používateľský profil a nastaviť ho ako aktívny,
+        \item zmeniť meno a avatar profilu,
+        \item kúpiť nové profilové pozadie a vybrať ho
+        \item vyhľadať konkrétny profil pomocou vyhľadávacieho poľa,
+        \item spustiť herný režim a odpovedať na niekoľko otázok,
+        \item vyskúšať výber položiek v menu a orientáciu v aplikácii.
+    \end{itemize}
+    Po dokončení úloh nasledoval krátky rozhovor zameraný na spätnú väzbu.
+
+
+\textbf{Zistenia z testovania:}
+
+    Používateľ dokázal bez problémov vytvoriť a spravovať profily, rozhranie považoval za intuitívne.
+    Vyhľadávacie pole bolo pochopené okamžite a výrazne uľahčilo orientáciu pri väčšom počte profilov.
+   Navigácia pomocou menu bola zrozumiteľná a nevyžadovala vysvetlenie.
+    Používateľ ocenil krátke herné kolá a absenciu nutnosti pripojenia na internet.
+
+	
+\section{Záver}
+
+Cieľom projektu bolo navrhnúť a implementovať používateľské rozhranie pre edukačnú hernú aplikáciu Kapuut, ktorá kombinuje prvky učenia, súťaživosti a hernej zábavy. Na základe používateľského prieskumu boli identifikované kľúčové požiadavky na rýchlu hrateľnosť, intuitívne ovládanie, offline dostupnosť a motivačné herné mechaniky.
+
+Počas návrhu a realizácie GUI sa podarilo:
+\begin{itemize}
+    \item vytvoriť prehľadné a konzistentné používateľské rozhranie,
+    \item implementovať správu používateľských profilov vrátane vyhľadávania a personalizácie,
+    \item navrhnúť herné režimy reflektujúce potreby rôznych typov používateľov,
+    \item zabezpečiť okamžitú spätnú väzbu a motivačný systém odmien.
+\end{itemize}
+
+Používateľské testovanie potvrdilo, že aplikácia je zrozumiteľná aj bez podrobného návodu a spĺňa očakávania cieľovej skupiny. Identifikované drobné nedostatky predstavujú skôr možnosti ďalšieho zlepšenia než zásadné problémy.
+
+
+
     
     \end{document}
